@@ -5,6 +5,8 @@ Sources: `_3908gjr.inm` (full input language), `_3908gjr.his` / `Memb-Integratio
 `zeo_real.acmf`, and the contents of `Zeo_real.ATMLZ` (a zip; extracted copy only, original untouched).
 
 > **Working rule for this folder:** do not modify simulation files unless explicitly asked. Analyse, then propose.
+>
+> **Edit log:** record every edit made to a project file (create, modify or delete) in [docs/EDIT_LOG.md](docs/EDIT_LOG.md), with enough detail to undo it. Log file edits only: no analysis, runs, scratch work or failed attempts. Never edit past rows; add an `undo` row instead.
 
 ---
 
@@ -13,6 +15,7 @@ Sources: `_3908gjr.inm` (full input language), `_3908gjr.his` / `Memb-Integratio
 | File | What it is | Notes |
 |---|---|---|
 | `Memb-Integration-1.bkp` | Aspen Plus backup (text) — **source of truth for the flowsheet** | Runid `memb-integration-1`, originally run from `C:\Users\CAPE\Desktop\Arg` |
+| `Memb-Integration-1_before-s01.bkp` | Backup of the original `.bkp`, taken before the Session 1 edits | Undo point for edit-log entry E015 |
 | `Memb-Integration-1.apw` / `.appdf` / `.ads` / `.his` / `.def` | Aspen working doc, results, run history | `.his` = run log with all warnings |
 | `_3908gjr.*` | Aspen's temp run directory files | `.inm` = **readable full input file** (best file to read the model); `.his` = run log; `.jnl` = GUI command journal |
 | `zeo_real.acmf` | ACM text model (the "notepad file") | **NOT the version Aspen runs** — see §5 |
@@ -48,7 +51,8 @@ GAS ─ PURGAS (SEP) ─ GAS2 ─ MEMB1 (ACM Zeo_real) ─ RET ─ FLASH3 (30 °
         └─ WASTE (always 0)                 └─ PER (out)          └─ H2O-2 (out)
 ```
 - PURGAS sends fraction 1 of WATER/CO2/H₂/CH₄/CO/CARBON to GAS2, so WASTE is always empty (by design).
-- CH4PYRO: L = 18.9 m, D = 0.378 m, T-spec 790 °C, catalyst 24.668 kg (ρ = 1500 kg/m³), vapour phase. Reactions R-1 (CH₄ → C(s) + 2 H₂) and R-2 (CO₂ + H₂ → CO + H₂O).
+- CH4PYRO: L = 18.9 m, D = 0.378 m, T-spec 790 °C, catalyst 24.668 kg (ρ = 1500 kg/m³), vapour phase, integration tolerance 1E-4. Reactions R-1 (CH₄ → C(s) + 2 H₂) and R-2 (CO₂ + H₂ → CO + H₂O).
+- Global flash maximum iterations = 100 (Setup → Simulation Options). The H2S-SEP flash of GAS2 needs about 37.
 
 ### Property methods
 - Global: `NRTL` (secondary `PENG-ROB`), `ESTIMATE ALL`, stream class `MIXCISLD` (CARBON is CISOLID).
@@ -122,15 +126,13 @@ In zeolite membranes H₂ (kinetic diameter ≈ 2.9 Å) permeates faster than CO
 | R1 | RSTOIC rxns 3, 5, 6 fail mass balance (−0.852, −0.284, −0.284) | ✅🔧 **all caused by PALM** | See C1. With palmitic acid C₁₆H₃₂O₂ (MW 256.43), rxn 3: TRIPALM (807.34) + 3 H₂O = glycerol (92.09) + 3 × 256.43 = 861.38 — **exact**. With the entered 256.145 → −0.855, which matches the log. Rxns 5 and 6 are atom-balanced with palmitic acid too. |
 | R2 | ACETOGEN rxn 6 (PALM) mass error 0.281 | ✅🔧 | Also caused by PALM's MW. It becomes mass-balanced with MW 256.43, **but the element balance still fails** (by hand: ΔC ≈ +1.25, ΔH ≈ +0.93, ΔO ≈ −1.00 per mol). Aspen only checks mass, so this passes unnoticed. |
 | R3 | ACETOGEN rxns 1, 5 (oleic, linoleic) mass errors 0.164, 0.0166 | ✅🔧 | Element balance (hand calc): rxn 1 ΔC +0.41, ΔH −7.57, ΔO +0.18; rxn 5 ΔC +0.41, ΔH −5.81, ΔO +0.06. The coefficients (15.2359 H₂O, 0.482 CO₂, 0.1701 NH₃ …) look like they come from an **ionic-form LCFA model** (oleate⁻, HCO₃⁻, NH₄⁺, acetate⁻, H⁺) but were applied to neutral species without re-balancing. Re-derive with C/H/O/N balances on the neutral species. |
-| R4 | AMINOACI activation energies | ➕ | Rxns 17 (valine) and 19 (tyrosine): `ACT-ENERGY = −5.921695E+10` J/kmol versus −1.4143726E+7 for the rest. The ratio is exactly **4186.8**, a cal↔J ×1000 unit slip. All values are negative (rate falls as T rises). No effect today (T = T-REF = 328.15 K); it **blows up if B1's temperature changes**. |
-| R5 | Double temperature correction | ➕ | The calculators apply their own Arrhenius-like factor and then overwrite PRE-EXP, while the reaction set also carries ACT-ENERGY/T-REF. That double-counts the temperature effect once T ≠ 55 °C. |
 
 ### 4.4 Component / property data
 
 | # | Issue | Status | Root cause / fix |
 |---|---|---|---|
 | C1 | PALM MW 256.145 vs formula 242.45 | ✅🔧 **root cause of R1, R2** | `PALM` was created with formula **C16H34O (1-hexadecanol, MW 242.45)**, then given a manual MW of 256.145 meant for **palmitic acid C16H32O2 (MW 256.43)**. Fix: switch the component to palmitic acid (databank `PALMITIC-ACID`) and delete the MW override. Afterwards, re-check the PALM NRTL pairs (water, benzene, ethanol). |
-| C2 | Missing DHFORM/DHAQFM: TYROSINE, TRYPTOPH, METHIONI (`DGCHK1.1`, B1) | ✅ | These take part in AMINOACI 19/20/6, so B1's energy balance is wrong. The other amino acids were given values in REVIEW-1 that look like **solid-state ΔHf** (e.g., alanine −561.2 kJ/mol), but DHFORM is the *ideal-gas* heat of formation. Use one basis consistently. Candidate solid values (check against NIST before entering): Tyr ≈ −685 kJ/mol, Trp ≈ −415 kJ/mol, Met ≈ −577 kJ/mol. |
+| C2 | Missing DHFORM/DHAQFM: TYROSINE, TRYPTOPH, METHIONI (`DGCHK1.1`, B1) | ✅ | These take part in AMINOACI 19/20/6, but they have no source in the model (not in BIOMASS, not produced by KERATIN), so their flow is zero and the missing values don't change any number today. The other amino acids were given values in REVIEW-1 that look like **solid-state ΔHf** (e.g., alanine −561.2 kJ/mol), but DHFORM is the *ideal-gas* heat of formation. Use one basis consistently. Candidate solid values (check against NIST before entering): Tyr ≈ −685 kJ/mol, Trp ≈ −415 kJ/mol, Met ≈ −577 kJ/mol. |
 | C3 | DHVLWT + DHVLDP for PROLINE, CYSTEINE, ARGININE (`DPRSW2.3`) | ✅ | Aspen uses DHVLWT and ignores DHVLDP. Delete the DHVLDP set (or the other one) to remove the warning. |
 | C4 | GLYCINE VLSTD twice | ✅ | PCES-1 50.745 cc/mol vs REVIEW-1 0.0507284 m³/kmol (= 50.73). Almost identical, so harmless. Remove one. |
 | C5 | Out-of-bounds: CARBON TC/VC, H2CO3 DHVLWT/OMEGA, ETHANOL CPIG | ✅🔧 | **ETHANOL CPIG is a units error:** the coefficients are in **cal/mol·K with T in °C** (14.63 + 0.0403·26.85 ≈ 15.7 cal/mol·K ≈ 65.7 J/mol·K, the correct value at 300 K), but they were entered under `IN-UNITS SI`. Simplest fix: delete the override; PURE40's ethanol data are good. **CARBON**: it's CISOLID, so Tc/Vc warnings are benign as long as it stays solid. **H2CO3**: its parameters are placeholders (PLXANT 0/−1000, DHVLWT 100 300, CPIG copied from HCO3-), and it takes part in no reaction. Remove the species or set realistic values. |
@@ -141,10 +143,8 @@ In zeolite membranes H₂ (kinetic diameter ≈ 2.9 Å) permeates faster than CO
 
 | Calc | Bug |
 |---|---|
-| LINODEG, PALMDEG | `O = (LCFAFLOW / C_VOL)/5.` but `LCFAFLOW` is **never DEFINEd** in these blocks, so the value is uninitialised. |
-| PROPDEG | `C_TNH3 = NH3 + NH4` but only `TNH3FLOW` is defined, so **NH3 is uninitialised**. |
-| AMINODEG | `HIS` (histidine) is in the sum `AA1` but is not a component and is never defined, so it's uninitialised. KIN15/KIN16 are wired to IDs 16/15 (harmless, all equal K). |
-| METHAN | Computes Q (pH) and S (H₂ inhibition) but leaves both out of `K` (uses R instead). Check this is intended. |
+| AMINODEG | KIN15/KIN16 are wired to IDs 16/15 (harmless, all equal K). |
+| METHAN | Computes Q (pH 5–6) and S (H₂ inhibition) but leaves both out of `K` (uses R, pH 6–7). This matches ADM1 for acetoclastic methanogens, so no change is needed. |
 | all | `AFLEXC.1` "sequence … may be inconsistent" ×10: benign; they read stream 5 and write reaction PRE-EXP ahead of B1. |
 
 ### 4.5b Open: warning on stream NH3 (global)
@@ -180,7 +180,7 @@ The log shows `VOLUME = 19036.4` (m³) with vapour fraction 0.042. The liquid th
 2. **PALM → palmitic acid**: fixes C1, R1 and the mass side of R2.
 3. Re-balance ACETOGEN 1, 5, 6 by elements (R2, R3).
 4. Delete the ETHANOL CPIG override (C5) and add DHFORM for Tyr/Trp/Met (C2).
-5. Fix the calculator bugs (§4.5) and the AMINOACI Ea unit slip (R4).
+5. Fix the remaining calculator bugs (§4.5).
 6. Cleanup: C3, C4, C7, H2CO3, PURGAS, unused LHHW sets and ions.
 7. Check the B1 RCSTR volume basis (§4.6).
 

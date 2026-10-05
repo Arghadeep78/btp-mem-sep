@@ -129,7 +129,8 @@ Feed is at 1.01325 bar (GAS2) and permeate at 1.0 bar (`PERMEATE.P SPEC=CONST`),
 **Fix:** `DEFINE BUTYFLOW MASS-FLOW STREAM=… SUBSTREAM=MIXED COMPONENT=ISOBU-01 UOM="kg/hr"`.
 
 ### A6. Tyrosine and tryptophan degradation have product terms in the rate law 🟡
-`POWLAW-EXP 19 … TYROSINE 1 / PHENOL 1 / ACETI-AC 1` and `POWLAW-EXP 20 … TRYPTOPH 1 / INDOLE 1 / ACETI-AC 1`. PHENOL and INDOLE are made only by these reactions, so the rate is autocatalytic. Starting from zero, the solver will most likely sit at the trivial solution r = 0.
+`POWLAW-EXP 19 … TYROSINE 1 / PHENOL 1 / ACETI-AC 1` and `POWLAW-EXP 20 … TRYPTOPH 1 / INDOLE 1 / ACETI-AC 1`. PHENOL and INDOLE are made only by these reactions, so the rate is autocatalytic. Starting from zero, the solver will most likely sit at the trivial solution r = 0. The calculator also writes k in 1/s, which does not fit a third-order law.
+**Current impact: none.** TYROSINE, TRYPTOPH, METHIONI and LYSINE have no source in the model: they are not in BIOMASS, KERATIN (RSTOIC 13) doesn't yield them, and PROT bypasses the amino acids. AMINOACI rxns 6, 14, 19 and 20 therefore always run at zero. The fix matters once a source is added (B6 option, or an extended keratin composition).
 **Fix:** keep only `TYROSINE 1.0` and `TRYPTOPH 1.0` in POWLAW-EXP.
 
 ### C1/R1. PALM is defined as hexadecanol, which breaks RSTOIC 3, 5, 6 ✅
@@ -203,7 +204,7 @@ H⁺ never has flow (no CHEMISTRY block), so AMINODEG's computed pH = −log₁�
 **Fix:** state a fixed pH explicitly, or add an electrolyte CHEMISTRY block.
 
 ### C2. Missing and inconsistent heats of formation ✅
-DGCHK1.1 (B1): DHFORM/DHAQFM is missing for TYROSINE, TRYPTOPH and METHIONI ("incorrect enthalpy results"). The REVIEW-1 values (e.g. alanine −561.2 kJ/mol) look like **solid-state** ΔHf, but Aspen's DHFORM is the ideal-gas value.
+DGCHK1.1 (B1): DHFORM/DHAQFM is missing for TYROSINE, TRYPTOPH and METHIONI ("incorrect enthalpy results"). These three never have flow (see A6), so the missing values don't change any number today. The REVIEW-1 values (e.g. alanine −561.2 kJ/mol) look like **solid-state** ΔHf, but Aspen's DHFORM is the ideal-gas value. That mixed basis does affect B1's duty today, because those amino acids come from KERATIN.
 **Fix:** use one basis for all amino acids. Either enter NIST gas-phase values, or define the molecular structures and let PCES (Benson) estimate them consistently.
 
 ---
@@ -212,7 +213,8 @@ DGCHK1.1 (B1): DHFORM/DHAQFM is missing for TYROSINE, TRYPTOPH and METHIONI ("in
 
 | Calc | Bug | Status | Fix |
 |---|---|---|---|
-| LINODEG, PALMDEG | `O = (LCFAFLOW / C_VOL)/5.` but `LCFAFLOW` is never DEFINEd | ✅ | Add `DEFINE LCFAFLOW MASS-FLOW … COMPONENT=OLEICACI UOM="kg/hr"` and add it to READ-VARS |
+| LINODEG, PALMDEG | `O = (LCFAFLOW / C_VOL)/5.` but `LCFAFLOW` is never DEFINEd. The stored results show it reads as 0, so the Haldane self-inhibition term is missing (PALMDEG k over-predicted ~2.7×) | ✅ | Use the block's own substrate, as OLEICDEG does: `O = (C_LINO / C_VOL)/5.` and `O = (C_PALM / C_VOL)/5.` |
+| BUTYDEG, DEXTDEG, GLYCDEG, METHAN, PROPDEG, VALEDEG | The LCFA inhibition term uses OLEICACI only; palmitic and linoleic acid are ignored (pool 9.59 vs 18.88 kg/m³ in stream 5) | ✅ | Sum all three: `C_LCFA = LCFAFLOW + LINOFL + PALMFL`, with two new Mass-Flow Defines |
 | PROPDEG | `C_TNH3 = NH3 + NH4`, but only `TNH3FLOW` is defined (NH3 is uninitialised) | ✅ | `C_TNH3 = TNH3FLOW + NH4` |
 | AMINODEG | `HIS` is in `AA1` but is never defined (histidine is not a component) | ✅ | Remove HIS |
 | AMINODEG | KIN15/KIN16 are wired to IDs 16/15; KIN3 and KIN12 are assigned but not defined | ✅ harmless (all equal K) | Tidy |

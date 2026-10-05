@@ -1,5 +1,7 @@
 # Session 3: Henry components and the B1 reactor volume basis
 
+**Session status:** ⏳ Not started.
+
 Back up first.
 
 ---

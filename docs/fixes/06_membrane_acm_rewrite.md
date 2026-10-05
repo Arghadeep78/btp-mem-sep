@@ -1,5 +1,7 @@
 # Session 6: Rewrite the ACM membrane model (M1–M4, M6, A1, F)
 
+**Session status:** ⏳ Not started.
+
 Needs **Aspen Custom Modeler** + Notepad + Aspen Plus. Do Session 5 (compressor) first. Back up the `.bkp` **and** `Zeo_real.ATMLZ`.
 
 ---

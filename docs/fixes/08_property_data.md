@@ -1,5 +1,7 @@
 # Session 8: Property data cleanup
 
+**Session status:** ⏳ Not started.
+
 All in **Props → Methods → Parameters** (Pure Components / Binary Interaction) and **Props → Components → Specifications**. Back up first.
 
 ---
@@ -12,7 +14,8 @@ All in **Props → Methods → Parameters** (Pure Components / Binary Interactio
 
 **Error it causes:**
 - Log DGCHK1.1 (B1): "absence … will result in incorrect enthalpy results".
-- B1's heat duty (4275.86 in the log) and reaction heats are wrong.
+- The missing values themselves have **no numerical effect today**. TYROSINE, TRYPTOPH and METHIONI have no source in the model (see 1.3), so their flow is always zero. They start to matter as soon as these amino acids get a source.
+- The **mixed basis** of the values that are entered (solid ΔHf used as ideal-gas DHFORM) does affect results today. Those amino acids come from KERATIN, so B1's heat duty (4275.86 in the log) and the reaction heats are wrong.
 
 **Approach:** use one consistent basis for all amino acids.
 
@@ -58,7 +61,7 @@ All in **Props → Methods → Parameters** (Pure Components / Binary Interactio
 **Issue:** NH4+ is defined with formula **H3N** (ammonia), and its NRTL pairs are copies of NH3's.
 **Error it causes:** no effect today (no flow, no chemistry), but the name is misleading. The calculators add NH3 + NH4 assuming it is the ion.
 **Steps (choose one):**
-- **Delete NH4+** (simplest). First remove it from the calculator DEFINEs (NH4 variables) and set `C_TNH3 = NH3` in the Fortran; or
+- **Delete NH4+** (simplest). First remove it from the calculator DEFINEs (NH4 variables) and drop `+ NH4` from the Fortran: `C_TNH3 = NH3 + NH4` → `C_TNH3 = NH3`; in PROPDEG `C_TNH3 = TNH3FLOW + NH4` → `C_TNH3 = TNH3FLOW`; in VALEDEG `CTNH3 = TNH3FLOW + NH4` → `CTNH3 = TNH3FLOW`. Or:
 - keep it, but rename it in the model description to "unused".
 
 ---

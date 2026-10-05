@@ -12,17 +12,17 @@ Every issue in these files has the same five parts:
 
 ## Sessions
 
-| # | File | What gets fixed | Approx. time | What drives the time | Needs |
-|---|---|---|---|---|---|
-| 1 | [01_quick_edits.md](01_quick_edits.md) | GLYCDEG typo, BUTYDEG fraction/flow, AMINOACI rate orders and Ea, 5 calculator bugs | **45–60 min** | About 10 small edits; setting Ea = 0 for 21 AMINOACI reactions one by one is the slowest part | Aspen GUI |
-| 2 | [02_palm_and_acetogen.md](02_palm_and_acetogen.md) | PALM → palmitic acid; element-balanced ACETOGEN 1, 5, 6 | **45–60 min** | Component swap and NRTL re-retrieve ~20 min; typing 3 reactions ~15 min; run and verify | Aspen GUI |
-| 3 | [03_henry_and_b1_volume.md](03_henry_and_b1_volume.md) | Henry components (gas solubility); B1 reactor volume basis | **40–60 min** | Henry setup ~15 min; B1 check 10 min, plus ~20 min if the spec must change | Aspen GUI |
-| 4 | [04_kinetics_basis.md](04_kinetics_basis.md) | Calculators read the B1 outlet, not the inlet (VFA rates ≈ 0 today) | **1.5–3 h** ⚠️ | Re-pointing ~60 Define variables across 10 calculators ~1 h; getting the convergence loop to converge can take 1 h or more | Aspen GUI |
-| 5 | [05_membrane_compressor.md](05_membrane_compressor.md) | Add feed compression for the membrane | **30–45 min** | Place and connect 1–2 blocks, set specs, run | Aspen GUI |
-| 6 | [06_membrane_acm_rewrite.md](06_membrane_acm_rewrite.md) | Rewrite the ACM model (crash, +504 % mass, charge imbalance, real permeances) | **2–4 h** ⚠️ | ACM compile and debug (code not yet compiled) 1–2 h; ATMLZ export and re-link 30 min; Aspen run and tuning 30–60 min | ACM + Notepad + Aspen GUI |
-| 7 | [07_pyrolysis.md](07_pyrolysis.md) | R-1/R-2 units, RWGS reversibility, catalyst loading | **45–90 min** | Depends on finding the k₀ units in the paper; Aspen edits ~20 min | Aspen GUI + source paper |
-| 8 | [08_property_data.md](08_property_data.md) | DHFORM, ETHANOL CPIG, H2CO3, NH4+, CYSTEINE, VLSTD, duplicates | **1–1.5 h** | Mostly deletions; +30 min if Option A for DHFORM (drawing molecular structures) | Aspen GUI |
-| 9 | [09_cleanup.md](09_cleanup.md) | PURGAS, FLASH3, unused sets, METH options, docs | **30–45 min** | Small deletions and renames, plus updating `CLAUDE.md` | Aspen GUI + Notepad |
+| # | Status | File | What gets fixed | Approx. time | What drives the time | Needs |
+|---|---|---|---|---|---|---|
+| 1 | ✅ Done | [01_quick_edits.md](01_quick_edits.md) | GLYCDEG, BUTYDEG, AMINOACI orders + Ea, calculator bugs, LCFA basis, 2 companion settings | — | Applied: EDIT_LOG E015, E020 | — |
+| 2 | ✅ Done (1 known error until S6) | [02_palm_and_acetogen.md](02_palm_and_acetogen.md) | PALM → palmitic acid; element-balanced ACETOGEN 1, 5, 6 | **45–60 min** | Component swap and NRTL re-retrieve ~20 min; typing 3 reactions ~15 min; run and verify | Aspen GUI |
+| 3 | ⏳ Not started | [03_henry_and_b1_volume.md](03_henry_and_b1_volume.md) | Henry components (gas solubility); B1 reactor volume basis | **40–60 min** | Henry setup ~15 min; B1 check 10 min, plus ~20 min if the spec must change | Aspen GUI |
+| 4 | ⏳ Not started | [04_kinetics_basis.md](04_kinetics_basis.md) | Calculators read the B1 outlet, not the inlet (VFA rates ≈ 0 today) | **1.5–3 h** ⚠️ | Re-pointing ~60 Define variables across 10 calculators ~1 h; getting the convergence loop to converge can take 1 h or more | Aspen GUI |
+| 5 | ⏳ Not started | [05_membrane_compressor.md](05_membrane_compressor.md) | Add feed compression for the membrane | **30–45 min** | Place and connect 1–2 blocks, set specs, run | Aspen GUI |
+| 6 | ⏳ Not started | [06_membrane_acm_rewrite.md](06_membrane_acm_rewrite.md) | Rewrite the ACM model (crash, +504 % mass, charge imbalance, real permeances) | **2–4 h** ⚠️ | ACM compile and debug (code not yet compiled) 1–2 h; ATMLZ export and re-link 30 min; Aspen run and tuning 30–60 min | ACM + Notepad + Aspen GUI |
+| 7 | ⏳ Not started | [07_pyrolysis.md](07_pyrolysis.md) | R-1/R-2 units, RWGS reversibility, catalyst loading | **45–90 min** | Depends on finding the k₀ units in the paper; Aspen edits ~20 min | Aspen GUI + source paper |
+| 8 | ⏳ Not started | [08_property_data.md](08_property_data.md) | DHFORM, ETHANOL CPIG, H2CO3, NH4+, CYSTEINE, VLSTD, duplicates | **1–1.5 h** | Mostly deletions; +30 min if Option A for DHFORM (drawing molecular structures) | Aspen GUI |
+| 9 | ⏳ Not started | [09_cleanup.md](09_cleanup.md) | PURGAS, FLASH3, unused sets, METH options, docs | **30–45 min** | Small deletions and renames, plus updating `CLAUDE.md` | Aspen GUI + Notepad |
 
 **Total: about 9–15 h**, roughly 9 sessions of 1–2 h each. Times include the backup, a test run and the verify checks. One full Aspen run takes about 2 min (the log shows ~121 s).
 
@@ -38,8 +38,8 @@ Every issue in these files has the same five parts:
 - 7–9 are refinements.
 
 ## Progress checklist
-- [ ] S1 quick edits
-- [ ] S2 PALM + ACETOGEN
+- [x] S1 quick edits (EDIT_LOG E015, E020)
+- [x] S2 PALM + ACETOGEN (EDIT_LOG E025; 1 known CH4PYRO error until S6)
 - [ ] S3 Henry + B1 volume
 - [ ] S4 kinetics basis
 - [ ] S5 compressor

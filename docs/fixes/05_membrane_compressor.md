@@ -1,5 +1,7 @@
 # Session 5: Add feed compression for the membrane (A2)
 
+**Session status:** ⏳ Not started.
+
 Do this **before** Session 6: the rewritten membrane needs a pressure driving force. Back up first.
 
 ---

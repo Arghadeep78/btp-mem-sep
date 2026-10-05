@@ -1,5 +1,7 @@
 # Session 2: PALM → palmitic acid, and element-balanced ACETOGEN
 
+**Session status:** ✅ **DONE (installed, EDIT_LOG E025).** Tested: 6 warning messages removed (RSTOIC ZURE07.8 ×3, ACETOGEN RXMBCK ×3), LOADMW gone. Known: 1 CH4PYRO BALMAS error until Session 6 (see end of file).
+
 Back up first. Do 2.1 before 2.2.
 
 ---
@@ -19,11 +21,12 @@ Back up first. Do 2.1 before 2.2.
 **Steps (Aspen GUI)**
 1. **Props → Components → Specifications.** On the `PALM` row, click **Find**. Search for name "palmitic" or formula **C16H32O2**. Select **PALMITIC-ACID** (n-hexadecanoic acid) → **Add selected compounds**. If Aspen adds it as a new row, delete the new row, then type its *Component name* / *Alias* into the `PALM` row instead. The Component ID must stay `PALM`.
 2. **Props → Methods → Parameters → Pure Components → REVIEW-1.** Find the **MW** entry for PALM and delete that value (leave the cell blank).
-3. **Props → Methods → Parameters → Binary Interaction → NRTL-1.** The pairs WATER–PALM, BENZENE–PALM and ETHANOL–PALM were retrieved for hexadecanol. Delete those three rows, then press **Run** (properties only) so Aspen re-retrieves the databank pairs for palmitic acid. If none are found, Aspen estimates them (UNIFAC) because `ESTIMATE ALL` is on.
+3. **NRTL pairs need no action.** The `.bkp` stores only source tags for the WATER/BENZENE/ETHANOL–PALM pairs (`NISTV140 NIST-IG`), not values. Aspen retrieves them for whichever compound PALM points to, so they follow the switch automatically.
 4. Run properties (Props → Run). Check that the Control Panel has **no LOADMW.5** message.
 
 **Verify after the full run:**
-- ZURE07.8 for RSTOIC 3, 5, 6 is **gone**, so the warning count drops by 3.
+- LOADMW.5 is gone. The component report shows PALM as `C16H32O2`.
+- ZURE07.8 for RSTOIC 3, 5, 6 is **gone**.
 - RXMBCK for ACETOGEN 6 changes. This is expected and is fixed in 2.2.
 
 ---
@@ -48,20 +51,33 @@ Back up first. Do 2.1 before 2.2.
 
 | Rxn | Reactants (coefficient) | Products (coefficient) |
 |---|---|---|
-| **1** (oleic) | OLEICACI −1 · NH3 −0.1701 · WATER −15.4897 | C5H7NO2 0.1701 · ACETI-AC 8.5747 · HYDROGEN 15.0000 |
-| **5** (linoleic) | LINOLEIC −1 · NH3 −0.1701 · WATER −15.4897 | C5H7NO2 0.1701 · ACETI-AC 8.5747 · HYDROGEN 14.0000 |
-| **6** (palmitic) | PALM −1 · NH3 −0.1701 · WATER −13.4897 | C5H7NO2 0.1701 · ACETI-AC 7.5747 · HYDROGEN 14.0000 |
+| **1** (oleic) | OLEICACI −1 · NH3 −0.1701 · WATER −15.4897 | C5H7NO2 0.1701 · ACETI-AC 8.57475 · HYDROGEN 15 |
+| **5** (linoleic) | LINOLEIC −1 · NH3 −0.1701 · WATER −15.4897 | C5H7NO2 0.1701 · ACETI-AC 8.57475 · HYDROGEN 14 |
+| **6** (palmitic) | PALM −1 · NH3 −0.1701 · WATER −13.4897 | C5H7NO2 0.1701 · ACETI-AC 7.57475 · HYDROGEN 14 |
+
+Enter ACETI-AC with all five decimals: 8.57475 = (18 − 5 × 0.1701)/2 and 7.57475 = (16 − 5 × 0.1701)/2, from the carbon balance. With these values ΔC = ΔH = ΔO = ΔN = 0 and Δmass = 0 exactly.
+
+**Why CO₂ = 0 is the right closure:**
+- Fixing the biomass yield leaves one degree of freedom. β-oxidation releases no CO₂, so CO₂ = 0 closes it.
+- The resulting COD split matches ADM1 for LCFA degradation: acetate ≈ 0.67, H₂ ≈ 0.29, biomass ≈ 0.03 of the substrate COD (ADM1: 0.7 and 0.3 of the non-biomass share).
+- The current coefficients don't conserve COD: −50, −34 and +63 g COD per mol for rxns 1, 5 and 6.
 
 (Without biomass the cores are: oleic + 16 H₂O → 9 HAc + 15 H₂; linoleic + 16 H₂O → 9 HAc + 14 H₂; palmitic + 14 H₂O → 8 HAc + 14 H₂.)
 
 **Steps (Aspen GUI)**
 1. Open Reactions **ACETOGEN** → **Stoichiometry** tab → select **Rxn 1** → **Edit**.
 2. Reactants: OLEICACI 1, NH3 0.1701, WATER 15.4897. **Remove CO2** from the reactants.
-3. Products: C5H7NO2 0.1701, ACETI-AC 8.5747, HYDROGEN 15.
+3. Products: C5H7NO2 0.1701, ACETI-AC 8.57475, HYDROGEN 15.
 4. Do the same for **Rxn 5** and **Rxn 6** using the table.
 5. On the **Kinetic** tab, check that the exponents are still: OLEICACI 1 (rxn 1), LINOLEIC 1 (rxn 5), PALM 1 (rxn 6), and 0 for everything else.
 
 **Verify:**
 - All three ACETOGEN RXMBCK.1 warnings are **gone**.
-- After 2.1 and 2.2 together, the warning count is **15 − 6 = 9** (assuming no other changes).
-- B1 results: compare HAc, H₂ and CH₄ against the previous run and note the change in CH₄ yield for your report.
+- After 2.1 and 2.2 together, the run log has **6 fewer warning messages**: ZURE07.8 ×3 and RXMBCK.1 ×3. The Control Panel's simulation-warning total stays at **15**, because these six are input-checking messages and that total doesn't include them.
+- B1 results: compare HAc, H₂ and CH₄ against the previous run and note the change in CH₄ yield for your report. Test-run values: BIOGAS CH₄ 14.652 → 14.595 kg/h, CO₂ 25.75 → 23.97 kg/h, B1 duty 0.00352 → 0.00164.
+
+**Known side effect while MEMB1 is unfixed (Session 6):**
+- After 2.1 + 2.2, CH4PYRO reports **BALMAS.1** (relative mass imbalance 3.4E-4, above the 1E-4 limit).
+- Its feed is MEMB1's outlet, which currently carries about 6× the inlet mass in spurious components (M1–M3). The small shift in biogas composition after 2.2 changes that spurious feed.
+- Tightening the CH4PYRO integration tolerance (1E-4 → 1E-5) does **not** remove it, so it isn't an integration-accuracy problem.
+- It disappears once MEMB1 constrains every component. Don't hide it by loosening the global mass-balance tolerance.

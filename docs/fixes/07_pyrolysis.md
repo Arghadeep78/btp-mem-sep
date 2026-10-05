@@ -1,5 +1,7 @@
 # Session 7: Pyrolysis reactor CH4PYRO (B2, B3, B4)
 
+**Session status:** ⏳ Not started.
+
 Have your **source paper for the R-1/R-2 kinetics** open; it is needed to confirm units. Back up first.
 
 ---

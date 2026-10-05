@@ -1,5 +1,7 @@
 # Session 4: Kinetics basis (calculators read the B1 inlet)
 
+**Session status:** ⏳ Not started.
+
 This is the largest digester change. Back up first. Do Sessions 1–3 before this one.
 
 ---
@@ -56,3 +58,7 @@ This is the largest digester change. Back up first. Do Sessions 1–3 before thi
 ### Part of the CH₄ bypasses the kinetics (B6)
 **Finding:** RSTOIC rxn 12 (PROT → 6.5 CH₄ + 6.5 CO₂ …, 90 %) and rxn 11 (EtOH → HAc + CH₄, 80 %) make CH₄ at fixed conversion before B1.
 **Decision:** state it in the report. Optionally route PROT to amino acids like KERATIN (rxn 13) so it passes through AMINOACI kinetics.
+**If you route PROT to amino acids:**
+- A protein composition that includes tyrosine, tryptophan, methionine or lysine activates AMINOACI rxns 19, 20, 6 and 14, which have run at zero so far.
+- Do 1.3 (first-order rate laws) and 8.1 (DHFORM for TYROSINE, TRYPTOPH and METHIONI) first.
+- Re-check RSTOIC mass balance for the new reaction.

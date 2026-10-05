@@ -1,5 +1,7 @@
 # Session 9: Cleanup and documentation
 
+**Session status:** ⏳ Not started.
+
 Low-risk tidy-up. Back up first.
 
 ---
@@ -59,7 +61,6 @@ Low-risk tidy-up. Back up first.
 Edit `CLAUDE.md` (section 4) to record:
 - File inventory: `_3908gjr.*`, `.apw`, `.appdf` and the crash dump are not in `files/`.
 - M9 ("ACMEXP block METH.B1 not initialized") cannot be verified with the current files.
-- R5 applies to AMINOACI only.
 - Mark each fixed item ✅ with the session date.
 - Add a line pointing to `docs/fixes/00_INDEX.md`.
 
