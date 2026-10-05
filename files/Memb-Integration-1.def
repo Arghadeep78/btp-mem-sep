@@ -1,0 +1,10 @@
+INPUT: Memb-Integration-1.inm
+MODNAME: apmain
+RUNID: Memb-Integration-1
+NEW_RUNID: Memb-Integration-1
+OLD_RUNID: Memb-Integration-1
+PDF: Memb-Integration-1.appdf
+USERNAME: CAPE
+XMOD: C:\Program Files\AspenTech\Aspen Plus V14.0\Engine\xeq\apmain
+SPONLY:
+DBCONN: _3908gjr.ads

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "aspenplus": {
+      "type": "stdio",
+      "command": "C:\\Users\\CAPE\\Desktop\\aspen\\AspenPlus-MCP-Server\\venv\\Scripts\\python.exe",
+      "args": ["-m", "aspenplus_mcp.server"]
+    }
+  }
+}

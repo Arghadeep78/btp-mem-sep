@@ -1,0 +1,7 @@
+# Keep Aspen Plus / ACM files byte-for-byte (no line-ending conversion)
+files/** -text
+*.bkp -text
+*.inp -text
+*.acmf -text
+*.ATMLZ binary
+*.png binary

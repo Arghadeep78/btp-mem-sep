@@ -1,0 +1,18 @@
+# Python
+**/venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Aspen Plus temporary run files (runid _xxxxxxx)
+files/_*
+files/*.dmp
+
+# Aspen binaries that are regenerated from the .bkp
+files/*.apw
+files/*.appdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
