@@ -16,7 +16,7 @@ Every issue in these files has the same five parts:
 |---|---|---|---|---|---|---|
 | 1 | ✅ Done | [01_quick_edits.md](01_quick_edits.md) | GLYCDEG, BUTYDEG, AMINOACI orders + Ea, calculator bugs, LCFA basis, 2 companion settings | — | Applied: EDIT_LOG E015, E020 | — |
 | 2 | ✅ Done (1 known error until S6) | [02_palm_and_acetogen.md](02_palm_and_acetogen.md) | PALM → palmitic acid; element-balanced ACETOGEN 1, 5, 6 | **45–60 min** | Component swap and NRTL re-retrieve ~20 min; typing 3 reactions ~15 min; run and verify | Aspen GUI |
-| 3 | ⏳ Not started | [03_henry_and_b1_volume.md](03_henry_and_b1_volume.md) | Henry components (gas solubility); B1 reactor volume basis | **40–60 min** | Henry setup ~15 min; B1 check 10 min, plus ~20 min if the spec must change | Aspen GUI |
+| 3 | ✅ Done (+1 cosmetic warning until S9) | [03_henry_and_b1_volume.md](03_henry_and_b1_volume.md) | Henry components (gas solubility); B1 reactor volume basis | **40–60 min** | Henry setup ~15 min; B1 check 10 min, plus ~20 min if the spec must change | Aspen GUI |
 | 4 | ⏳ Not started | [04_kinetics_basis.md](04_kinetics_basis.md) | Calculators read the B1 outlet, not the inlet (VFA rates ≈ 0 today) | **1.5–3 h** ⚠️ | Re-pointing ~60 Define variables across 10 calculators ~1 h; getting the convergence loop to converge can take 1 h or more | Aspen GUI |
 | 5 | ⏳ Not started | [05_membrane_compressor.md](05_membrane_compressor.md) | Add feed compression for the membrane | **30–45 min** | Place and connect 1–2 blocks, set specs, run | Aspen GUI |
 | 6 | ⏳ Not started | [06_membrane_acm_rewrite.md](06_membrane_acm_rewrite.md) | Rewrite the ACM model (crash, +504 % mass, charge imbalance, real permeances) | **2–4 h** ⚠️ | ACM compile and debug (code not yet compiled) 1–2 h; ATMLZ export and re-link 30 min; Aspen run and tuning 30–60 min | ACM + Notepad + Aspen GUI |
@@ -40,7 +40,7 @@ Every issue in these files has the same five parts:
 ## Progress checklist
 - [x] S1 quick edits (EDIT_LOG E015, E020)
 - [x] S2 PALM + ACETOGEN (EDIT_LOG E025; 1 known CH4PYRO error until S6)
-- [ ] S3 Henry + B1 volume
+- [x] S3 Henry + B1 volume (EDIT_LOG E027; 3.2 no change needed)
 - [ ] S4 kinetics basis
 - [ ] S5 compressor
 - [ ] S6 ACM rewrite

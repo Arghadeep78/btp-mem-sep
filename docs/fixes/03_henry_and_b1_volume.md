@@ -1,12 +1,14 @@
 # Session 3: Henry components and the B1 reactor volume basis
 
-**Session status:** ⏳ Not started.
+**Session status:** ✅ **DONE.** 3.1 installed (EDIT_LOG E027). 3.2 checked: no change needed. Run: 0 severe / 0 errors / 16 warnings (+1 cosmetic PURGAS warning, removed in Session 9).
 
 Back up first.
 
 ---
 
 ## 3.1 No Henry components: dissolved-gas behaviour is unreliable (B1)
+
+**Status:** ✅ Applied (EDIT_LOG E027): `HC-1` = CO2, METHANE, HYDROGEN, H2S, CO, set as the global Henry components. METH inherits it, so no separate METH setting is needed.
 
 **Issue:**
 - The property method is NRTL with **no Henry component set**. The `.bkp` has a HENRY parameter form, but it is never activated.
@@ -28,12 +30,15 @@ Back up first.
 
 **Verify:**
 - Control Panel: no "missing Henry parameter" errors for WATER pairs.
-- B1 results: the vapour fraction changes from 0.0416. BIOGAS CO₂/CH₄ changes, and more CO₂ stays in LIQUID (that's the physical direction).
+- B1 results: **less** gas stays dissolved, which matches Henry's law. Tested: LIQUID CO₂ 5.66 → 0.24 kg/h (hand check ≈ 0.29), LIQUID CH₄ 0.79 → 0.0065 kg/h (≈ 0.008); BIOGAS CH₄ 14.60 → 15.37 kg/h, CO₂ 23.97 → 29.39 kg/h; B1 vapour fraction 0.038 → 0.043. NRTL with Raoult's law had been over-dissolving the gases (CO₂ ~20×, CH₄ ~100×).
+- **Known cosmetic warning (+1):** PURGAS (USP03.1), "all components are Henry components". Its streams are 100 % dry gas, so there's no effect; it goes away when PURGAS is reworked or deleted (Session 9, 9.1).
 - Record the new BIOGAS composition, because it is the membrane feed for Session 6.
 
 ---
 
 ## 3.2 B1 reactor volume is about 60× too large (§4.6), check first
+
+**Status:** ✅ Checked, no change needed. B1 reports condensed-phase volume **320 m³** (317 m³ with Henry) and residence time 360 h = 15 d, exactly the design liquid volume. The 17 000–19 600 m³ total is headspace vapour, which the liquid-phase reactions don't use.
 
 **Issue:** B1 (RCSTR, 2-phase) is specified with **Residence time = 15 d**. The log shows **VOLUME = 19036.4 m³**. The liquid throughput is about 21.5 t/d, so 15 d of liquid is about **320 m³**. Aspen applies the residence time to the **total outlet volumetric flow, including vapour**, so the vapour (biogas) flow inflates the volume.
 
