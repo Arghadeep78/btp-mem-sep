@@ -1,6 +1,6 @@
 # Session 5: Add feed compression for the membrane (A2)
 
-**Session status:** ⏳ Not started.
+**Session status:** ✅ **DONE (installed, EDIT_LOG E032).** Built as COMP1 (COMPR, isentropic 0.75, 1.013 → 3.18 bar) → COOL1 (30 °C) → COMP2 (→ 10 bar) → COOL2 (30 °C) → GAS2C → MEMB1. A single MCompr block was tried first, but its per-stage efficiency and cooler specs were not applied. Test run: stage outlets 135 / 142 °C, GAS2C 10 bar / 30 °C, power 2.71 + 2.76 = **5.47 kW**, coolers −2.60 / −2.76 kW; 0 severe / 0 errors / 6 warnings (unchanged). MEMB1 outlets are still non-physical until Session 6. The new blocks have no icon positions yet, so arrange them in the METH flowsheet when you open it in the GUI.
 
 Do this **before** Session 6: the rewritten membrane needs a pressure driving force. Back up first.
 

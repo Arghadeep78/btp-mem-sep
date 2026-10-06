@@ -1,6 +1,6 @@
 # Session 4: Kinetics basis (calculators read the B1 inlet)
 
-**Session status:** ✅ **DONE (4.1 installed, EDIT_LOG E029).** Calculators now read B1's LIQUID outlet via a tear-variable Broyden/Wegstein loop on their exported PRE-EXP values (not an auto FEED tear, which gave fake results). Converged in 10 iterations; self-consistency <0.01% on all 10 calculators. Run: 0 severe / 0 errors / 6 warnings (AFLEXC.1 ×10 gone).
+**Session status:** ✅ **DONE (4.1 installed, EDIT_LOG E029).** Calculators now read B1's LIQUID outlet via a damped Wegstein loop (TEAR-VAR = YES, WEG-QMAX 0.5, 200 iterations) on their exported PRE-EXP values; VOLFLOW stays STDVOL-FLOW of LIQUID (≈ actual for a 55 °C liquid) (not an auto FEED tear, which gave fake results). Converged in 10 iterations; self-consistency <0.01% on all 10 calculators. Run: 0 severe / 0 errors / 6 warnings (AFLEXC.1 ×10 gone).
 
 This is the largest digester change. Back up first. Do Sessions 1–3 before this one.
 
