@@ -1,93 +1,55 @@
 Version "40.0-0";
 Libraries "Modeler.acml", "SystemLibrary.acml";
 Model Zeo_real
+  // ===== Ports (ACM units: F kmol/hr, T C, P bar, h GJ/kmol) =====
+  Feed      as input  MoleFractionPort;
+  Permeate  as output MoleFractionPort;
+  Retentate as output MoleFractionPort;
 
-// =======================
-// PARAMETERS
-// =======================
+  // ===== Parameters =====
+  // Aspen Plus component IDs that permeate (must match Aspen exactly)
+  PermSet as StringSet (["CO2", "HYDROGEN", "METHANE"]);
 
-// Universal constants
-R as RealParameter (value:8.314);      // J/mol-K
-T as RealParameter (value:323.15);     // K
+  // Permeance, mol/(m2.s.Pa), DDR zeolite at 297 K
+  // Source: Yang et al., J. Membr. Sci. 2016 (CO2 2.1e-7, H2 1.36e-7, CH4 3.03e-9)
+  Pi(PermSet) as RealParameter;
+  Pi("CO2")      : 2.1e-7;
+  Pi("HYDROGEN") : 1.36e-7;
+  Pi("METHANE")  : 3.03e-9;
 
-// Membrane geometry
-L as RealParameter;                    // membrane thickness (m)
-A as RealParameter;                    // membrane area (m2)
+  A      as RealParameter (value: 5.0);   // m2  (size 3-10 m2 at ~10 bar feed)
+  dP_ret as RealParameter (value: 0.0);   // bar, retentate-side pressure drop
 
-// Zeolite transport parameters
-Ea_CH4 as RealParameter;
-Ea_CO2 as RealParameter;
+  // ===== Variables =====
+  nP(ComponentList) as flow_mol;   // permeate component flows, kmol/hr
 
-D0_CH4 as RealParameter;
-D0_CO2 as RealParameter;
+  // ===== Component balances: EVERY component =====
+  Feed.F*Feed.z(ComponentList) = Permeate.F*Permeate.z(ComponentList)
+                               + Retentate.F*Retentate.z(ComponentList);
+  Permeate.F*Permeate.z(ComponentList) = nP(ComponentList);
 
-H_CH4  as RealParameter;
-H_CO2  as RealParameter;
+  // ===== Permeation, well-mixed: driving force uses retentate composition =====
+  // kmol/hr = Pi [mol/m2/s/Pa] * A [m2] * dp [Pa] * 3.6 ; dp[Pa] = 1e5 * dp[bar]
+  For c In PermSet Do
+    nP(c) = Pi(c)*A*1e5*(Feed.P*Retentate.z(c) - Permeate.P*Permeate.z(c))*3.6;
+  EndFor
 
-S0_CH4 as RealParameter;
-S0_CO2 as RealParameter;
+  // Non-permeating components stay in the retentate
+  For c In ComponentList - PermSet Do
+    nP(c) = 0;
+  EndFor
 
+  // ===== Totals =====
+  Permeate.F = sigma(nP);
+  sigma(Retentate.z) = 1;
 
-// =======================
-// PORTS
-// =======================
-
-Feed      as input  MoleFractionPort;
-Permeate  as output MoleFractionPort;
-Retentate as output MoleFractionPort;
-
-
-// =======================
-// VARIABLES
-// =======================
-
-// Feed component molar flows
-nCH4_F as RealVariable;
-nCO2_F as RealVariable;
-
-// Permeate component molar flows
-nCH4_P as RealVariable;
-nCO2_P as RealVariable;
-
-// Retentate component molar flows
-nCH4_R as RealVariable;
-nCO2_R as RealVariable;
-
-// Transport properties
-D_CH4 as RealVariable;
-D_CO2 as RealVariable;
-
-S_CH4 as RealVariable;
-S_CO2 as RealVariable;
-
-K_CH4 as RealVariable;
-K_CO2 as RealVariable;
-
-J_CH4 as RealVariable;
-J_CO2 as RealVariable;
-
-
-nCH4_F = Feed.F * Feed.z("CH4");
-nCO2_F = Feed.F * Feed.z("CO2");
-
-// ===== SIMPLE PERMEATION (10% SPLIT) =====
-nCH4_P = 0.1 * nCH4_F;
-nCO2_P = 0.1 * nCO2_F;
-
-// ===== RETENTATE =====
-nCH4_R = nCH4_F - nCH4_P;
-nCO2_R = nCO2_F - nCO2_P;
-
-// ===== TOTAL FLOWS (AVOID ZERO) =====
-Permeate.F = max(nCH4_P + nCO2_P, 1e-8);
-Retentate.F = max(nCH4_R + nCO2_R, 1e-8);
-
-// ===== NORMALIZED COMPOSITION =====
-Permeate.z("CH4") = nCH4_P / Permeate.F;
-Permeate.z("CO2") = nCO2_P / Permeate.F;
-
-Retentate.z("CH4") = nCH4_R / Retentate.F;
-Retentate.z("CO2") = nCO2_R / Retentate.F;
+  // ===== Temperature, pressure, enthalpy =====
+  Retentate.T = Feed.T;
+  Permeate.T  = Feed.T;
+  Retentate.P = Feed.P - dP_ret;
+  // Permeate.P is fixed from Aspen Plus (PERMEATE.P SPEC=CONST, 1 bar)
+  Call (Retentate.h) = pEnth_Mol(Retentate.T, Retentate.P, Retentate.z);
+  Call (Permeate.h)  = pEnth_Mol(Permeate.T,  Permeate.P,  Permeate.z);
 
 //SYSTEM SECTION - WARNING: DO NOT EDIT
   Current_Icon : "System";
@@ -103,8 +65,7 @@ GUID400::{E4CF3E36-8EC2-417B-B541-DA6FCF4C1D25}
 PORT::Retentate::1::Mole Fraction::Retentate::0
 PORT::Permeate::1::Mole Fraction::Permeate::0
 PORT::Feed::1::Mole Fraction::Feed::0
-QUERY::AllVariables::1::0::3
-</EXPORTDATA>
+QUERY::AllVariables::1::0::3</EXPORTDATA>
 EndText;
 
 //SYSTEM SECTION END
@@ -198,7 +159,6 @@ CONSTRAINTS
   // Flowsheet variables and equations...
 END
 
-
 //SYSTEM SECTION - WARNING: DO NOT EDIT
 SystemData : Text
 <FORMLIST DEFAULTFORM="AllVariables">
@@ -209,7 +169,7 @@ EndText;
   ActiveTasks : [];
   Graphics : TEXT CLSID {A0DFFFE6-908E-11CE-A964-0000C08C668E}
 # of PFS Objects = 2
-SIZE -1.32622 -0.326222 0.0491111 1.34911
+SIZE -1.32622 -0.326222 0.049111 1.34911
 BLOCK
 ID: B1
 Version: 1
@@ -221,11 +181,11 @@ Label At 0.000000 0.000000
 Scale 1.000000 Modifier 0
 LEGEND
 Version: 2
-Dim: -4.03333 -3.2 -3.1 -3.388
-Size: 0.00977778
+Dim: -4.03333 -3.2 -3.16031 -3.37015
+Size: 0.0145636
 Font: 1 0 =Times New Roman
 # of PFS Objects = 0
-VIEWPORT -7.602222 7.602223 3.300000 -3.300000
+VIEWPORT -7.602222 7.602223 3.300000 -3.850749
 LAYOUT
 TableFormat 1
 Pages 1 1 1 1
@@ -241,46 +201,46 @@ BOTTOMMARGIN 10mm
 VISIBILITY 0.030000
 PFDFLAG 255 255
 PFDMODE 0
-SCALE 0.009778
+SCALE 0.014564
 
 ENDTEXT;
 END
 
 Properties
 Package : "PropertiesPlus";
-DefinitionText : TEXT MM "40.0" FLAVOR "NO" VERSION "40.0" DATETIME "Thu Mar 26 11:30:33 2026" 
+DefinitionText : TEXT MM "40.0" FLAVOR "NO" VERSION "40.0" DATETIME "Tue Oct  6 15:48:25 2026" 
 MACHINE "WIN-NT/VC" 
 ? SETUP MAIN ? \ "RUN-CLASS" RUN-CLASS = PROP \ \ SIMULATE INTERACTIVE = NO 
-\ ? SETUP GLOBAL ? ? SETUP "SIM-OPTIONS" ? ; "ENG_MOLE" ; ? DATABANKS ? ? 
-COMPONENTS MAIN ? \ COMPONENTS CID = CO2 ANAME = CO2 OUTNAME = CO2 DBNAME1 = 
-"CARBON-DIOXIDE" ANAME1 = "CO2" /  CID = CH4 ANAME = CH4 OUTNAME = CH4 
-DBNAME1 = "METHANE" ANAME1 = "CH4" \ ? COMPONENTS "ADA/PCS" "LE-PROP-DATA" ? 
-; "ENG_MOLE" ; ? COMPONENTS "COMP-LIST" GLOBAL ? ? COMPONENTS "UNIFAC-GROUP" 
-? ? "BIO-COMPS" ? ? PROPERTIES MAIN ? \ GPROPERTIES GBASEOPSET = "PENG-ROB" 
-GOPSETNAME = "PENG-ROB" PARCON = -2 \ ? PROPERTIES "OPTION-SETS" "PENG-ROB" ? 
-\ PARAM BASE = "PENG-ROB" \ ? PROPERTIES "NC-PROPS" ? ? PROPERTIES 
-"MOLEC-STRUCT" CH4 ? ? PROPERTIES "MOLEC-STRUCT" CO2 ? ? PROPERTIES 
-PARAMETERS SUMMARY ? ? PROPERTIES PARAMETERS BINARY SCALAR "MLQKIJ-1" ? ; 
-"ENG_MOLE" ; \ PROP-LIST PARAMNAME = MLQKIJ SETNO = 1 \ ? PROPERTIES 
-PARAMETERS BINARY SCALAR "RKTKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = 
-RKTKIJ SETNO = 1 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "ANDKIJ-1" ? 
-; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = ANDKIJ SETNO = 1 UNITROW = 0 TUNITROW
- = 22 TUNITLABEL = F NEL = 2 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" 
-"ANDMIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = ANDMIJ SETNO = 1 UNITROW
- = 0 TUNITROW = 22 TUNITLABEL = F NEL = 2 \ ? PROPERTIES PARAMETERS BINARY 
-"T-DEPENDENT" "MUKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = MUKIJ SETNO
- = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 6 \ ? PROPERTIES 
-PARAMETERS BINARY "T-DEPENDENT" "MULIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST 
-PARAMNAME = MULIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 11 
-\ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "PRKBV-1" ? ; "ENG_MOLE" ; \ 
-PROP-LIST PARAMNAME = PRKBV SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = 
-F BDBANK = ( "APV140 EOS-LIT" ) NEL = 5 \ \ BPVAL PARAMNAME2 = PRKBV CID1 = 
-CO2 CID2 = CH4 UNITROW2 = 0 TUNITROW2 = 22 TUNITLABEL2 = F VAL1 = 
-"APV140 EOS-LIT" VAL2 = "APV140 EOS-LIT" VAL3 = "APV140 EOS-LIT" VAL4 = 
-"APV140 EOS-LIT" VAL5 = "APV140 EOS-LIT" \ \ PARAM DEFTUNIT = F \ ? 
-PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "PRLIJ-1" ? ; "ENG_MOLE" ; \ 
-PROP-LIST PARAMNAME = PRLIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = 
-F NEL = 8 \ ? PROPERTIES "ATTR-COMPS" ? ? POLYMERS ? 
+\ ? SETUP GLOBAL ? ? SETUP "SIM-OPTIONS" ? ; "ENG_MOLE" ; ? DATABANKS ? \ 
+DATABANKS \ ? COMPONENTS MAIN ? \ COMPONENTS CID = CO2 ANAME = CO2 OUTNAME = 
+CO2 DBNAME1 = "CARBON-DIOXIDE" ANAME1 = "CO2" /  CID = CH4 ANAME = CH4 
+OUTNAME = CH4 DBNAME1 = "METHANE" ANAME1 = "CH4" \ ? COMPONENTS "ADA/PCS" 
+"LE-PROP-DATA" ? ; "ENG_MOLE" ; ? COMPONENTS "COMP-LIST" GLOBAL ? ? 
+COMPONENTS "UNIFAC-GROUP" ? ? "BIO-COMPS" ? ? PROPERTIES MAIN ? \ GPROPERTIES 
+GBASEOPSET = "PENG-ROB" GOPSETNAME = "PENG-ROB" PARCON = -2 \ ? PROPERTIES 
+"OPTION-SETS" "PENG-ROB" ? \ PARAM BASE = "PENG-ROB" \ ? PROPERTIES "NC-PROPS" 
+? ? PROPERTIES "MOLEC-STRUCT" CH4 ? ? PROPERTIES "MOLEC-STRUCT" CO2 ? ? 
+PROPERTIES PARAMETERS SUMMARY ? ? PROPERTIES PARAMETERS BINARY SCALAR 
+"MLQKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = MLQKIJ SETNO = 1 UNITROW
+ = 0 \ ? PROPERTIES PARAMETERS BINARY SCALAR "RKTKIJ-1" ? ; "ENG_MOLE" ; \ 
+PROP-LIST PARAMNAME = RKTKIJ SETNO = 1 UNITROW = 0 \ ? PROPERTIES PARAMETERS 
+BINARY "T-DEPENDENT" "ANDKIJ-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = 
+ANDKIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL = F NEL = 2 \ ? 
+PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "ANDMIJ-1" ? ; "ENG_MOLE" ; \ 
+PROP-LIST PARAMNAME = ANDMIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 TUNITLABEL
+ = F NEL = 2 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "MUKIJ-1" ? ; 
+"ENG_MOLE" ; \ PROP-LIST PARAMNAME = MUKIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 
+TUNITLABEL = F NEL = 6 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "MULIJ-1" 
+? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = MULIJ SETNO = 1 UNITROW = 0 TUNITROW
+ = 22 TUNITLABEL = F NEL = 11 \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" 
+"PRKBV-1" ? ; "ENG_MOLE" ; \ PROP-LIST PARAMNAME = PRKBV SETNO = 1 UNITROW = 0 
+TUNITROW = 22 TUNITLABEL = F BDBANK = ( "APV140 EOS-LIT" ) NEL = 5 \ \ BPVAL 
+PARAMNAME2 = PRKBV CID1 = CO2 CID2 = CH4 UNITROW2 = 0 TUNITROW2 = 22 
+TUNITLABEL2 = F VAL1 = "APV140 EOS-LIT" VAL2 = "APV140 EOS-LIT" VAL3 = 
+"APV140 EOS-LIT" VAL4 = "APV140 EOS-LIT" VAL5 = "APV140 EOS-LIT" \ \ PARAM 
+DEFTUNIT = F \ ? PROPERTIES PARAMETERS BINARY "T-DEPENDENT" "PRLIJ-1" ? ; 
+"ENG_MOLE" ; \ PROP-LIST PARAMNAME = PRLIJ SETNO = 1 UNITROW = 0 TUNITROW = 22 
+TUNITLABEL = F NEL = 8 \ ? PROPERTIES "ATTR-COMPS" ? ? POLYMERS ? 
 
  GRAPHICS_BACKUP
 PFS V NONE
@@ -296,7 +256,6 @@ paramdata APV140 BINARY
 paramdata APV140 HENRY-AP
 paramdata APV140 PITZER
 paramdata APV140 EOS-LIT
-paramdata APV140 HENRY-AP
 paramdata APV140 SRK-ASPEN
 paramdata APV140 PC-SAFT
 paramdata APV140 POLYPCSF
@@ -360,21 +319,21 @@ rspenabled 0
 pinchenabled 0
 linklimit 5000
 material_color 0
-material_style 983041
+material_style 0
 material_width 1
 heat_color 0
-heat_style 983042
+heat_style 2
 heat_width 1
 heat_termid Q
 work_color 0
-work_style 983043
+work_style 1
 work_width 1
 work_termid W
 connections_color 9
-connections_style 983044
+connections_style 3
 connections_width 1
 measurements_color 4
-measurements_style 983044
+measurements_style 3
 measurements_width 1
 power_color 10
 power_style 5
@@ -399,7 +358,6 @@ runsettingfile 1
 usermodelfile 1
 fortranfile 0
 timeout 1000
-tpsaupgrade 1
 #
 #
 E_LINK
@@ -412,7 +370,7 @@ $_SUMMARY_FILE
  LSET IT (%IT)                                                                  
  IDSET VERS (PROPERTIES) (345 *6 346 *6 347 *6 348 *6 355 *6)                   
  LSET VERS (%VERS)                                                              
- DSET RUN-STATUS VERS @VERS ( "40.0" "WIN-X64" "" "User" "DESKTOP-77ALCV5" )    
+ DSET RUN-STATUS VERS @VERS ( "40.0" "WIN-X64" "" "CAPE" "DESKTOP-8MT44UU" )    
  IDSET STRNAM (PROPERTIES) (1233 *6)                                            
  LSET STRNAM (%STRNAM)                                                          
  IDSET ID_STRPR (PROPERTIES) ( 454 *2 <119> 1236 *2 <125> 1237 *2 <29> 1238 *2  
@@ -424,11 +382,11 @@ $_SUMMARY_FILE
  LSET STATUS (%STATUS)                                                          
  DSET RUN-STATUS STATUS @STATUS ( 8 * * * * * )                                 
  DSET RUN-STATUS COMPSTAT @L_1 (0)                                              
- DSET RUN-STATUS RUNID @RUNID ("_2939qht")                                      
- DSET RUN-STATUS IT @IT ( "MARCH 26, 2026      11:30:33 A.M." "_2939qht.inm" 2) 
+ DSET RUN-STATUS RUNID @RUNID ("_4822hpd")                                      
+ DSET RUN-STATUS IT @IT ( "OCTOBER 6, 2026     3:48:23 P.M." "_4822hpd.inm" 2)  
 
 ENDTEXT;
-TimeStamp : "31243493 -605340954";
+TimeStamp : "31282556 95671962";
 
 Default as ComponentList; 
 Within Default
@@ -607,4 +565,19 @@ Estimation
 End
 Homotopy
  Enabled: FALSE;
+End
+SimulationAccessExtension
+  ENABLED: false;
+End
+OnLineLinks
+  Protocol: "OPC", 1;
+  //Server: "";
+  IO: Synchronous, Cached;
+  Bounds: Clip;
+  Quality: UseLast;
+  Update: 1000;
+  PrintLevel: 2;
+  Enabled: OFF;
+  Input Events : Before SS Run, After DYN Step, After INI Step, Before INI Run;
+  Output Events: After SS Run, After DYN Step, After INI Step, After INI Run;
 End
