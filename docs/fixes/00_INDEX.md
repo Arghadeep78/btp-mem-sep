@@ -19,7 +19,7 @@ Every issue in these files has the same five parts:
 | 3 | ✅ Done (+1 cosmetic warning until S9) | [03_henry_and_b1_volume.md](03_henry_and_b1_volume.md) | Henry components (gas solubility); B1 reactor volume basis | **40–60 min** | Henry setup ~15 min; B1 check 10 min, plus ~20 min if the spec must change | Aspen GUI |
 | 4 | ✅ Done | [04_kinetics_basis.md](04_kinetics_basis.md) | Calculators read the B1 outlet, not the inlet (VFA rates ≈ 0 today) | **1.5–3 h** ⚠️ | Re-pointing ~60 Define variables across 10 calculators ~1 h; getting the convergence loop to converge can take 1 h or more | Aspen GUI |
 | 5 | ✅ Done | [05_membrane_compressor.md](05_membrane_compressor.md) | Add feed compression for the membrane | **30–45 min** | Place and connect 1–2 blocks, set specs, run | Aspen GUI |
-| 6 | ⏳ Not started | [06_membrane_acm_rewrite.md](06_membrane_acm_rewrite.md) | Rewrite the ACM model (crash, +504 % mass, charge imbalance, real permeances) | **2–4 h** ⚠️ | ACM compile and debug (code not yet compiled) 1–2 h; ATMLZ export and re-link 30 min; Aspen run and tuning 30–60 min | ACM + Notepad + Aspen GUI |
+| 6 | ✅ Done (by user, edit-6) | [06_membrane_acm_rewrite.md](06_membrane_acm_rewrite.md) | Rewrite the ACM model (crash, +504 % mass, charge imbalance, real permeances) | **2–4 h** ⚠️ | ACM compile and debug (code not yet compiled) 1–2 h; ATMLZ export and re-link 30 min; Aspen run and tuning 30–60 min | ACM + Notepad + Aspen GUI |
 | 7 | ⏳ Not started | [07_pyrolysis.md](07_pyrolysis.md) | R-1/R-2 units, RWGS reversibility, catalyst loading | **45–90 min** | Depends on finding the k₀ units in the paper; Aspen edits ~20 min | Aspen GUI + source paper |
 | 8 | ⏳ Not started | [08_property_data.md](08_property_data.md) | DHFORM, ETHANOL CPIG, H2CO3, NH4+, CYSTEINE, VLSTD, duplicates | **1–1.5 h** | Mostly deletions; +30 min if Option A for DHFORM (drawing molecular structures) | Aspen GUI |
 | 9 | ⏳ Not started | [09_cleanup.md](09_cleanup.md) | PURGAS, FLASH3, unused sets, METH options, docs | **30–45 min** | Small deletions and renames, plus updating `CLAUDE.md` | Aspen GUI + Notepad |
@@ -43,7 +43,7 @@ Every issue in these files has the same five parts:
 - [x] S3 Henry + B1 volume (EDIT_LOG E027; 3.2 no change needed)
 - [x] S4 kinetics basis (EDIT_LOG E029; tear-variable convergence block, not Fortran user kinetics)
 - [x] S5 compressor (EDIT_LOG E032; 2-stage COMPR+HEATER, 10 bar, 5.5 kW)
-- [ ] S6 ACM rewrite
+- [x] S6 ACM rewrite (EDIT_LOG E033, commit 007cc74; 0 errors / 3 warnings)
 - [ ] S7 pyrolysis
 - [ ] S8 property data
 - [ ] S9 cleanup

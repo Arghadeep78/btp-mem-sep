@@ -1,6 +1,6 @@
 # Session 6: Rewrite the ACM membrane model (M1–M4, M6, A1, F)
 
-**Session status:** ⏳ Not started.
+**Session status:** ✅ **DONE** (by user, EDIT_LOG E033, commit 007cc74). Model compiled and exported (ATMLZ 2026-10-06 16:06). Run: 0 errors / 3 warnings; MEMB1 converges in 5 iterations (193 equations); no BALMAS/BALCHG; RET/PER at 303 K; RET CH₄ 76.4 %, CH₄ recovery ≈ 96.9 % (A = 5 m², 10 bar). Block spec added: `PERMEATE.V` fixed = 50.
 
 Needs **Aspen Custom Modeler** + Notepad + Aspen Plus. Do Session 5 (compressor) first. Back up the `.bkp` **and** `Zeo_real.ATMLZ`.
 
