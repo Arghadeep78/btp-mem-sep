@@ -2,7 +2,7 @@
 
 Tests and optional deletions that need no source paper: B3 (property data), B6 (cleanup), B10 (RSTOIC check). B4, B5 and B7 were moved to Session C as C28, C29 and C30 on 2026-10-07. Split from the former `B_check_only.md` (Section 1) on 2026-10-07.
 
-Other sessions: [A](A_will_do.md) · [B2](B2_needs_source_paper.md) · [C](C_parked.md). Overview and ranking: [../00_INDEX.md](../00_INDEX.md). Phase 1 (done): [../phase1/00_PHASE1_DONE.md](../phase1/00_PHASE1_DONE.md). Evidence: [source_check_results.md](source_check_results.md).
+Other sessions: [A](A_will_do.md) · [B2](B2_needs_source_paper.md) · [C](C/00_README.md). Overview and ranking: [../00_INDEX.md](../00_INDEX.md). Phase 1 (done): [../phase1/00_PHASE1_DONE.md](../phase1/00_PHASE1_DONE.md). Evidence: [source_check_results.md](source_check_results.md).
 
 ---
 
@@ -56,4 +56,4 @@ All other RSTOIC reactions match their hand-computed extents exactly (dextrose 0
 **Steps:** run once; read the component flows of stream **5** (ETHANOL, ACETI-AC, METHANE, CO2, XYLOSE, FURFURAL) through the MCP or Stream Results. Confirm they match the "OFF" column.
 **Verify:** values recorded. If confirmed, the fix decision is parked in C26 / C27.
 
-**Status:** ✅ Confirmed 2026-10-07 (COM run): stream 5 = ETHANOL 0.06029, ACETI-AC 0.07707, METHANE 0.19454, CO2 0.25483, XYLOSE 0.00617, FURFURAL 0, exactly the "OFF" column. Rxn 11 and rxn 8 do not fire; decision stays parked in C26 / C27.
+**Status:** ✅ Confirmed 2026-10-07 (COM run): stream 5 = ETHANOL 0.06029, ACETI-AC 0.07707, METHANE 0.19454, CO2 0.25483, XYLOSE 0.00617, FURFURAL 0, exactly the "OFF" column. Rxn 11 and rxn 8 do not fire. **Fixed 2026-10-07 (C26/C27, E070).** Correction to the table above: the "ON" values for METHANE and CO2 were half the true change; rxn 11 (2 EtOH + CO₂ → 2 HAc + CH₄) consumes 0.04823 kmol/h ethanol, so CH₄ rises by 0.0241 to **0.21866** and CO₂ falls to **0.23072** (Aspen run). ETHANOL, ACETI-AC, XYLOSE and FURFURAL match the ON column exactly.

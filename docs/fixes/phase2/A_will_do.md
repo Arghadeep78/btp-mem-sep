@@ -1,46 +1,12 @@
 # Phase 2, Session A: We will do
 
-**Session status (2026-10-07):** ✅ A1–A8 done (EDIT_LOG E048–E050, E052–E053; A3 done 2026-10-07 with sourced values instead of deletion). Results: [../../results_2026-10-07.md](../../results_2026-10-07.md).
+**Session status (2026-10-07):** ✅ A1–A8 done (EDIT_LOG E048–E050, E052–E053). A1, A6, A7, A8 were records for the report only; their content now lives only in [results_2026-10-07.md](../../results_2026-10-07.md) (A1 pyrolysis vs equilibrium, A6 final run, A7 assumptions, A8 design point) and was removed here.
 
 Records, notes and small clean edits. **Nothing here changes the headline results** (the property-data deletions A2–A4 only change small data entries).
 
-Other sessions: [B1](B1_can_do_now.md) · [B2](B2_needs_source_paper.md) · [C](C_parked.md). Overview and ranking: [../00_INDEX.md](../00_INDEX.md). Phase 1 (done): [../phase1/00_PHASE1_DONE.md](../phase1/00_PHASE1_DONE.md). Evidence: [source_check_results.md](source_check_results.md).
+Other sessions: [B1](B1_can_do_now.md) · [B2](B2_needs_source_paper.md) · [C](C/00_README.md). Overview and ranking: [../00_INDEX.md](../00_INDEX.md). Phase 1 (done): [../phase1/00_PHASE1_DONE.md](../phase1/00_PHASE1_DONE.md). Evidence: [source_check_results.md](source_check_results.md).
 
-Contents: pyrolysis · property data · cleanup and documentation · membrane and digester.
-
----
-
-## Pyrolysis reactor (CH4PYRO)
-
-
-**Scope and status**
-
-**Status:** 🟡 Reduced scope: **no Aspen edits planned.** The design is near final, so only obvious errors are removed; anything that is a design choice is parked in section C.
-
-Sections: **A. We will do** · **B. Check only** · **C. Parked** (looks like an error, not touched because of a design decision; revisit later). Evidence: [source_check_results.md](source_check_results.md) §4.
-
-### A1. Confirm the pyrolysis outlet and record it against equilibrium (Windows, MCP read, 5–10 min; no model change)
-
-**Status:** ✅ Done 2026-10-07. The run matches the decoded column (H₂ 2.1907, CO/H₂O 0.3945, CH₄ 3e-5 kmol/h, carbon 1.2908 kmol/h). Recorded in [results_2026-10-07.md](../../results_2026-10-07.md).
-
-**Finding (from the saved `.bkp`, run of 2026-10-06):** the pyrolysis outlet is beyond thermodynamic equilibrium because R-1 and R-2 are irreversible. Equilibrium computed from Perry's data (Tables 2-155, 2-179, 2-151) at 790 °C, 1 bar, for the model's own PYROIN feed:
-
-| kmol/h | Model FINPROD (decoded from the `.bkp`) | Equilibrium at 790 °C, 1 bar |
-|---|---|---|
-| CH₄ left | < 1e-4 (conversion ≈ 100 %) | 0.076 (94.1 %) |
-| CO₂ left | 0.00003 (99.99 %) | 0.060 (84.8 %) |
-| H₂ | 2.19 | 2.10 (model about 4 % higher) |
-| CO and H₂O | 0.3945 each | 0.334 each |
-| Total gas | 2.98 | 2.90 |
-
-Equilibrium constants used: K(RWGS) = 0.888 and K(cracking) = 19.98 at 790 °C. Element balances of the decoded model flows close (H, C and O all within 0.1 %), so the decoding is sound.
-
-**Steps**
-1. Open the `.bkp`, run, and read the component mole flows of PYROIN and FINPROD (MCP `get_value`, or Stream Results): CH₄, CO₂, CO, H₂, H₂O, and the CARBON flow in the CISOLID substream.
-2. Confirm they match the table above (or replace the "decoded" column with the real numbers).
-3. Record the table in the report with one sentence: "R-1 and R-2 are modelled as irreversible, so conversions exceed equilibrium; H₂ is about 4 % above its equilibrium value."
-
-**Verify:** the numbers are recorded. No model change, so nothing else should move.
+Contents: property data (A2–A4) · cleanup and documentation (A5).
 
 ---
 
@@ -129,60 +95,3 @@ Record in `CLAUDE.md` (§4):
 - M9 ("ACMEXP block METH.B1 not initialized") cannot be verified with the current files.
 - Mark each fixed item ✅ with the session date; add the parked items (Session C) under "Parked (decided not to touch)".
 - Keep the line pointing to `docs/fixes/00_INDEX.md`.
-
-### A6. Final run and record the results for the report (Windows, 5 min)
-
-**Status:** ✅ Recorded 2026-10-07 in [results_2026-10-07.md](../../results_2026-10-07.md): 0 errors, 3 simulation warnings, 8 printed messages; compressors 5.47 kW. **Check for you:** the COM run shows 1 severe error, FPEPRT.8, during report generation for METH.RET/PER. It also appears with the unedited file; the GUI `.his` of 2026-10-06 shows none. Run once from the GUI and check the Control Panel.
-Run once from the final `.bkp` and record:
-
-| Metric | Baseline (2026-10-05) | Target | Latest (2026-10-06) |
-|---|---|---|---|
-| Errors | 0 | 0 | 0 |
-| Warnings (Control Panel) | 15 | only benign ones | 3 (NH3SEP Henry, MEMB1 Henry, PURGAS zero flow) |
-| MEMB1 mass balance | +504 % | 0 % | closed |
-| Charge-imbalance streams | 3 | 0 | 0 |
-| RET / PER temperature | 488 / 526 K | ≈ 303 K | 303 K |
-| B1 liquid volume | 19 036 m³ total | ≈ 320 m³ liquid | 320 m³ |
-
-Also record: biogas CH₄ %, digester CH₄ yield, RET CH₄ purity and recovery, compressor power (COMP1 + COMP2), H₂ and carbon from the pyrolysis (see A1).
-
-After the property-data deletions (A2–A4) the warning count falls further; record the final number.
-
----
-
-## Assumptions and source check (membrane, digester)
-
-
-(This topic is doc only, done on the Mac.)
-
-**Scope and status**
-
-**Status:** 🟡 Reduced scope: **no ACM or Aspen edits planned.** Session 6 made the membrane model work with literature DDR permeances (Yang et al. 2016). The design (5 m², 10 bar, one stage, 55 °C, HRT 15 d) is near final, so this session records assumptions and checks them against the project's source; design changes are parked in section C.
-
-Sections: **A. We will do** · **B. Check only** · **C. Parked** (looks like an error, not touched because of a design decision; revisit later).
-
-**Rule:** where the source gives a value, compare; where it does not, keep the current value and record it as an assumption. Evidence: [source_check_results.md](source_check_results.md) (Perry's Handbook against the model).
-
-### A7. Record the membrane and digester assumptions for the report
-
-**Status:** ✅ Recorded in [results_2026-10-07.md](../../results_2026-10-07.md).
-
-| Area | Assumption | Basis |
-|---|---|---|
-| Membrane | DDR zeolite, Π_CO₂ 2.1e-7, Π_H₂ 1.36e-7, Π_CH₄ 3.03e-9 mol/(m²·s·Pa) at 297 K, no T-dependence | Yang et al., J. Membr. Sci. 2016 (not in Perry's, which has polymer data only) |
-| Membrane | Well-mixed, one stage, 5 m², partial-pressure driving force (ideal gas), feed 10 bar, permeate 1 bar, 30 °C, no pressure drop | Design; model reproduces Perry Eq 20-93 exactly |
-| Membrane | Only CO₂, H₂, CH₄ permeate | Kinetic diameters H₂ 0.289 < CO₂ 0.33 < CH₄ 0.38 nm (Perry p.20-57) |
-| Compression | 2 stages, ratio 3.14 each, η 0.75, cooled to 30 °C | Within Perry's usual ≤ 4 per stage (p.10-45) |
-| Digester | 55 °C, HRT 15 d, no-recycle stirred reactor, fixed pH 6.5–7 | HRT and pH in Perry's ranges (10–30 d; 6.5–7.5); temperature is a stated assumption (Perry: 35–37 °C) |
-| Digester | ADM1-style Monod and inhibition constants; acetate methanogen yield 0.039 g/g COD | Yield matches Perry's 0.04 (Table 22-46) |
-| Digester | No hydrogenotrophic methanogenesis | H₂ is 0.3 % of the biogas |
-
-### A8. Record the design point and checks
-
-**Status:** ✅ Recorded in [results_2026-10-07.md](../../results_2026-10-07.md) (values unchanged by the A2/A4 edits).
-| Result | Value (run of 2026-10-06) |
-|---|---|
-| Biogas | CH₄ 58.7 %, CO₂ 40.9 %, H₂ 0.3 % (Perry range 50–80 % CH₄) |
-| CH₄ yield | 0.228 m³(STP) per kg COD fed = 65 % of Perry's 0.35 maximum per kg COD destroyed (plausible) |
-| Membrane | RET 76.4 % CH₄, CH₄ recovery 96.9 %, CO₂ removed 57.5 %, stage cut 0.255 |
-| Compressors | 5.5 kW total |

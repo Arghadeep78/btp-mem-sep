@@ -1,0 +1,15 @@
+# C · 5. Flowsheet tidy-ups (no effect on results)
+
+[README](00_README.md) · [1_digester](1_digester.md) · [2_pyrolysis](2_pyrolysis.md) · [3_membrane](3_membrane.md) · [4_property_data](4_property_data.md) · [5_flowsheet_tidyups](5_flowsheet_tidyups.md)
+
+| # | What looks wrong | Why parked | Fix | Revisit if |
+|---|---|---|---|---|
+| C9 | **PURGAS has an always-empty outlet** (WASTE = 0; its FRAC list includes CARBON in MIXED, which does nothing). USP03.1 warning | Harmless, and deleting it means rewiring the flowsheet | **Delete PURGAS:** connect `METH.GAS` directly to COMP1 and delete WASTE; or **real purge:** FRAC = 0.99 to GAS2. There is no recycle loop, so deleting is the sensible option | You want a clean 0-warning run, or a recycle is added |
+| C16 | **Henry warnings (2):** NH3SEP and MEMB1 flashes: "all components are Henry components, yet CO₂ is sub-critical" | Cosmetic side effect of `HC-1`; the streams are vapour-only | Set the flashes of GAS3 / MEMB1 outlets to vapour-only, or accept the warning | You need a zero-warning run |
+| C11 | **NH3SEP's name hides what it does** (it keeps only CO₂, H₂, CH₄, CO and sends water and everything else to stream NH3) | Naming only | Rename block to `GASCLEAN` and stream NH3 to `CONDENS` (right-click → Rename), or add a block description | Handing the model to someone else |
+| C12 | **METH property options do nothing:** `TRUE-COMPS=YES`, `FREE-WATER=STEAM-TA`, `SOLU-WATER=3` (no chemistry; blocks use FREE-WATER=NO) | No effect on results | Hierarchy METH → Properties → reset to defaults | A CHEMISTRY block is added |
+| C13 | **Unused reaction sets** CO2METH and COMETH (LHHW) | Defined but harmless | Reactions → right-click → Delete. **Keep `RWGS`** (C1) | You want a smaller file |
+| C14 | **MEMB1 has `IN-UNITS ENG`** while the rest is SI/MET | Harmless (ACM values are in native units), only confusing | Block METH.MEMB1 → Setup → Units → match the flowsheet | The block is edited again |
+| C15 | **Hidden sensitivity `RESTIME`** (B1 RES-TIME 1–40 d vs CH₄ in BIOGAS and B1 volume) is inactive | It is not an error | Model Analysis Tools → Sensitivity → unhide/activate; re-target it to the condensed-phase residence time | You want a yield-vs-HRT curve for the report |
+| C10 | **FLASH3 looks redundant** (RET is dry; H2O-2 ≈ 0) | It is the 10 → 1 bar letdown and acts as a knockout drum. Deleting it would remove the pressure letdown | Keep it; optionally rename to `LETDOWN`. If ever removed, add a valve first | An expander is added or the letdown moves |
+| C30 | **Stream `NH3` warning icon** (GUI only; NH3SEP liquid outlet) | Engine side checked 2026-10-07 (COM): `BLKSTAT` 0, `PROPSTAT` 0, `PER_ERROR` 0, no `.his` message; NH3SEP flash converged in 1 trial (the 15 trials were an older run). Contents: 0.094 kmol/h liquid at 25 °C (water 0.0755, NH3 0.0087, ethanol 0.0038, acetic acid 0.0001). One possibility was `FLASH-METHOD=GIBBS` | Hover over or open stream NH3 → Status, record the text; do not change anything | Next GUI session (1 min) |

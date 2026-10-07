@@ -140,7 +140,7 @@ Thermodynamics computed from Perry's data only (ideal-gas Cp with the Aly–Lee 
 
 ## 7. ACM text for the Windows session (one recompile)
 
-Area per the D1 choice; the V lines resolve C17 in [C_parked.md](C_parked.md) (`PERMEATE.V`).
+Area per the D1 choice; the V lines resolve C17 in [C/00_README.md](C/00_README.md) (`PERMEATE.V`).
 
 ```
 A as RealParameter (value: 8.0);    // m2, per D1 (8 m2 / 8 bar)

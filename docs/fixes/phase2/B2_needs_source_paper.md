@@ -2,7 +2,7 @@
 
 Items B1, B2 (pyrolysis), B8 (membrane), B9 (digester). Every item checked 2026-10-07 against reputed literature and Perry's (8th ed., full text searched) and placed in one of two sections.
 
-Other sessions: [A](A_will_do.md) · [B1](B1_can_do_now.md) · [C](C_parked.md) · [Index](../00_INDEX.md) · Evidence: [source_check_results.md](source_check_results.md)
+Other sessions: [A](A_will_do.md) · [B1](B1_can_do_now.md) · [C](C/00_README.md) · [Index](../00_INDEX.md) · Evidence: [source_check_results.md](source_check_results.md)
 
 **Perry's has:** thermophilic range 45–70 °C (PDF 2440), packed-bed void fraction 0.35–0.5 (Eq 16-81, PDF 1809), Monod + inhibition form (Eq 7-150/151, PDF 870), RWGS reversible (Eq 24-18). **Not in Perry's:** CH₄-cracking kinetics, zeolite-membrane permeances, catalyst bulk density, thermophilic ADM1 constants.
 
@@ -40,7 +40,7 @@ Other sessions: [A](A_will_do.md) · [B1](B1_can_do_now.md) · [C](C_parked.md) 
 
 # Section 2: Not confirmed 🔶
 
-P3, P6 (R-1/R-2 irreversible) and G5 (no hydrogenotrophs) are in Session C only: [C2, C1, C25](C_parked.md).
+P3, P6 (R-1/R-2 irreversible) and G5 (no hydrogenotrophs) are in Session C only: [C2, C1, C25](C/00_README.md).
 
 ## 2α: No action needed
 
@@ -48,12 +48,14 @@ P3, P6 (R-1/R-2 irreversible) and G5 (no hydrogenotrophs) are in Session C only:
 
 ## 2β: Action needed
 
-| # | Item (model) | Evidence | Action |
-|---|---|---|---|
-| B1·P7 | Catalyst 24.668 kg, ρ 1500 kg/m³, type not stated | No reputable value for this catalyst's density; type unknown. No effect on results | Paper: catalyst type, mass, bulk density, voidage |
-| B2 (P7 vs P8) | 24.7 kg catalyst in 2.12 m³ tube (L 18.9 m, D 0.378 m) | Packed bed would hold 1.6–2.1 t (ρ 1500, ε 0.35–0.5); fill 0.8 %. No effect on results | Report catalyst mass and W/F only, not tube size |
-| B1·P9 | Paper's performance | Only compared with equilibrium (A1) | Paper: CH₄ conversion, H₂ yield, CO |
-| B8·PM6 use | Permeances used at 303 K, 10 bar | Data at 2 bar; zeolite permeance may fall at high P | State as assumption |
-| B9·G4 values | Calculator k_max, K_S, inhibition constants | ADM1 STR13 thermophilic tables not accessible online | Compare once with STR13 thermophilic table (~15 min) |
-| B9·G1 | Feed: BIOMASS 8.5 t/d (75.2 % water) + WATERIN 13 t/d, 23 °C | Project-specific; no outside source can confirm | Paper: feedstock, flow, composition |
-| B9·G3 | RSTOIC fixed hydrolysis conversions | Project-specific; rxn 8/11 never fire (C26/C27) | Paper: extents or kinetics |
+Doubt = how likely the model value is wrong (0 = surely right, 10 = surely wrong).
+
+| # | Item (model) | Evidence | Action | Doubt (/10) |
+|---|---|---|---|---|
+| B1·P7 | Catalyst 24.668 kg, ρ 1500 kg/m³, type not stated | No reputable value for this catalyst's density; type unknown. No effect on results | Paper: catalyst type, mass, bulk density, voidage | **5**: no data on type/density; no effect on results |
+| B2 (P7 vs P8) | 24.7 kg catalyst in 2.12 m³ tube (L 18.9 m, D 0.378 m) | Packed bed would hold 1.6–2.1 t (ρ 1500, ε 0.35–0.5); fill 0.8 %. No effect on results | Report catalyst mass and W/F only, not tube size | **8**: tube and catalyst clearly not one design |
+| B1·P9 | Paper's performance | Only compared with equilibrium (A1) | Paper: CH₄ conversion, H₂ yield, CO | **4**: equilibrium check passed; paper comparison missing |
+| B8·PM6 use | Permeances used at 303 K, 10 bar | Data at 2 bar; zeolite permeance may fall at high P | State as assumption | **5**: 5× pressure extrapolation, direction known (lower permeance) |
+| B9·G4 values | Calculator k_max, K_S, inhibition constants | ADM1 STR13 thermophilic tables not accessible online | Compare once with STR13 thermophilic table (~15 min) | **5**: ADM1-style, propionate Ks/Y unverified |
+| B9·G1 | Feed: BIOMASS 8.5 t/d (75.2 % water) + WATERIN 13 t/d, 23 °C | Project-specific; no outside source can confirm | Paper: feedstock, flow, composition | **3**: self-consistent (fractions sum to 1); only the paper can confirm |
+| B9·G3 | RSTOIC fixed hydrolysis conversions | Project-specific; rxn 8/11 never fire (C26/C27) | Paper: extents or kinetics | **6**: fixed extents unsourced; rxn 8/11 known not to fire |

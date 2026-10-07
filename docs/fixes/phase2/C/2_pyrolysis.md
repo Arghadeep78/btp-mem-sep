@@ -1,0 +1,11 @@
+# C · 2. Pyrolysis reactor (CH4PYRO)
+
+[README](00_README.md) · [1_digester](1_digester.md) · [2_pyrolysis](2_pyrolysis.md) · [3_membrane](3_membrane.md) · [4_property_data](4_property_data.md) · [5_flowsheet_tidyups](5_flowsheet_tidyups.md)
+
+| # | What looks wrong | Why parked | Fix | Revisit if |
+|---|---|---|---|---|
+| C1 | **R-2 (RWGS) is irreversible.** At 790 °C K = 0.888, so the real CO₂ conversion is about 85 %, not 99.99 % | The kinetics come from your source (design). Effect: H₂ about +4.4 %, CO₂ left 0 vs 0.06 kmol/h | **Option 1:** use the existing LHHW set `RWGS` (its equilibrium term `A = −4.33, B = 4577.8` gives K ≈ 1.02 at 790 °C, within about 13 % of Perry's 0.888), replacing R-2 in CH4PYRO. Steps: Block METH.CH4PYRO → Reactions: replace `R-2` with `RWGS`, keep `R-1`; check phase V, cat-wt basis. **Option 2:** add the reverse reaction to R-2 with k₀,rev = k₀,fwd / K(790 °C) | The source paper's R-2 is reversible, or CO / H₂O composition becomes a reported result |
+| C2 | **R-1 (CH₄ cracking) is irreversible.** Equilibrium conversion is 94 % (91 % for pure CH₄) while the model gives about 100 % | Same reason; the overshoot is small (CH₄ left 0.076 kmol/h) | Add a reverse term in LHHW form, like RWGS, with K = 19.98 at 790 °C | The source models R-1 as reversible, or unconverted CH₄ matters downstream |
+| C4 | **Boudouard reaction** 2CO → C(s) + CO₂ (Perry Eq 24-26) is not modelled | Minor at 790 °C and 1 bar; adds a reaction not in the design | Add as a kinetic or equilibrium reaction | CO appears in a reported result |
+| C3 | **R-1/R-2 k₀ units** (hour basis, no IN-UNITS line) may differ from the paper's | Moot for the result, because conversion saturates (report note N1) | Open Reactions R-1/R-2 → Kinetic tab; set the time unit next to *k* to the paper's (Aspen converts), or scale by 3600. If the paper uses partial pressures, set CBASIS = partial pressure | The paper's units differ **and** you want the rate itself (not just conversion) to be right, e.g. for a sensitivity on catalyst mass or space time |
+| C5 | **Catalyst fills only 0.8 % of the tube** (B2) | Design-consistency question, not an Aspen error (report note N4) | Change the catalyst mass or the tube size so they come from one design basis | The source states a bed design |

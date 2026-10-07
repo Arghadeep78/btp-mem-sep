@@ -80,7 +80,7 @@ The ions never get flow because there is no chemistry. They act as placeholders 
 | `ACIDOGEN` (B1) | PowerLaw, 2 | dextrose, glycerol → VFAs + biomass |
 | `ACETOGEN` (B1) | PowerLaw, 6 | oleic(1), propionate(2), butyrate(3), valerate(4), linoleic(5), palmitic(6) → HAc + H₂. Rxns 1/5/6 replaced by element-balanced β-oxidation stoichiometry (biomass yield 0.1701, CO₂ = 0) |
 | `AMINOACI` (B1) | PowerLaw, 21 (IDs 1–23 without 3, 12) | Stickland-type amino-acid degradation. All ACT-ENERGY = 0 (temperature handled in AMINODEG). Rxns 19/20 are first order in TYROSINE/TRYPTOPH only |
-| `METHAN` (B1) | PowerLaw, 1 | acetoclastic methanogenesis |
+| `METHAN` (B1) | PowerLaw, 2 | rxn 1 acetoclastic methanogenesis; rxn 2 hydrogenotrophic (4 H₂ + CO₂ → CH₄, added 2026-10-07, C25) |
 | `H2` (B1) | Equilibrium | 2 CO₂ + 4 H₂ → HAc + 2 H₂O |
 | `R-1`, `R-2` (CH4PYRO) | PowerLaw, cat-wt basis | CH₄ cracking, RWGS (both irreversible; no IN-UNITS line, so PRE-EXP uses global MET units; see B1 and C3 in Phase 2) |
 | `CO2METH`, `COMETH`, `RWGS` | LHHW | **Defined but not used by any block** |
@@ -175,8 +175,8 @@ CH₄ recovery to RET ≈ 96.9 %; CO₂ removed ≈ 57.5 %. Tuning knobs: `A` (3
 ## 6. Remaining fix order (scope: obvious errors only; the design is near final)
 1. **Phase 2, Session A (will do):** A1 record the pyrolysis outlet against equilibrium; A2–A4 delete the ETHANOL Cp override, the copied VLSTD values and the duplicate entries; A5–A6 notes and final run; A7–A8 record assumptions and the design point. See [docs/fixes/phase2/A_will_do.md](docs/fixes/phase2/A_will_do.md).
 2. **Phase 2, Session B (check only / optional):** source checks B1, B8, B9 (these decide whether the results summary changes), plus B2–B7. See [B1_can_do_now.md](docs/fixes/phase2/B1_can_do_now.md) (no paper needed) and [B2_needs_source_paper.md](docs/fixes/phase2/B2_needs_source_paper.md).
-3. **Phase 2, Session C (parked):** looks like an error but is a design decision; revisit later. See [docs/fixes/phase2/C_parked.md](docs/fixes/phase2/C_parked.md). Phase 1 (Sessions 1–6) is done: [docs/fixes/phase1/00_PHASE1_DONE.md](docs/fixes/phase1/00_PHASE1_DONE.md). Overview, ranking and the old → new ID mapping: [docs/fixes/00_INDEX.md](docs/fixes/00_INDEX.md).
-4. Notable parked items: pyrolysis R-1/R-2 irreversible (C1, C2: outlet beyond equilibrium, H₂ about +4 %), membrane pressure ratio 10 vs Perry's 6 (C18), `PERMEATE.V` default (C17), PURGAS (C9), 55 °C digester (C23), RSTOIC rxn 11 never fires because of `SERIES=NO` (C26: CH₄ up to +5 % low; confirm with B10).
+3. **Phase 2, Session C (parked):** looks like an error but is a design decision; revisit later. See [docs/fixes/phase2/C/00_README.md](docs/fixes/phase2/C/00_README.md). Phase 1 (Sessions 1–6) is done: [docs/fixes/phase1/00_PHASE1_DONE.md](docs/fixes/phase1/00_PHASE1_DONE.md). Overview, ranking and the old → new ID mapping: [docs/fixes/00_INDEX.md](docs/fixes/00_INDEX.md).
+4. Notable parked items: pyrolysis R-1/R-2 irreversible (C1, C2: outlet beyond equilibrium, H₂ about +4 %), membrane pressure ratio 10 vs Perry's 6 (C18), `PERMEATE.V` default (C17), PURGAS (C9). C23 (55 °C) is closed (Perry supports thermophilic). RSTOIC rxn 11/8 (C26/C27) were fixed on 2026-10-07 (`SERIES = YES`, E070); C24 is treated as confirmed; C25 (hydrogenotrophs) added 2026-10-07 with CH4PYRO INT-TOL 1E-5 (E072; verified: 0 errors).
 
 Who can do what (Claude vs you): [docs/fixes/claude_coverage.md](docs/fixes/claude_coverage.md).
 
