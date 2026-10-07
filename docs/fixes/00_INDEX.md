@@ -5,7 +5,7 @@ The full evidence for every item is in [../model_review_2026-10-05.md](../model_
 | Phase | Sessions | Status | Start here |
 |---|---|---|---|
 | **Phase 1** | 1–6 | ✅ Done | [phase1/00_PHASE1_DONE.md](phase1/00_PHASE1_DONE.md) |
-| **Phase 2** | A, B, C | 🟡 Reduced scope: obvious errors only; design near final | [phase2/A_will_do.md](phase2/A_will_do.md), [B_check_only.md](phase2/B_check_only.md), [C_parked.md](phase2/C_parked.md) |
+| **Phase 2** | A, B, C | 🟡 Reduced scope: obvious errors only; design near final | [phase2/A_will_do.md](phase2/A_will_do.md), [B1_can_do_now.md](phase2/B1_can_do_now.md), [B2_needs_source_paper.md](phase2/B2_needs_source_paper.md), [C_parked.md](phase2/C_parked.md) |
 
 Who can do what (Claude vs you): [claude_coverage.md](claude_coverage.md). Source-check evidence (Perry's Handbook against the model): [phase2/source_check_results.md](phase2/source_check_results.md).
 
@@ -43,13 +43,13 @@ Phase 2 is organised by section, not by topic: **A. We will do** · **B. Check o
 
 # Phase 2: three sessions, A, B and C (remaining; reduced scope)
 
-Phase 2 is **three sessions, one file each**. Items are grouped by topic inside each file and carry a new ID (A1–A8, B1–B10, C1–C27) that is unique across the phase.
+Phase 2 is **three sessions, one file each**. Items are grouped by topic inside each file and carry a new ID (A1–A8, B1–B10, C1–C29; B4 and B5 moved to C28 and C29) that is unique across the phase.
 
 | Session | File | Contents | Approx. time |
 |---|---|---|---|
-| **A: We will do** | [phase2/A_will_do.md](phase2/A_will_do.md) | **Pyrolysis:** A1 record the outlet against equilibrium. **Property data:** A2 ETHANOL Cp, A3 copied VLSTD, A4 duplicate entries. **Cleanup:** A5 update `CLAUDE.md`, A6 final run and record. **Membrane/digester:** A7 record assumptions, A8 record the design point | A1 5–10 min · A2–A4 30–40 min · A5, A6 5–10 min + doc · A7, A8 20–30 min (Mac, doc only) |
-| **B: Check only / optional** | [phase2/B_check_only.md](phase2/B_check_only.md) | **Pyrolysis:** B1 source check P1–P9, B2 catalyst loading. **Property data (optional):** B3 HCO₃⁻ Cp, B4 H₂CO₃, B5 CYSTEINE. **Cleanup:** B6 `PERMEATE.V` test, B7 NH3 stream status. **Membrane/digester:** B8 membrane data (PM1–PM6, OP1–OP5), B9 digester data (G1–G7). **Hydrolysis:** B10 confirm RSTOIC rxn 11 and rxn 8 do not fire | B1, B2 30–60 min · B3–B5 20–30 min · B6, B7 5–10 min · B8, B9 1–2 h (Mac, with the paper) · B10 5 min |
-| **C: Parked** (looks like an error, not touched because of a design decision) | [phase2/C_parked.md](phase2/C_parked.md) | **Pyrolysis:** C1–C5 (R-2/R-1 irreversible, k₀ units, Boudouard, catalyst). **Property data:** C6 mixed ΔHf basis, C7 NH4+, C8 benign. **Cleanup:** C9–C17 (PURGAS, FLASH3, renames, METH options, unused sets, MEMB1 units, sensitivity, Henry warnings, `PERMEATE.V`). **Membrane/digester:** C18–C25 (pressure ratio and area/pressure point, second stage, Π(T), fugacity, V, 55 °C, propionate, hydrogenotrophs). **Hydrolysis:** C26 RSTOIC rxn 11 never fires (CH₄ up to +5 %), C27 rxn 8 never fires | not planned; revisit only when a "Revisit if" condition is met |
+| **A: We will do** (✅ done 2026-10-07) | [phase2/A_will_do.md](phase2/A_will_do.md) | **Pyrolysis:** A1 record the outlet against equilibrium. **Property data:** A2 ETHANOL Cp, A3 copied VLSTD, A4 duplicate entries. **Cleanup:** A5 update `CLAUDE.md`, A6 final run and record. **Membrane/digester:** A7 record assumptions, A8 record the design point | A1 5–10 min · A2–A4 30–40 min · A5, A6 5–10 min + doc · A7, A8 20–30 min (Mac, doc only) |
+| **B: Check only / optional** | [phase2/B1_can_do_now.md](phase2/B1_can_do_now.md) + [phase2/B2_needs_source_paper.md](phase2/B2_needs_source_paper.md) | **Pyrolysis:** B1 source check P1–P9, B2 catalyst loading. **Property data (optional):** B3 HCO₃⁻ Cp, B4 H₂CO₃, B5 CYSTEINE. **Cleanup:** B6 `PERMEATE.V` test, B7 NH3 stream status. **Membrane/digester:** B8 membrane data (PM1–PM6, OP1–OP5), B9 digester data (G1–G7). **Hydrolysis:** B10 confirm RSTOIC rxn 11 and rxn 8 do not fire | B1, B2 30–60 min · B3–B5 20–30 min · B6, B7 5–10 min · B8, B9 1–2 h (Mac, with the paper) · B10 5 min |
+| **C: Parked** (looks like an error, not touched because of a design decision) | [phase2/C_parked.md](phase2/C_parked.md) | **Pyrolysis:** C1–C5 (R-2/R-1 irreversible, k₀ units, Boudouard, catalyst). **Property data:** C6 mixed ΔHf basis, C7 NH4+, C8 benign. **Cleanup:** C9–C17 (PURGAS, FLASH3, renames, METH options, unused sets, MEMB1 units, sensitivity, Henry warnings, `PERMEATE.V`). **Membrane/digester:** C18–C25 (pressure ratio and area/pressure point, second stage, Π(T), fugacity, V, 55 °C, propionate, hydrogenotrophs). **Hydrolysis:** C26 RSTOIC rxn 11 never fires (CH₄ up to +5 %), C27 rxn 8 never fires. **Moved from B (2026-10-07):** C28 delete H2CO3 by hand in the GUI, C29 CYSTEINE identity and rxn 23 change | not planned; revisit only when a "Revisit if" condition is met |
 
 **Old references → new IDs** (for earlier chat notes, the edit log and the review): former Session 7 items A1, B1, B2, C1–C5 are unchanged · former 8.2, 8.7, 8.8 → A2, A3, A4 · 8.3, 8.4, 8.6 → B3, B4, B5 · 8.1, 8.5, 8.9 → C6, C7, C8 · former Session 9 A1, A2 → A5, A6; B1, B2 → B6, B7; C1–C9 → C9–C17 · former Session 10 A1, A2 → A7, A8; B1, B2 → B8, B9; C1–C8 → C18–C25 · the membrane checklist labels A1–A6 and B1–B5 are now PM1–PM6 and OP1–OP5 · the ΔHf "Option A / Option B" are now "Route 1 / Route 2". Review IDs (C5, D1 …) are written "review C5" in headings.
 
@@ -89,8 +89,8 @@ Who can do what (Claude vs you): [claude_coverage.md](claude_coverage.md).
 - [x] S4 kinetics basis (EDIT_LOG E029; tear-variable convergence block, not Fortran user kinetics)
 - [x] S5 compressor (EDIT_LOG E032; 2-stage COMPR+HEATER, 10 bar, 5.5 kW)
 - [x] S6 ACM rewrite (EDIT_LOG E033, commit 007cc74; 0 errors / 3 warnings)
-- [ ] Phase 2 Session A (will do): A1–A8
-- [ ] Phase 2 Session B (check only / optional): B1–B10
+- [x] Phase 2 Session A (will do): A1–A8 done 2026-10-07 (EDIT_LOG E048–E050, E052–E053; A3 by replacing the copied VLSTD values with CRC/crystallographic values)
+- [ ] Phase 2 Session B (check only / optional): Section 1 done 2026-10-07 except the B7 GUI text (EDIT_LOG E055–E057; B4, B5 moved to C28, C29); Section 2 (B1, B2, B8, B9) waits for the source paper
 - [ ] Phase 2 Session C (parked): nothing planned
 
 ## Navigation shorthand used in these files

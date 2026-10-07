@@ -2,7 +2,7 @@
 
 Each row says why it is parked, what we would do later, and what would make us revisit it.
 
-Other sessions: [A](A_will_do.md) · [B](B_check_only.md). Overview and ranking: [../00_INDEX.md](../00_INDEX.md). Phase 1 (done): [../phase1/00_PHASE1_DONE.md](../phase1/00_PHASE1_DONE.md). Evidence: [source_check_results.md](source_check_results.md).
+Other sessions: [A](A_will_do.md) · [B1](B1_can_do_now.md) · [B2](B2_needs_source_paper.md). Overview and ranking: [../00_INDEX.md](../00_INDEX.md). Phase 1 (done): [../phase1/00_PHASE1_DONE.md](../phase1/00_PHASE1_DONE.md). Evidence: [source_check_results.md](source_check_results.md).
 
 Contents: pyrolysis · property data · cleanup and documentation · membrane and digester.
 
@@ -68,6 +68,50 @@ Contents: pyrolysis · property data · cleanup and documentation · membrane an
 ### C8. Benign: no action
 - CARBON TC/VC out of bounds (LCLIMS.3): CARBON is CISOLID, so its critical properties are never used.
 - PCERTE.10 "structure not defined" for all 62 components: information only. It matters only for PROT, KERATIN and INERT (user components), if you ever need estimated properties for them.
+
+---
+
+### C28. H2CO3 is a placeholder component (review C5)
+
+**Perry check:** not in Perry (no carbonic acid data); placeholder values by inspection.
+
+**Issue:** H2CO3 has dummy data (PLXANT 0/−1000, DHVLWT 100/300, OMEGA 7.18, PC 50, VC 150) and takes part in no reaction.
+**Error it causes:** LCLIMS.3 and LCLIMS.4 out-of-bounds warnings.
+**Steps:** first delete H2CO3 from every PROP-DATA set (PCES-1, PURE-2, CPIG-1, DHVLWT-1, MULAND-1, PLXANT-1). Then Components → Specifications → delete **H2CO3**. Also remove it from the H2S-SEP/NH3SEP split lists if Aspen asks.
+**Verify:** 2 fewer warnings.
+
+**Status:** Parked 2026-10-07 (moved from B4), needs a GUI edit. Deleting a component cannot be done safely as a `.bkp` text edit: H2CO3 appears in 55 places, including stored results arrays sized by the component count, the MEMB1 (ACM) component vectors and the H2S-SEP/NH3SEP/PURGAS split lists, and a COM save drops the MEMB1 `PERMEATE.P` spec. Gain: only the 2 LCLIMS warnings for H2CO3 (no result changes; H2CO3 has no flow). **Option for you (about 5 min in the GUI):** Components → Specifications → select H2CO3 → Delete, accept Aspen's prompts, run, save. Or leave it and state it as a placeholder.
+
+**Revisit if:** you want the 2 LCLIMS warnings gone, or chemistry (ions) is ever added.
+
+---
+
+### C29. CYSTEINE data copied from PROLINE (review C7)
+
+**Perry check:** not in Perry (no cysteine, proline or arginine); copy of PROLINE by inspection.
+
+**Issue:**
+- TC, PC, ZC, VC, PLXANT, DHVLWT, DHVLDP and the PCES values for CYSTEINE are identical to PROLINE's.
+- The entered formula `C3H6NO2S` is one H short of cysteine (C3H7NO2S).
+
+**Error it causes:** wrong cysteine volatility and enthalpy in B1 (small amounts, but wrong).
+**Steps:**
+1. Components → CYSTEINE → **Find** → confirm it maps to **L-cysteine C3H7NO2S**, and re-select it if not.
+2. Delete CYSTEINE from PURE-1, PCES-1, DHVLWT-1, DHVLDP-1 and PLXANT-1.
+3. Let the databank or PCES supply the values.
+
+**Status:** Parked 2026-10-07 (moved from B5): this is a reaction change, not a cleanup. Findings: CYSTEINE maps to the databank species `CYSTEINE-E-2` (formula C3H6NO2S, MW 120.15), not L-cysteine (C3H7NO2S, 121.16). AMINOACI rxn 23 (CYSTEINE + 2 H2O → HAc + NH3 + CO2 + 0.5 H2 + H2S) balances **only** with C3H6NO2S, and RSTOIC rxn 13 makes 0.067 CYSTEINE per KERATIN. The user data (TC 1021, PC 6.74e6, ZC 0.186, VC 0.234, DHFORM −5.344e8, CPSDIP, PLXANT) are PROLINE's. Doing it properly means: re-select L-cysteine, change rxn 23 H2 from 0.5 to 1.0, recheck the KERATIN mass balance (RXMBCK), then delete the copied data and confirm PCES fills TC/PC/VC/ZC (A3 showed PCES does not always). Effect on results: very small (cysteine is a minor amino acid). Parked here because of that.
+
+**Revisit if:** the amino-acid chemistry must be exact (for example a COD or element balance of the digester that includes cysteine).
+
+---
+
+### C30. Stream `NH3` warning icon (global flowsheet)
+The GUI flags stream NH3 (NH3SEP liquid outlet); the `.his` logs no message for it. Open the stream's Status/Results and note what it says. One possibility: NH3SEP uses `FLASH-METHOD=GIBBS`, and this outlet needed 15 flash trials. Record the text; do not change anything.
+
+**Status:** Parked 2026-10-07 (moved from B7). Engine side checked (COM): stream NH3 has `BLKSTAT` 0, `PROPSTAT` 0, `PER_ERROR` 0 and no `.his` message; its NH3SEP flash converged in 1 trial (the 15 trials were an older run). Contents: 0.094 kmol/h liquid at 25 °C (water 0.0755, NH3 0.0087, ethanol 0.0038, acetic acid 0.0001). So the engine reports no problem; the icon's text can only be read in the GUI (hover over or open stream NH3 → Status).
+
+**Revisit if:** you next open the model in the GUI (read the icon text, 1 min).
 
 ---
 
