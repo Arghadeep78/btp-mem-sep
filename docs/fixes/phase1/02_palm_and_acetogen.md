@@ -1,6 +1,6 @@
 # Session 2: PALM → palmitic acid, and element-balanced ACETOGEN
 
-**Session status:** ✅ **DONE (installed, EDIT_LOG E025).** Tested: 6 warning messages removed (RSTOIC ZURE07.8 ×3, ACETOGEN RXMBCK ×3), LOADMW gone. Known: 1 CH4PYRO BALMAS error until Session 6 (see end of file).
+**Session status:** ✅ **DONE (installed, EDIT_LOG E025).** Tested: 6 warning messages removed (RSTOIC ZURE07.8 ×3, ACETOGEN RXMBCK ×3), LOADMW gone. The CH4PYRO BALMAS error seen after this session was **cleared by Session 6** (run of 2026-10-06: no BALMAS or RXMBCK messages; see the end of this file).
 
 Back up first. Do 2.1 before 2.2.
 
@@ -76,7 +76,7 @@ Enter ACETI-AC with all five decimals: 8.57475 = (18 − 5 × 0.1701)/2 and 7.57
 - After 2.1 and 2.2 together, the run log has **6 fewer warning messages**: ZURE07.8 ×3 and RXMBCK.1 ×3. The Control Panel's simulation-warning total stays at **15**, because these six are input-checking messages and that total doesn't include them.
 - B1 results: compare HAc, H₂ and CH₄ against the previous run and note the change in CH₄ yield for your report. Test-run values: BIOGAS CH₄ 14.652 → 14.595 kg/h, CO₂ 25.75 → 23.97 kg/h, B1 duty 0.00352 → 0.00164.
 
-**Known side effect while MEMB1 is unfixed (Session 6):**
+**Side effect seen while MEMB1 was unfixed: RESOLVED by Session 6 (MEMB1 now constrains every component; the 2026-10-06 run has no BALMAS).** What was observed:
 - After 2.1 + 2.2, CH4PYRO reports **BALMAS.1** (relative mass imbalance 3.4E-4, above the 1E-4 limit).
 - Its feed is MEMB1's outlet, which currently carries about 6× the inlet mass in spurious components (M1–M3). The small shift in biogas composition after 2.2 changes that spurious feed.
 - Tightening the CH4PYRO integration tolerance (1E-4 → 1E-5) does **not** remove it, so it isn't an integration-accuracy problem.

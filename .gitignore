@@ -16,3 +16,4 @@ files/*.appdf
 .DS_Store
 Thumbs.db
 .vscode/
+*.pdf           

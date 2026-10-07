@@ -55,7 +55,7 @@ GAS ─ PURGAS (SEP) ─ GAS2 ─ COMP1 (3.18 bar) ─ COOL1 (30 °C) ─ COMP2 
                                                                                                            └─ RET (10 bar) ─ FLASH3 (30 °C, 1 bar) ─ PROD4 ─ HEAT2 (790 °C, 1 bar) ─ PYROIN ─ CH4PYRO (RPLUG) ─ FINPROD
                                                                                                                                 └─ H2O-2 (out)
 ```
-- PURGAS sends fraction 1 of WATER/CO2/H₂/CH₄/CO/CARBON to GAS2, so WASTE is always empty (by design; cleanup in Session 9).
+- PURGAS sends fraction 1 of WATER/CO2/H₂/CH₄/CO/CARBON to GAS2, so WASTE is always empty (by design; parked: C9).
 - Compression (Session 5): two isentropic COMPR stages (η = 0.75) with HEATER coolers to 30 °C, about 5.5 kW total. A 2× COMPR + 2× HEATER train is used because MCOMPR stage specs were not honoured when written as `.bkp` text. FLASH3 and HEAT2 already set 1 bar, so no letdown valve is needed.
 - CH4PYRO: L = 18.9 m, D = 0.378 m, T-spec 790 °C, catalyst 24.668 kg (ρ = 1500 kg/m³), vapour phase, integration tolerance 1E-4. Reactions R-1 (CH₄ → C(s) + 2 H₂) and R-2 (CO₂ + H₂ → CO + H₂O).
 - Global flash maximum iterations = 100 (Setup → Simulation Options). The H2S-SEP flash of GAS2 needs about 37.
@@ -63,7 +63,7 @@ GAS ─ PURGAS (SEP) ─ GAS2 ─ COMP1 (3.18 bar) ─ COOL1 (30 °C) ─ COMP2 
 ### Property methods
 - Global: `NRTL` (secondary `PENG-ROB`), `ESTIMATE ALL`, stream class `MIXCISLD` (CARBON is CISOLID).
 - **Henry components `HC-1` = CO2, METHANE, HYDROGEN, H2S, CO**, set globally; METH inherits it (Session 3.1).
-- METH: `NRTL` with `FREE-WATER=STEAM-TA SOLU-WATER=3 TRUE-COMPS=YES`. There is no CHEMISTRY block, so these options do nothing (cleanup in Session 9).
+- METH: `NRTL` with `FREE-WATER=STEAM-TA SOLU-WATER=3 TRUE-COMPS=YES`. There is no CHEMISTRY block, so these options do nothing (parked: C12).
 - 22 databanks enabled (APV140 PURE40/AQUEOUS/SOLIDS/…, NIST-TRC, AP-EOS).
 
 ### Components (62)
@@ -82,7 +82,7 @@ The ions never get flow because there is no chemistry. They act as placeholders 
 | `AMINOACI` (B1) | PowerLaw, 21 (IDs 1–23 without 3, 12) | Stickland-type amino-acid degradation. All ACT-ENERGY = 0 (temperature handled in AMINODEG). Rxns 19/20 are first order in TYROSINE/TRYPTOPH only |
 | `METHAN` (B1) | PowerLaw, 1 | acetoclastic methanogenesis |
 | `H2` (B1) | Equilibrium | 2 CO₂ + 4 H₂ → HAc + 2 H₂O |
-| `R-1`, `R-2` (CH4PYRO) | PowerLaw, cat-wt basis | CH₄ cracking, RWGS (both irreversible; no IN-UNITS line, so PRE-EXP uses global MET units — Session 7) |
+| `R-1`, `R-2` (CH4PYRO) | PowerLaw, cat-wt basis | CH₄ cracking, RWGS (both irreversible; no IN-UNITS line, so PRE-EXP uses global MET units; see B1 and C3 in Phase 2) |
 | `CO2METH`, `COMETH`, `RWGS` | LHHW | **Defined but not used by any block** |
 
 ### Calculator blocks (read B1 outlet `LIQUID`, write rate constants; converged by a tear loop)
@@ -110,7 +110,7 @@ Full evidence for every issue: [docs/model_review_2026-10-05.md](docs/model_revi
 2. **MEMB1 FLASH.38:** the same Henry message, from flashing the membrane outlets.
 3. **PURGAS USP03.1:** WASTE has zero flow (benign).
 
-The input-check messages are still printed but no longer counted: DGCHK1.1 (DHFORM missing for TYR/TRP/MET), LCCHCK.4 (ETHANOL CPIG), LCLIMS ×4 (CARBON, H2CO3), DPRSW2.3 ×3, PVAL.7 (GLYCINE VLSTD). They are Session 8.
+The input-check messages are still printed but no longer counted: DGCHK1.1 (DHFORM missing for TYR/TRP/MET), LCCHCK.4 (ETHANOL CPIG), LCLIMS ×4 (CARBON, H2CO3), DPRSW2.3 ×3, PVAL.7 (GLYCINE VLSTD). They are in Phase 2 (A2–A4 delete or fix them; B3–B5 optional; C6 parked).
 
 ### 4.1 Resolved (Sessions 1–6)
 
@@ -141,14 +141,14 @@ The input-check messages are still printed but no longer counted: DGCHK1.1 (DHFO
 | Henry cosmetic | NH3SEP / MEMB1 "all Henry components" warnings | 9 |
 | E1–E4 | FLASH3 now redundant (RET is dry); NH3SEP naming; MEMB1 `IN-UNITS ENG`; hidden RES-TIME sensitivity | 9 |
 | 4.5b | GUI warning icon on global stream NH3 (no `.his` message) | 9 (check in GUI) |
-| B5–B7 | No hydrogenotrophic methanogenesis; part of CH₄ made in RSTOIC at fixed conversion; pH fixed (no chemistry) | Report decisions (see [04_kinetics_basis.md](docs/fixes/04_kinetics_basis.md) §4.2) |
+| B5–B7 | No hydrogenotrophic methanogenesis; part of CH₄ made in RSTOIC at fixed conversion; pH fixed (no chemistry) | Report decisions (see [04_kinetics_basis.md](docs/fixes/phase1/04_kinetics_basis.md) §4.2) |
 | M9 | "ACMEXP block METH.B1 not initialized" | Cannot be verified: the log it came from is not in the repo |
 
 ---
 
 ## 5. ACM model `Zeo_real` (current)
 
-Source: `files/zeo_real.acmf` = `CustomModeling/CustomModeling.acmf` inside the ATMLZ (identical). Design notes and verify table: [06_membrane_acm_rewrite.md](docs/fixes/06_membrane_acm_rewrite.md).
+Source: `files/zeo_real.acmf` = `CustomModeling/CustomModeling.acmf` inside the ATMLZ (identical). Design notes and verify table: [06_membrane_acm_rewrite.md](docs/fixes/phase1/06_membrane_acm_rewrite.md).
 
 - **Well-mixed membrane, one balance per component over the whole `ComponentList`.** Permeating set `PermSet = ["CO2","HYDROGEN","METHANE"]` (Aspen IDs); every other component has `nP = 0` and stays in the retentate.
 - Flux: `nP(c) = Pi(c)·A·1e5·(Feed.P·Retentate.z(c) − Permeate.P·Permeate.z(c))·3.6` [kmol/h], with port P in bar.
@@ -170,12 +170,13 @@ CH₄ recovery to RET ≈ 96.9 %; CO₂ removed ≈ 57.5 %. Tuning knobs: `A` (3
 
 ---
 
-## 6. Remaining fix order
-1. **Session 7: pyrolysis** — confirm R-1/R-2 PRE-EXP units from the source paper; consider swapping R-2 → `RWGS` (reversible); check catalyst loading.
-2. **Session 8: property data** — ETHANOL CPIG, H2CO3, HCO3⁻, NH4+, CYSTEINE, VLSTD, duplicates, DHFORM basis.
-3. **Session 9: cleanup** — PURGAS, FLASH3, Henry cosmetic warnings, METH options, unused LHHW sets, MEMB1 units, NH3SEP naming, docs.
+## 6. Remaining fix order (scope: obvious errors only; the design is near final)
+1. **Phase 2, Session A (will do):** A1 record the pyrolysis outlet against equilibrium; A2–A4 delete the ETHANOL Cp override, the copied VLSTD values and the duplicate entries; A5–A6 notes and final run; A7–A8 record assumptions and the design point. See [docs/fixes/phase2/A_will_do.md](docs/fixes/phase2/A_will_do.md).
+2. **Phase 2, Session B (check only / optional):** source checks B1, B8, B9 (these decide whether the results summary changes), plus B2–B7. See [docs/fixes/phase2/B_check_only.md](docs/fixes/phase2/B_check_only.md).
+3. **Phase 2, Session C (parked):** looks like an error but is a design decision; revisit later. See [docs/fixes/phase2/C_parked.md](docs/fixes/phase2/C_parked.md). Phase 1 (Sessions 1–6) is done: [docs/fixes/phase1/00_PHASE1_DONE.md](docs/fixes/phase1/00_PHASE1_DONE.md). Overview, ranking and the old → new ID mapping: [docs/fixes/00_INDEX.md](docs/fixes/00_INDEX.md).
+4. Notable parked items: pyrolysis R-1/R-2 irreversible (C1, C2: outlet beyond equilibrium, H₂ about +4 %), membrane pressure ratio 10 vs Perry's 6 (C18), `PERMEATE.V` default (C17), PURGAS (C9), 55 °C digester (C23), RSTOIC rxn 11 never fires because of `SERIES=NO` (C26: CH₄ up to +5 % low; confirm with B10).
 
-Who can do what (Claude vs you): [docs/fixes/10_claude_coverage.md](docs/fixes/10_claude_coverage.md).
+Who can do what (Claude vs you): [docs/fixes/claude_coverage.md](docs/fixes/claude_coverage.md).
 
 ---
 

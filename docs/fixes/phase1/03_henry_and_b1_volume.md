@@ -1,6 +1,6 @@
 # Session 3: Henry components and the B1 reactor volume basis
 
-**Session status:** ✅ **DONE.** 3.1 installed (EDIT_LOG E027). 3.2 checked: no change needed. Run: 0 severe / 0 errors / 16 warnings (+1 cosmetic PURGAS warning, removed in Session 9).
+**Session status:** ✅ **DONE.** 3.1 installed (EDIT_LOG E027). 3.2 checked: no change needed. Run: 0 severe / 0 errors / 16 warnings (+1 cosmetic PURGAS warning, removed or parked in Phase 2 (C9, C16)).
 
 Back up first.
 
@@ -31,7 +31,7 @@ Back up first.
 **Verify:**
 - Control Panel: no "missing Henry parameter" errors for WATER pairs.
 - B1 results: **less** gas stays dissolved, which matches Henry's law. Tested: LIQUID CO₂ 5.66 → 0.24 kg/h (hand check ≈ 0.29), LIQUID CH₄ 0.79 → 0.0065 kg/h (≈ 0.008); BIOGAS CH₄ 14.60 → 15.37 kg/h, CO₂ 23.97 → 29.39 kg/h; B1 vapour fraction 0.038 → 0.043. NRTL with Raoult's law had been over-dissolving the gases (CO₂ ~20×, CH₄ ~100×).
-- **Known cosmetic warning (+1):** PURGAS (USP03.1), "all components are Henry components". Its streams are 100 % dry gas, so there's no effect; it goes away when PURGAS is reworked or deleted (Session 9, 9.1).
+- **Known cosmetic warnings:** "all components are Henry components, yet CO₂ is sub-critical" (USP03.1 on NH3SEP, FLASH.38 on MEMB1; seen in the 2026-10-06 run). The streams are 100 % dry gas, so there is no effect. Parked: Phase 2 C16 (and C9 for the PURGAS zero-flow warning).
 - Record the new BIOGAS composition, because it is the membrane feed for Session 6.
 
 ---
@@ -57,6 +57,6 @@ Back up first.
    - **Residence time + phase volume fraction** with *Phase = Liquid*.
 
    Use whichever your V14 dropdown offers.
-2. If the sensitivity on RES-TIME (hidden, see Session 9) is re-activated later, re-target it to the liquid volume.
+2. If the sensitivity on RES-TIME (hidden, see Phase 2 C15) is re-activated later, re-target it to the liquid volume.
 
 **Verify:** B1 Results show a condensed-phase residence time ≈ 15 d and a volume consistent with ~320 m³ of liquid. CH₄ in BIOGAS will most likely **drop**; record the before/after values.

@@ -60,5 +60,5 @@ This is the largest digester change. Back up first. Do Sessions 1–3 before thi
 **Decision:** state it in the report. Optionally route PROT to amino acids like KERATIN (rxn 13) so it passes through AMINOACI kinetics.
 **If you route PROT to amino acids:**
 - A protein composition that includes tyrosine, tryptophan, methionine or lysine activates AMINOACI rxns 19, 20, 6 and 14, which have run at zero so far.
-- Do 1.3 (first-order rate laws) and 8.1 (DHFORM for TYROSINE, TRYPTOPH and METHIONI) first.
+- Do 1.3 (first-order rate laws) and Phase 2 C6 (DHFORM for TYROSINE, TRYPTOPH and METHIONI) first.
 - Re-check RSTOIC mass balance for the new reaction.
