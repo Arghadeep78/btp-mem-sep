@@ -11,5 +11,5 @@ How much of each fix session (see [00_INDEX.md](00_INDEX.md)) Claude can apply b
 | [S5 compressor](phase1/05_membrane_compressor.md) | 1/1 | | | Add the COMP1 block and connections; your design values are already in the file |
 | [S6 ACM rewrite](phase1/06_membrane_acm_rewrite.md) | | 6 | | I can write the model code. Compiling it and exporting the ATMLZ needs ACM, and I haven't tested whether ACM can be automated. The Aspen-side reload and run I can do |
 | [Session A: will do](phase2/A_will_do.md) | A1 (MCP read), A2–A4 (deletions), A5, A6, A7, A8 (notes and records) | | | Deletions and notes are easy to apply and verify with a run. A1 is a read of the pyrolysis outlet. A7 and A8 are doc only |
-| [Session B: check only / optional](phase2/B_check_only.md) | B3, B4, B6, B7, B10 | B5 (needs a GUI check first) | B1, B2, B8, B9 (source values) | The checks need your paper; the `PERMEATE.V` test and the stream status are quick |
-| [Session C: parked](phase2/C_parked.md) | | | C1–C27 (design decisions) | Nothing is planned; each item is revisited only if its "Revisit if" condition is met |
+| [Session B: check only / optional](phase2/B1_can_do_now.md) ([B2](phase2/B2_needs_source_paper.md)) | B3, B4, B6, B7, B10 | B5 (needs a GUI check first) | B1, B2, B8, B9 (source values) | The checks need your paper; the `PERMEATE.V` test and the stream status are quick |
+| [Session C: parked](phase2/C/00_README.md) | | | C1–C29 (design decisions) | Nothing is planned; each item is revisited only if its "Revisit if" condition is met |

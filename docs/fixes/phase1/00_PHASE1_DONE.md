@@ -17,4 +17,4 @@ All six sessions are applied to `files/Memb-Integration-1.bkp` (Session 6 also u
 
 **Not verifiable from the Mac:** the 320 m³ B1 liquid volume (only on Windows); anything that needs a fresh Aspen run.
 
-Remaining work: [Phase 2](../00_INDEX.md) (sections [A](../phase2/A_will_do.md), [B](../phase2/B_check_only.md), [C](../phase2/C_parked.md)).
+Remaining work: [Phase 2](../00_INDEX.md) (sections [A](../phase2/A_will_do.md), [B1](../phase2/B1_can_do_now.md), [B2](../phase2/B2_needs_source_paper.md), [C](../phase2/C/00_README.md)).
