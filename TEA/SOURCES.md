@@ -60,7 +60,7 @@ Both papers are fast-pyrolysis / renewable-diesel studies. Only their **method a
 
 | # | Source | Values used |
 |---|---|---|
-| 22 | Aspen Plus run of 2026-10-06 (`files/Memb-Integration-1.his` and stored stream results in `.bkp`) | All flows, compositions and duties on Process_Data (biogas 2.268 kmol/h, H₂ 2.19 kmol/h, duties in W, etc.) |
+| 22 | Aspen Plus COM run of 2026-10-07 after C26/C27 (`docs/results_2026-10-07.md`, first table); digestate flow from the 2026-10-06 run (`.his`) | Flows and duties on Process_Data (biogas 2.358 kmol/h, RET 1.779, H₂ 2.307 kmol/h, HEAT2 20.42 kW, RSTOIC 24.74, B1 3.51, compressors 5.69 kW total). Derived or scaled from those figures: PER composition, CO, COMP1/COMP2 split, FLASH/COOL1/COOL2 duties |
 | 23 | Perry's Handbook, 8th ed.: ideal-gas Cp **Table 2-156**, ΔHf and net heat of combustion **Table 2-179**, graphite Cp **Table 2-151** | Pyrolysis reaction enthalpies at 790 °C (89.63 and 34.20 MJ/kmol), used to estimate the reactor heat duty; methane LHV 802.3 MJ/kmol |
 
 ---

@@ -184,9 +184,9 @@ Who can do what (Claude vs you): [docs/fixes/claude_coverage.md](docs/fixes/clau
 
 ## 7. TEA / LCA (initial version, 2026-10-09)
 - Folder `TEA/`: workbook [TEA_LCA_Memb-Integration-1.xlsx](TEA/TEA_LCA_Memb-Integration-1.xlsx), [README](TEA/README.md) (results and conclusions), [SOURCES.md](TEA/SOURCES.md). Method papers in `TEA/LCA-ref-docs/` (PDFs git-ignored).
-- Base case: TPI $3.08 M; LCOH $21.0/kg (DCF, 10 % IRR) or $24.7/kg (constant $); NER 1.11; 6.6 kg CO₂e/kg H₂. Not cost-competitive at this size; feasibility depends on scale, carbon price and credits.
+- Base case: TPI $3.16 M; LCOH $20.3/kg (DCF, 10 % IRR) or $23.8/kg (constant $); NER 1.13; 6.4 kg CO₂e/kg H₂. Not cost-competitive at this size; feasibility depends on scale, carbon price and credits.
 - Plain-language process description: [docs/process_overview.md](docs/process_overview.md).
-- **Stale input:** Process_Data comes from the 2026-10-06 run. The model changed on 2026-10-07 (C25, C26/C27, A2–A4; see [docs/results_2026-10-07.md](docs/results_2026-10-07.md)), so refresh it from the new run before quoting the results. Same for [docs/process_overview.md](docs/process_overview.md) (its numbers and the rxn 11 simplification).
+- Refreshed 2026-10-09 to the 2026-10-07 model (C25, C26/C27, A2–A4; [docs/results_2026-10-07.md](docs/results_2026-10-07.md)): TPI $3.16 M, LCOH $20.3/kg (DCF) or $23.8/kg (constant $), NER 1.13, 6.4 kg CO₂e/kg H₂. Some Process_Data cells are derived from 4-figure results (marked in the sheet).
 - If the Aspen model changes, update Process_Data in the workbook and re-check the results.
 
 ---
