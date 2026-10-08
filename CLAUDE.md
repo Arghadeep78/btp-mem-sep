@@ -180,7 +180,15 @@ Who can do what (Claude vs you): [docs/fixes/claude_coverage.md](docs/fixes/clau
 
 ---
 
-## 7. Tooling
+## 7. TEA / LCA (initial version, 2026-10-09)
+- Folder `TEA/`: workbook [TEA_LCA_Memb-Integration-1.xlsx](TEA/TEA_LCA_Memb-Integration-1.xlsx), [README](TEA/README.md) (results and conclusions), [SOURCES.md](TEA/SOURCES.md). Method papers in `TEA/LCA-ref-docs/` (PDFs git-ignored).
+- Base case: TPI $3.08 M; LCOH $21.0/kg (DCF, 10 % IRR) or $24.7/kg (constant $); NER 1.11; 6.6 kg CO₂e/kg H₂. Not cost-competitive at this size; feasibility depends on scale, carbon price and credits.
+- Plain-language process description: [docs/process_overview.md](docs/process_overview.md).
+- If the Aspen model changes, update Process_Data in the workbook and re-check the results.
+
+---
+
+## 8. Tooling
 - An **AspenPlus MCP server** is installed at `AspenPlus-MCP-Server/` (venv, `mcp<2` pinned) and registered in `.mcp.json` with the Windows path. Tools: open/run/close/save simulation, get/set node values, place/delete blocks and streams, connect streams. It drives **Aspen Plus only**, through COM, so it works only on the Windows PC.
 - **ACM cannot be driven through the MCP.** Review ACM models by reading the `.acmf` text. The ATMLZ is a zip: `CustomModeling/*.acmf` is readable, `ModelDef/*_Export.xml` is encrypted.
 - `.bkp` edits on Windows have been made as text edits and then verified with an MCP run. Don't save through COM; save from the GUI or edit the text.
