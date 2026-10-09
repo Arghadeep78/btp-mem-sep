@@ -82,7 +82,7 @@ The ions never get flow because there is no chemistry. They act as placeholders 
 | `AMINOACI` (B1) | PowerLaw, 21 (IDs 1–23 without 3, 12) | Stickland-type amino-acid degradation. All ACT-ENERGY = 0 (temperature handled in AMINODEG). Rxns 19/20 are first order in TYROSINE/TRYPTOPH only |
 | `METHAN` (B1) | PowerLaw, 2 | rxn 1 acetoclastic methanogenesis; rxn 2 hydrogenotrophic (4 H₂ + CO₂ → CH₄, added 2026-10-07, C25) |
 | `H2` (B1) | Equilibrium | 2 CO₂ + 4 H₂ → HAc + 2 H₂O |
-| `R-1`, `R-2` (CH4PYRO) | PowerLaw, cat-wt basis | CH₄ cracking, RWGS (both irreversible; no IN-UNITS line, so PRE-EXP uses global MET units; see B1 and C3 in Phase 2) |
+| `R-1`, `R-2` (CH4PYRO) | PowerLaw, cat-wt basis, 2 rxns each | CH₄ cracking, RWGS; rxn 2 in each set is the reverse reaction (k₀,rev = k_fwd/Kc at T-REF 1063.15 K, NIST-JANAF K), added 2026-10-09 (C1/C2, E084). PRE-EXP is SI (per second); no Boudouard (C4) |
 | `CO2METH`, `COMETH`, `RWGS` | LHHW | **Defined but not used by any block** |
 
 ### Calculator blocks (read B1 outlet `LIQUID`, write rate constants; converged by a tear loop)
@@ -134,7 +134,7 @@ The input-check messages are still printed but no longer counted: DGCHK1.1 (DHFO
 
 | # | Issue | Session |
 |---|---|---|
-| B2/B3/B4 | R-1/R-2: PRE-EXP units (global MET, hour basis) unconfirmed; RWGS irreversible at 790 °C; catalyst 0.8 % of tube volume | 7 (needs the kinetics source paper) |
+| B2/B4 | R-1/R-2: PRE-EXP units vs the source paper (Aspen uses SI, per second); catalyst 0.8 % of tube volume (RWGS reversibility fixed 2026-10-09) | 7 (needs the kinetics source paper) |
 | C2 | DHFORM missing for TYR/TRP/MET; other amino-acid DHFORM values look like solid-state ΔHf (mixed basis). TYR/TRP/MET have no source, so no numbers change today | 8 |
 | C3, C4 | DHVLWT + DHVLDP for PRO/CYS/ARG; GLYCINE VLSTD twice | 8 |
 | C5 | ETHANOL CPIG entered in wrong units; H2CO3 placeholder data; CARBON Tc/Vc (benign, CISOLID) | 8 |
@@ -176,7 +176,7 @@ CH₄ recovery to RET ≈ 96.9 %; CO₂ removed ≈ 57.5 %. Tuning knobs: `A` (3
 1. **Phase 2, Session A (will do):** A1 record the pyrolysis outlet against equilibrium; A2–A4 delete the ETHANOL Cp override, the copied VLSTD values and the duplicate entries; A5–A6 notes and final run; A7–A8 record assumptions and the design point. See [docs/fixes/phase2/A_will_do.md](docs/fixes/phase2/A_will_do.md).
 2. **Phase 2, Session B (check only / optional):** source checks B1, B8, B9 (these decide whether the results summary changes), plus B2–B7. See [B1_can_do_now.md](docs/fixes/phase2/B1_can_do_now.md) (no paper needed) and [B2_needs_source_paper.md](docs/fixes/phase2/B2_needs_source_paper.md).
 3. **Phase 2, Session C (parked):** looks like an error but is a design decision; revisit later. See [docs/fixes/phase2/C/00_README.md](docs/fixes/phase2/C/00_README.md). Phase 1 (Sessions 1–6) is done: [docs/fixes/phase1/00_PHASE1_DONE.md](docs/fixes/phase1/00_PHASE1_DONE.md). Overview, ranking and the old → new ID mapping: [docs/fixes/00_INDEX.md](docs/fixes/00_INDEX.md).
-4. Notable parked items: pyrolysis R-1/R-2 irreversible (C1, C2: outlet beyond equilibrium, H₂ about +4 %), membrane pressure ratio 10 vs Perry's 6 (C18), `PERMEATE.V` default (C17), PURGAS (C9). C23 (55 °C) is closed (Perry supports thermophilic). RSTOIC rxn 11/8 (C26/C27) were fixed on 2026-10-07 (`SERIES = YES`, E070); C24 is treated as confirmed; C25 (hydrogenotrophs) added 2026-10-07 with CH4PYRO INT-TOL 1E-5 (E072; verified: 0 errors).
+4. Notable parked items: Boudouard reaction (C4: no rate constant; up to +11 % H₂ if fast), membrane pressure ratio 10 vs Perry's 6 (C18), `PERMEATE.V` default (C17), PURGAS (C9). C23 (55 °C) is closed (Perry supports thermophilic). RSTOIC rxn 11/8 (C26/C27) were fixed on 2026-10-07 (`SERIES = YES`, E070); C24 is treated as confirmed; C25 (hydrogenotrophs) added 2026-10-07 with CH4PYRO INT-TOL 1E-5 (E072; verified: 0 errors). C1/C2 (pyrolysis reverse reactions) fixed 2026-10-09 (E084): H₂ 2.3075 → 2.2100 kmol/h.
 
 Who can do what (Claude vs you): [docs/fixes/claude_coverage.md](docs/fixes/claude_coverage.md).
 
@@ -184,10 +184,10 @@ Who can do what (Claude vs you): [docs/fixes/claude_coverage.md](docs/fixes/clau
 
 ## 7. TEA / LCA (initial version, 2026-10-09)
 - Folder `TEA/`: workbook [TEA_LCA_Memb-Integration-1.xlsx](TEA/TEA_LCA_Memb-Integration-1.xlsx), [README](TEA/README.md) (results and conclusions), [SOURCES.md](TEA/SOURCES.md). Method papers in `TEA/LCA-ref-docs/` (PDFs git-ignored).
-- Base case: TPI $3.16 M; LCOH $21.3/kg (DCF, 10 % IRR) or $23.8/kg (constant $); NER 1.13; 6.4 kg CO₂e/kg H₂. Not cost-competitive at this size; feasibility depends on scale, carbon price and credits.
+- Base case (after C1/C2): TPI $3.15 M; LCOH $22.3/kg (DCF, 10 % IRR) or $24.9/kg (constant $); NER 1.11; 6.5 kg CO₂e/kg H₂. Not cost-competitive at this size; feasibility depends on scale, carbon price and credits.
 - Plain-language process description: [docs/process_overview.md](docs/process_overview.md).
 - Refreshed 2026-10-09 to the 2026-10-07 model (C25, C26/C27, A2–A4; [docs/results_2026-10-07.md](docs/results_2026-10-07.md)): TPI $3.16 M, LCOH $21.3/kg (DCF, nominal first-year price) or $23.8/kg (constant $), NER 1.13, 6.4 kg CO₂e/kg H₂ (10.2 if permeate CH₄ is vented). Method audited 2026-10-09 (DCF escalation basis fixed; see TEA/README). Some Process_Data cells are derived from 4-figure results (marked in the sheet).
-- If the Aspen model changes, update Process_Data in the workbook and re-check the results.
+- If the Aspen model changes, update Process_Data in the workbook and re-check the results. Refreshed for C1/C2 on 2026-10-09 (E086): H₂ 33.2 t/yr, LCOH +4.4 %, GHG 6.5 (10.5 if permeate CH₄ is vented).
 
 ---
 

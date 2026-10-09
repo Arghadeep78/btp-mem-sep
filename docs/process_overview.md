@@ -67,7 +67,7 @@ The model is built in **Aspen Plus V14** (the flowsheet) with one custom block w
 - **What happens:** in a long tube with catalyst at 790 °C, methane splits into hydrogen and solid carbon. The leftover CO₂ reacts with some of the hydrogen to form CO and water.
   - CH₄ → C (solid) + 2 H₂
   - CO₂ + H₂ → CO + H₂O
-- **Out (model):** about **2.3 kmol/h of H₂** (about 4.65 kg/h, roughly 110 kg/day), about **16.3 kg/h of solid carbon**, plus some CO and water.
+- **Out (model):** about **2.2 kmol/h of H₂** (about 4.46 kg/h, roughly 107 kg/day), about **15.4 kg/h of solid carbon**, plus some CO, water and a little unconverted CH₄ and CO₂.
 - **Aspen block:** CH4PYRO (plug-flow reactor).
 
 ---
@@ -82,7 +82,7 @@ The model is built in **Aspen Plus V14** (the flowsheet) with one custom block w
 | Compression power | 5.7 kW |
 | Membrane product (to pyrolysis) | 1.78 kmol/h, 76.4 % CH₄; 97.1 % of the methane kept |
 | Heating to 790 °C | about 20 kW |
-| Hydrogen out | about 2.3 kmol/h (4.65 kg/h) |
+| Hydrogen out | about 2.2 kmol/h (4.46 kg/h) |
 | Solid carbon out | about 16.3 kg/h |
 
 ---
@@ -92,6 +92,6 @@ The model is built in **Aspen Plus V14** (the flowsheet) with one custom block w
 - Gas cleanup is idealised (perfect removal, no real equipment).
 - The digester runs at a fixed pH. Hydrogen-consuming methane microbes are included but have a negligible effect.
 - The membrane is treated as perfectly mixed on each side, with fixed permeance values.
-- The pyrolysis reactions are one-way, so the model slightly overshoots what is thermodynamically possible: hydrogen is about 4 % higher than at equilibrium.
+- The pyrolysis reactions are reversible and reach equilibrium (since 2026-10-09). The Boudouard reaction (carbon + CO₂ → 2 CO) is not modelled; it could raise hydrogen by up to about 11 % if fast.
 
 Details of every check and fix: [fixes/00_INDEX.md](fixes/00_INDEX.md).
