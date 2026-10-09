@@ -52,6 +52,7 @@ Both papers are fast-pyrolysis / renewable-diesel studies. Only their **method a
 | 18 | US BLS OEWS May 2024, [Chemical Plant and System Operators (SOC 51-8091)](https://blsmon1.bls.gov/oes/current/oes518091.htm) | Median annual wage **$80,030** | OPEX labour |
 | 19 | US EPA, [GHG Equivalencies Calculator (eGRID2022)](https://www.epa.gov/energy/greenhouse-gas-equivalencies-calculator-calculations-and-references) | US total output CO₂ rate 823.1 lb/MWh = **0.3733 kg CO₂/kWh** | LCA electricity emissions |
 | 20 | IPCC 2006 Guidelines, Vol. 2, Table 2.2 | Natural gas combustion **56.1 kg CO₂/GJ** | LCA |
+| 24 | IPCC AR6 WG1 (2021) Chapter 7, Table 7.15 | GWP100 of non-fossil CH₄ **27.0** (fossil 29.8) | Assumptions (LCA), vented-CH₄ sensitivity |
 | 21 | [ChemAnalyst carbon black prices](https://www.chemanalyst.com/Pricing-data/carbon-black-42) and price reports | Carbon black about **1,040–1,820 $/t** in 2024 | Sensitivity "carbon credit 1,200 $/t" |
 
 ---

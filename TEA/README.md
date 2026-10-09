@@ -22,22 +22,26 @@ Screening-level techno-economic and life-cycle (energy/GHG) assessment of the cu
 | Solid carbon by-product | 122 t/yr |
 | Total project investment | $3.16 M (59 % from IEA turnkey data) |
 | Annual operating cost | $467k/yr |
-| **LCOH, DCF at 10 % IRR** (papers' method, first-year price escalating 5 %/yr) | **$20.3/kg H₂** |
+| **LCOH, DCF at 10 % IRR** (papers' method, first-year price escalating 5 %/yr) | **$21.3/kg H₂** (nominal first operating-year price, then +5 %/yr) |
 | LCOH, constant dollars | $23.8/kg H₂ |
 | Net energy ratio | 1.13 |
 | GHG, gate-to-gate | 6.4 kg CO₂e/kg H₂ (about −6.4 if the solid carbon counts as stored) |
 
 ## Conclusions
-1. **Not cost-competitive at this size.** About $20–24/kg against about $1.5/kg for fossil hydrogen and $5–7/kg for electrolytic clean hydrogen. About 95 % of the cost is capital, labour, maintenance and overheads, driven by the very small plant (8.5 t/day of waste).
+1. **Not cost-competitive at this size.** About $21–24/kg against about $1.5/kg for fossil hydrogen and $5–7/kg for electrolytic clean hydrogen. About 95 % of the cost is capital, labour, maintenance and overheads, driven by the very small plant (8.5 t/day of waste).
 2. **Model corrections do not change this.** C25 and C26/C27 are now in the model (H₂ +5 %, LCOH about −4 %). The remaining parked corrections in `docs/fixes/phase2/C/` (C1/C2 equilibrium, C21, …) would change the LCOH by about +4–5 % (the H₂ −4.2 % sensitivity gives $24.9 against $23.8/kg constant-dollar). C3 (kinetic units) and C5 (catalyst loading) need the pyrolysis source paper and could only raise the cost.
 3. **Emissions are already below fossil hydrogen** (typical published range about 9–12 kg CO₂e/kg). Heating from the process's own off-gas plus heat integration could bring this to about 1, and counting stored carbon below zero.
 4. **What could make it feasible (rough estimates):** combining fewer operators, carbon sold near carbon-black prices (~$1,200/t), a waste tipping fee, cheaper financing and higher availability gives about $10/kg at this size. With a roughly 10× larger plant as well, roughly $2–5/kg. Feasibility depends on scale, carbon price and policy credits more than on the process model.
 
 ## Main limitations
 - Furnace correlation extrapolated below its 0.2 MW range; carbon separator cost is an estimate; small upgrading units may cost ~2.5× the scaled IEA value; zeolite membrane price spans 1,000–5,000 €/m².
-- Not costed: hydrogen purification (PSA), heat integration, taxes, working capital, land.
+- Not costed: hydrogen purification (PSA), heat integration, taxes, working capital, land. The product is a crude gas (about 85 % H₂ and 15 % CO on a dry basis, plus water, from the RWGS reaction), so a real H₂ price needs PSA.
+- Judgement items left as they are: contingency (20 %) and location factor (10 %) are also applied to the IEA turnkey items, which may already include them (would lower TPI by up to about 25 % of the turnkey share); digester heat is bought as natural gas although the biogas holds about ten times that energy; natural gas price is per HHV while the emission factor is per NCV (about 10 % on the gas CO₂).
 - Process-model issue carried into the numbers: pyrolysis slightly beyond equilibrium (H₂ about 4 % high).
 - LCA is gate-to-gate; it excludes construction, feedstock production and transport, and digestate use.
+
+## Audit of the method (2026-10-09)
+Checked against the reference papers and common practice: capital build-up, operating factors, start-up and construction spread, 20 years at 10 % IRR, CEPCI escalation and unit conversions agree with the papers. Papers' DCF has no tax, depreciation or working capital, so none is included. One inconsistency was fixed: capital escalated from project year 1 but operating costs and credits only from the first operating year, which understated the nominal DCF LCOH by about 5 %; all now escalate from year 1 (LCOH $20.3 → $21.3/kg). Added to the LCA sheet: GHG intensity if the permeate CH₄ slip is vented (10.2 kg CO₂e/kg H₂ against 6.4 when flared). Biogenic CO₂ is not counted and the carbon-storage credit stays off by default, as the papers' NER/GHG convention and common LCA practice for biogenic carbon.
 
 ## Next steps (not yet done)
 - Scenario sheet: scale, carbon price, gate fee, PSA cost, heat integration, policy credits.
