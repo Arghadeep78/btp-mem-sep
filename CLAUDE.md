@@ -182,12 +182,18 @@ Who can do what (Claude vs you): [docs/fixes/claude_coverage.md](docs/fixes/clau
 
 ---
 
-## 7. TEA / LCA (initial version, 2026-10-09)
-- Folder `TEA/`: workbook [TEA_LCA_Memb-Integration-1.xlsx](TEA/TEA_LCA_Memb-Integration-1.xlsx), [README](TEA/README.md) (results and conclusions), [SOURCES.md](TEA/SOURCES.md). Method papers in `TEA/LCA-ref-docs/` (PDFs git-ignored).
-- Base case (after C1/C2): TPI $3.15 M; LCOH $22.3/kg (DCF, 10 % IRR) or $24.9/kg (constant $); NER 1.11; 6.5 kg CO₂e/kg H₂. Not cost-competitive at this size; feasibility depends on scale, carbon price and credits.
-- Plain-language process description: [docs/process_overview.md](docs/process_overview.md).
-- Refreshed 2026-10-09 to the 2026-10-07 model (C25, C26/C27, A2–A4; [docs/results_2026-10-07.md](docs/results_2026-10-07.md)): TPI $3.16 M, LCOH $21.3/kg (DCF, nominal first-year price) or $23.8/kg (constant $), NER 1.13, 6.4 kg CO₂e/kg H₂ (10.2 if permeate CH₄ is vented). Method audited 2026-10-09 (DCF escalation basis fixed; see TEA/README). Some Process_Data cells are derived from 4-figure results (marked in the sheet).
-- If the Aspen model changes, update Process_Data in the workbook and re-check the results. Refreshed for C1/C2 on 2026-10-09 (E086): H₂ 33.2 t/yr, LCOH +4.4 %, GHG 6.5 (10.5 if permeate CH₄ is vented).
+## 7. Current direction (professor meeting, 2026-10-28)
+Full notes (decoded, slide plan, work-item status, raw text): [docs/meetings/2026-10-28_professor_notes.md](docs/meetings/2026-10-28_professor_notes.md).
+- **Rule from the professor: no changes to the Aspen model unless she asks.**
+- **TEA/LCA is for next semester**, archived in [archive/TEA_LCA_next_semester/](archive/TEA_LCA_next_semester/README.md) (workbook, README, SOURCES, method papers). Not to be presented now. Its base case (LCOH $21.3/kg DCF, $23.8/kg constant $) is kept there for later.
+- **Current work:** (iii) CO₂ emission calculation, Scope 1 + 2 (Scope 3 later); (iv) exergy analysis per unit and for the whole process. The LCA reference papers may be used.
+- **Presentation, first draft 10 Nov:** 1–2 slides on landfill/conventional waste routes and the green-H₂ target; process diagram; about 4 slides of results per unit (biogas CH₄, final product, energy needs); material and energy balance of the integrated process, which unit uses the most energy and how to cut it; exergy analysis (problems found, what BTP-2 will solve: economiser + energy analysis); sensitivity of pressure vs separation (with cost in mind); one slide comparing 3 membrane models and their difficulties; other units.
+- **Two pathways being explored:** biogas + membrane + pyrolysis (this model), and CO₂ methanation instead of the membrane. Goals: H₂ from a greener source, lower CO₂ emissions, use excess heat, minimise overall energy use.
+- **Later (BTP-2):** CO₂ absorption column (amine/ethanol) on the membrane outlet to capture CO₂; cost analysis with conventional (coal, hydro) vs solar electricity; pinch analysis, then optimisation.
+- **Pressure vs separation sensitivity (2026-11-04):** done; the current design (10 bar feed / 1 bar permeate, 5 m²) is near optimal.
+- **Analysis results:** [analysis/](analysis/README.md): [CO₂ Scope 1 + 2](analysis/co2_scope1_2.md) (base 5.5 kg CO₂e/kg H₂ with natural gas heat and grid power; about 1.9 heat-integrated; venting permeate CH₄ adds 3.8) and [exergy](analysis/exergy_analysis.md) (76 kW destroyed, 80 % in RSTOIC + B1; digestate carries 207 kW out; exergy efficiency 22 % H₂ only, 45 % H₂ + C). The exergy analysis uses the 2026-10-06 results stored in the `.bkp`.
+- **BTP-1 deliverables:** [report/](report/): `BTP1_presentation.pptx` (32 slides), `BTP1_report.docx`, `BTP1_speech_script.docx` (~10 min), `BTP1_QnA.docx` (50 Q); regenerate with `report/build/`. Framed as problem statement + own development (custom ACM membrane module emphasised); CO₂ methanation only as BTP-2 future work; sensitivity slide/figure is a placeholder for the user's Aspen plot.
+- Plain-language process description: [docs/process_overview.md](docs/process_overview.md). Meeting PDF: [docs/meetings/Progress_Update_2026-10-28.pdf](docs/meetings/Progress_Update_2026-10-28.pdf) (git-ignored).
 
 ---
 
