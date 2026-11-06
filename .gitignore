@@ -17,3 +17,5 @@ files/*.appdf
 Thumbs.db
 .vscode/
 *.pdf           
+*report/node_modules    
+node_modules/
