@@ -89,8 +89,9 @@ body.push(P('The goals are to produce hydrogen from a greener source, reduce CO_
 // 2 Process
 body.push(H1('2  Process description and simulation model'));
 body.push(H2('2.1  Flowsheet'));
-body.push(P('Figure 1 shows the process. Wet biomass (8.5 t/d, about 75 % water) is mixed with 13 t/d of process water and hydrolysed at 55 °C. The hydrolysate is digested in a continuous stirred reactor at 55 °C with a residence time of 15 days. The biogas is cooled to 25 °C to condense water, cleaned of H_{2}S and NH_{3}, compressed in two intercooled stages to 10 bar and fed to the zeolite membrane. The retentate (methane-rich) is let down to 1 bar, heated to 790 °C and cracked in a catalytic plug-flow reactor. The permeate (mostly CO_{2}) leaves the process.'));
-body.push(...FIGURE('fig1_pfd', 620, 260, 'Process flow diagram with Aspen block names.'));
+body.push(P('Figures 1 and 2 show the process (Aspen screenshots). Wet biomass (8.5 t/d, about 75 % water) is mixed with 13 t/d of process water and hydrolysed at 55 °C. The hydrolysate is digested in a continuous stirred reactor at 55 °C with a residence time of 15 days. The biogas is cooled to 25 °C to condense water, cleaned of H_{2}S and NH_{3}, compressed in two intercooled stages to 10 bar and fed to the zeolite membrane. The retentate (methane-rich) is let down to 1 bar, heated to 790 °C and cracked in a catalytic plug-flow reactor. The permeate (mostly CO_{2}) leaves the process.'));
+body.push(...FIGURE('fig1a_aspen_main', 620, 150, 'Aspen Plus flowsheet, main section: hydrolysis, digestion and gas cleanup (screenshot).'));
+body.push(...FIGURE('fig1b_aspen_meth', 620, 131, 'Aspen Plus flowsheet, hierarchy METH: compression (MCompr), zeolite membrane (ACM block MEMB1) and methane pyrolysis (screenshot).'));
 body.push(H2('2.2  Hydrolysis and digestion'));
 body.push(P('Hydrolysis is modelled in an RSTOIC block with 13 stoichiometric reactions run in series at fixed conversions: cellulose and starch to glucose, hemicellulose to acetic acid and xylose, fats to glycerol and long-chain fatty acids, proteins and keratin to amino acids and gases, and ethanol steps. The digester (RCSTR block B1) uses ADM1-style kinetics [1]: Monod substrate terms multiplied by inhibition terms for ammonia, long-chain fatty acids, acetate and hydrogen. The reactions cover acidogenesis (sugars, glycerol), acetogenesis (fatty acids and volatile fatty acids), amino-acid degradation (Stickland reactions), acetoclastic and hydrogenotrophic methanogenesis, and an equilibrium reaction for homoacetogenesis. Ten Fortran calculator blocks compute the rate constants from the reactor concentrations, and a damped Wegstein tear loop converges them.'));
 body.push(H2('2.3  Gas cleanup and compression'));
@@ -124,7 +125,7 @@ body.push(H1('3  Results per unit'));
 body.push(H2('3.1  Digester and biogas'));
 body.push(P('The digester produces 2.36 kmol/h of dry biogas (about 53 Nm^{3}/h) containing 59.4 % CH_{4}, 40.3 % CO_{2} and 0.3 % H_{2}. This is about 31 Nm^{3}/h of methane, or 0.24 m^{3} CH_{4} per kg COD fed. Perry’s gives a theoretical maximum of 0.35 m^{3} per kg COD destroyed and a typical biogas range of 50–80 % CH_{4} [2]. About 820 kg/h of digestate leaves at 55 °C.'));
 body.push(H2('3.2  Compression and membrane'));
-body.push(P('Compression to 10 bar needs 5.7 kW. The membrane raises methane from 59.4 % to 76.4 % in the retentate (1.78 kmol/h, 10 bar) and removes 56.3 % of the CO_{2} into a permeate of 92 % CO_{2} (0.58 kmol/h, 1 bar). It keeps 97.1 % of the methane; the remaining 2.9 % leaves with the permeate (Figure 2).'));
+body.push(P('Compression to 10 bar needs 5.7 kW. The membrane raises methane from 59.4 % to 76.4 % in the retentate (1.78 kmol/h, 10 bar) and removes 56.3 % of the CO_{2} into a permeate of 92 % CO_{2} (0.58 kmol/h, 1 bar). It keeps 97.1 % of the methane; the remaining 2.9 % leaves with the permeate (Figure 4).'));
 body.push(...FIGURE('fig2_membrane', 400, 240, 'Composition of membrane feed, retentate and permeate (mol %).'));
 body.push(H2('3.3  Pyrolysis and final product'));
 body.push(P('At 790 °C the reactor reaches chemical equilibrium and 94 % of the methane is converted. The reactor produces 2.21 kmol/h of H_{2} (4.46 kg/h, about 107 kg/day) and 1.28 kmol/h of solid carbon (15.4 kg/h). The CO_{2} still in the retentate (23 %) reacts with hydrogen to CO and water (85 % of it is converted), so the product gas is about 72 % H_{2}, 11.5 % CO, 11.5 % H_{2}O, 2.6 % CH_{4} and 2.1 % CO_{2} (about 82 % H_{2} on a dry basis). This side reaction uses about 13 % of the hydrogen that could otherwise be produced.'));
@@ -146,10 +147,10 @@ body.push(...TBL([['In', 'kg/h', 'Out', 'kg/h'], ['Biomass (wet)', '354.2', 'Dig
   ['', '', 'Membrane permeate (mostly CO₂)', '24.2'], ['', '', 'Product gas (H₂ 4.46, CO 9.9, H₂O 6.3, CH₄ 1.3, CO₂ 2.8)', '24.7'], ['', '', 'Solid carbon', '15.4'],
   ['**Total in**', '**895.8**', '**Total out**', '**895.8**']], [2200, 1100, 4400, 1200], { align: [0, R_, 0, R_] }));
 body.push(H2('4.2  Energy balance'));
-body.push(P('The process needs 84.1 kW of heat and 5.7 kW of electricity (Figure 3). The pyrolysis section (preheat to 790 °C and the endothermic reactor) takes 55.9 kW, two-thirds of all heat. Heating the feed to 55 °C in the hydrolysis step takes 24.7 kW, mostly to warm the 13 t/d of process water. Per kg of hydrogen, the process uses 18.9 kWh of heat and 1.28 kWh of electricity. About 11 kW is removed by coolers.'));
+body.push(P('The process needs 84.1 kW of heat and 5.7 kW of electricity (Figure 5). The pyrolysis section (preheat to 790 °C and the endothermic reactor) takes 55.9 kW, two-thirds of all heat. Heating the feed to 55 °C in the hydrolysis step takes 24.7 kW, mostly to warm the 13 t/d of process water. Per kg of hydrogen, the process uses 18.9 kWh of heat and 1.28 kWh of electricity. About 11 kW is removed by coolers.'));
 body.push(...FIGURE('fig3_energy', 440, 230, 'Energy input by unit (kW), design point.'));
 body.push(H2('4.3  Reducing the energy demand'));
-body.push(P('Three heat sources in the process are currently unused: the warm digestate (55 °C), the hot product gas (790 °C, about 25 kW of sensible heat) and the CO in the product gas (27.7 kW on a lower-heating-value basis). Table 3 lists screening estimates for using them; Figure 4 shows the effect.'));
+body.push(P('Three heat sources in the process are currently unused: the warm digestate (55 °C), the hot product gas (790 °C, about 25 kW of sensible heat) and the CO in the product gas (27.7 kW on a lower-heating-value basis). Table 3 lists screening estimates for using them; Figure 6 shows the effect.'));
 body.push(CAPT('Heat-integration options (screening estimates).'));
 body.push(...TBL([['Measure', 'Saving'], ['Digestate (55 → 30 °C) preheats the digester feed', 'about 24 kW of low-temperature heat'],
   ['Hot product preheats the pyrolysis feed (economiser)', 'about 18 kW (90 % of HEAT2)'], ['Burn the CO in the product gas for the 790 °C heat', 'about 22 kW'],
@@ -166,7 +167,7 @@ body.push(P('For each unit the exergy destroyed is:'));
 body.push(EQ('Ex_{D} = Σ Ex_{in} − Σ Ex_{out} + Q · (1 − T_{0}/T_{s}) + W'));
 body.push(P('Heat is assumed to come from hot water at 90 °C for the digester section and from a furnace at 1000 °C for the pyrolysis section. Heat rejected to cooling water at T_{0} carries no exergy. As a check, the enthalpy change of every unit matches the Aspen duty within 0.1 % (0.4 % for the pyrolysis reactor), element balances close, and independent textbook exergy calculations for the gas streams agree within 0.12 %.'));
 body.push(H2('5.2  Exergy destruction per unit'));
-body.push(P('A total of 78 kW of exergy is destroyed (Figure 5). Hydrolysis (39.1 kW) and digestion (22.5 kW) account for 79 %, mostly because the biochemical reactions are inherently irreversible and because the feed is heated with fresh heat. The pyrolysis section destroys 11.0 kW (14 %), mainly through heat transfer from the furnace. The pressure letdown after the membrane destroys 2.8 kW, about half of the compressor work. Compression, membrane and gas cleanup together account for less than 4 %.'));
+body.push(P('A total of 78 kW of exergy is destroyed (Figure 7). Hydrolysis (39.1 kW) and digestion (22.5 kW) account for 79 %, mostly because the biochemical reactions are inherently irreversible and because the feed is heated with fresh heat. The pyrolysis section destroys 11.0 kW (14 %), mainly through heat transfer from the furnace. The pressure letdown after the membrane destroys 2.8 kW, about half of the compressor work. Compression, membrane and gas cleanup together account for less than 4 %.'));
 body.push(...FIGURE('fig4_exergy_units', 440, 257, 'Exergy destroyed per unit (kW).'));
 body.push(H2('5.3  Whole-process exergy balance'));
 body.push(CAPT('Whole-process exergy balance (kW).'));
@@ -193,7 +194,7 @@ body.push(...TBL([['Item', 'Value', 'Source'], ['Heat demand', '84.1 kW (28.2 lo
   ['Hydro, solar', '0 (no combustion)', 'GHG Protocol Scope 2'], ['CH₄ slip in permeate', '0.66 kg/h, flared at 98 %', 'Aspen; assumption'], ['GWP of biogenic CH₄', '27.0', 'IPCC AR6 [6]']],
   [2600, 3200, 3100], { zebra: true }));
 body.push(H2('6.2  Results'));
-body.push(P('Figure 6 compares three heat-supply cases (natural gas, electric heating, heat-integrated) for each electricity source.'));
+body.push(P('Figure 9 compares three heat-supply cases (natural gas, electric heating, heat-integrated) for each electricity source.'));
 body.push(...FIGURE('fig6_co2', 440, 244, 'Scope 1 + 2 emissions (kg CO₂e per kg H₂).'));
 body.push(B('**Base case** (natural-gas heat, grid electricity): **5.6 kg CO_{2}e/kg H_{2}**, of which 4.6 comes from natural gas for heat.'));
 body.push(B('**Electric heating** is worse on the Indian grid (14.7) or coal power (19.5), but close to zero with hydro or solar power.'));
@@ -205,8 +206,12 @@ body.push(P('Grey hydrogen emits about 10–12 kg CO_{2}e/kg H_{2} [9]. Even the
 // 7 Sensitivity
 body.push(H1('7  Sensitivity: feed pressure vs separation'));
 body.push(P('The membrane feed pressure sets both the separation and the compression cost. A higher pressure removes more CO_{2}, which protects hydrogen from the reverse water-gas shift in the pyrolysis reactor, but needs more compressor power and stronger equipment. Perry’s notes that pressure ratios above about 6 become expensive [2].'));
-body.push(...FIGURE('fig8_placeholder', 400, 200, 'Sensitivity of CH₄ purity, recovery and compressor power to feed pressure (Aspen sensitivity results to be added).'));
-body.push(P('**Result:** the sensitivity study shows that the current design (10 bar feed, 1 bar permeate, 5 m^{2}) is near optimal. Lowering the pressure saves some compression power but lets more CO_{2} reach the reactor, where it consumes hydrogen. The cost of pressure will be weighed in BTP-2.'));
+body.push(...FIGURE('fig8_sensitivity', 620, 234, 'Sensitivity to the membrane feed pressure (Aspen runs; permeate 1 bar, area 5 m²): CH₄ purity and recovery (left), H₂ product and compressor power (right).'));
+body.push(CAPT('Feed-pressure sensitivity (Aspen runs, all other inputs fixed).'));
+body.push(...TBL([['Feed pressure (bar)', '4', '6', '8', '10', '12', '15'], ['CH₄ in retentate (%)', '64.3', '69.2', '73.2', '76.4', '79.1', '82.1'], ['CH₄ recovery (%)', '99.0', '98.4', '97.7', '97.1', '96.3', '95.2'], ['CO₂ removed (%)', '19.5', '35.9', '47.6', '56.3', '62.7', '69.7'], ['Compressor power (kW)', '3.24', '4.29', '5.07', '5.69', '6.20', '6.84'], ['H₂ product (kmol/h)', '2.075', '2.138', '2.181', '2.210', '2.228', '2.240']], [2600, 1050, 1050, 1050, 1050, 1050, 1050], { zebra: true }));
+body.push(P('**Result:** 10 bar is the knee of the curve, so the current design (10 bar feed, 1 bar permeate, 5 m^{2}) is near optimal. Lowering the pressure to 6 bar saves 1.4 kW of compression but lets more CO_{2} reach the reactor, where it consumes hydrogen (−3.3 % H_{2}). Raising it to 15 bar gains only 1.4 % H_{2} for 20 % more compressor power, while methane lost to the permeate rises from 2.9 % to 4.8 % and the pressure ratio moves further above Perry’s economic limit.'));
+body.push(P('**Why 10 bar.** A knee (diminishing-returns) analysis of the H_{2} output against compressor power places the knee at 8–10 bar: at 10 bar each extra kW of compression still gives about 93 g/h of H_{2}, against 39 g/h between 12 and 15 bar. A check over membrane areas of 3–10 m^{2} shows that a larger area moves the knee down to 8 bar but loses more methane to the permeate; 5 m^{2} at 10 bar is within 0.3 % of the highest H_{2} in the grid and keeps 97 % methane recovery. 10 bar with 5 m^{2} is therefore kept as the design point.'));
+body.push(P('**Optimisation in BTP-2.** The knee analysis uses technical measures only. BTP-2 will optimise feed pressure, membrane area and the number of membrane stages together on cost: compressor and membrane capital (which rise with pressure and area), electricity and process heat, and the value of the methane lost in the permeate. It will also test pressure-dependent permeances, since the data used here were measured at 2 bar.'));
 
 // 8 Membrane models
 body.push(H1('8  Membrane models for zeolite membranes'));

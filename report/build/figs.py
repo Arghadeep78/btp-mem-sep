@@ -59,6 +59,10 @@ ar(2.7,1.3,2.7,0.45); lb(3.35,0.6,'Permeate\n1 bar')
 eq=['For every component i:','  F z$_i$ = R x$_i$ + V y$_i$','For CO$_2$, H$_2$, CH$_4$:','  V y$_i$ = $\\Pi_i$ A (p$_F$ x$_i$ $-$ p$_P$ y$_i$)','Other species: V y$_i$ = 0','T$_R$ = T$_P$ = T$_F$;  p$_R$ = p$_F$ $-$ $\\Delta$p','h from Aspen property calls']
 for k,t in enumerate(eq): ax.text(5.3,3.0-k*0.4,t,fontsize=9.5,va='center',color='#1E2B26',fontweight='bold' if not t.startswith('  ') and k in (0,2) else 'normal')
 save(f,'fig9_acm')
-# 8 placeholder for the Aspen sensitivity plot
-f,ax=plt.subplots(figsize=(6,3)); ax.axis('off'); ax.add_patch(FancyBboxPatch((0.02,0.05),0.96,0.9,boxstyle='round,pad=0.01',fc='#F7F9F8',ec=GR,ls='--',transform=ax.transAxes))
-ax.text(0.5,0.5,'[Aspen sensitivity plot to be added]\nCH$_4$ purity, recovery and compressor power vs feed pressure',ha='center',va='center',style='italic',color='#5E6B66',transform=ax.transAxes); save(f,'fig8_placeholder')
+# 8 feed-pressure sensitivity (Aspen COM run 2026-11-06; analysis/data/sensitivity_feed_pressure_2026-11-06.csv)
+P=[4, 6, 8, 10, 12, 15]; pur=[64.30,69.18,73.19,76.43,79.05,82.13]; rec=[99.03,98.41,97.75,97.05,96.34,95.24]; W=[3.240,4.293,5.068,5.685,6.200,6.844]; h2=[2.0754,2.1380,2.1815,2.2100,2.2278,2.2403]
+f,(a1,a2)=plt.subplots(1,2,figsize=(9,3.4))
+a1.plot(P,pur,'o-',color=G,label='CH$_4$ in retentate'); a1.plot(P,rec,'s-',color=B,label='CH$_4$ recovery'); a1.set_xlabel('Membrane feed pressure (bar)'); a1.set_ylabel('%'); a1.axvline(10,color=GR,ls='--',lw=1); a1.legend(frameon=False,fontsize=8,loc='center left')
+a2.plot(P,[x*2.01588 for x in h2],'o-',color=G,label='H$_2$ product (kg/h)'); a2.set_xlabel('Membrane feed pressure (bar)'); a2.set_ylabel('H$_2$ (kg/h)',color=G)
+a3=a2.twinx(); a3.plot(P,W,'s-',color=O,label='Compressor power (kW)'); a3.set_ylabel('Compressor power (kW)',color=O); a2.axvline(10,color=GR,ls='--',lw=1)
+a2.text(10.2,4.2,'design\n10 bar',fontsize=8,color='#5E6B66'); f.tight_layout(); save(f,'fig8_sensitivity')

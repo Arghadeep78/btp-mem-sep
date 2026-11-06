@@ -326,11 +326,13 @@ msgs.forEach((m, i) => { const x = 0.5 + (i % 2) * 4.6, y = 1.15 + Math.floor(i
 // ================= Sensitivity and models
 section('6  Sensitivity and models', 'Pressure vs separation, membrane models, other units');
 s = slide('Sensitivity: feed pressure vs separation');
-s.addShape(pres.shapes.RECTANGLE, { x: 0.5, y: 1.1, w: 5.6, h: 3.9, fill: { color: 'F7F9F8' }, line: { color: HEX.grey, width: 1, dashType: 'dash' } });
-txt(s, '[Aspen sensitivity plot to be added]\nCH₄ purity and recovery, compressor power vs feed pressure', { x: 0.7, y: 2.6, w: 5.2, h: 0.9, align: 'center', valign: 'middle', fontSize: 14, color: HEX.mid, italic: true });
+s.addImage({ path: 'fig/fig8_sensitivity.png', x: 0.4, y: 1.3, w: 5.9, h: 2.23 });
+s.addTable([['Feed P', '4 bar', '6', '8', '10', '12', '15'], ['CH₄ in retentate', '64 %', '69', '73', '76', '79', '82'], ['Power (kW)', '3.2', '4.3', '5.1', '5.7', '6.2', '6.8'], ['H₂ (kg/h)', '4.18', '4.31', '4.40', '4.46', '4.49', '4.52']].map((r, i) => r.map((c, j) => ({ text: c, options: { bold: i === 0 || j === 0 || j === 4, fontSize: 10.5, color: HEX.text, fill: { color: j === 4 ? 'DCEFE3' : (i === 0 ? HEX.light : 'FFFFFF') } } }))),
+  { x: 0.5, y: 3.7, w: 5.7, colW: [1.5, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7], border: { type: 'solid', pt: 0.5, color: 'D5DDD8' }, rowH: 0.3, align: 'center' });
+source(s, 'Aspen runs 2026-11-06: MCompr stage pressures varied (equal ratio), everything else fixed.');
 card(s, 6.4, 1.1, 3.1, 1.5, HEX.green, 'sensres');
-txt(s, 'Result: the current design (10 bar feed, 1 bar permeate, 5 m²) is near optimal', { x: 6.55, y: 1.2, w: 2.8, h: 1.3, fontSize: 14, bold: true, color: 'FFFFFF', valign: 'middle' });
-txt(s, bullets(['Lower pressure saves compression power', 'But less CO₂ is removed, so more H₂ is lost to CO₂ + H₂ → CO + H₂O', 'Cost of pressure to be weighed in BTP‑2'], 12.5), { x: 6.4, y: 2.8, w: 3.1, h: 2.2 });
+txt(s, 'Result: 10 bar is the knee of the curve; the current design (10 bar, 5 m²) is near optimal', { x: 6.55, y: 1.2, w: 2.8, h: 1.3, fontSize: 14, bold: true, color: 'FFFFFF', valign: 'middle' });
+txt(s, bullets(['Why 10 bar: it sits on the knee. Each extra kW of compression still gives 93 g/h H₂ (vs 39 g/h at 15 bar), with 97 % CH₄ recovery', 'Below it, H₂ drops fast (6 bar: −3 %); above it, little gain (15 bar: +1.4 % H₂ for +20 % power, CH₄ loss 2.9 → 4.8 %)', 'Checked over 3–10 m²: more area moves the knee to 8 bar but loses more CH₄', 'BTP‑2: cost-based optimisation of pressure, area and staging (compressor and membrane capital, energy, CH₄ loss)'], 10.5), { x: 6.4, y: 2.65, w: 3.2, h: 2.65 });
 
 s = slide('Zeolite membrane models compared');
 const mm = [['', '1. Constant permeance (used now)', '2. Adsorption–diffusion (Maxwell–Stefan)', '3. Activated diffusion (molecular sieving)'],
