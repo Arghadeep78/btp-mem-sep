@@ -34,6 +34,7 @@ The `.bkp` references the ACM model only by name (`MODEL="Zeo_real"`), so the `.
 
 Screenshots of the GUI flowsheets were captured on 2026-10-05, **before** the fixes (the METH screenshot has no compressor train):
 [global](docs/flowsheets/flowsheet_global.png) · [METH](docs/flowsheets/flowsheet_METH_hierarchy.png).
+Current layout (2026-11-06, after the MCompr swap and layout tidy): [main](docs/flowsheets/flowsheet_main_2026-11-06.png) · [METH](docs/flowsheets/flowsheet_METH_2026-11-06.png).
 
 ### Global section (anaerobic digestion + gas cleanup)
 ```

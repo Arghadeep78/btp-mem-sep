@@ -1,4 +1,4 @@
-MM "40.0" FLAVOR "NO" VERSION "40.0" DATETIME "Fri Nov  6 08:37:27 2026" 
+MM "40.0" FLAVOR "NO" VERSION "40.0" DATETIME "Fri Nov  6 08:57:04 2026" 
 MACHINE "WIN-NT/VC"  ; 
 startlibrary
 version1
@@ -7209,23 +7209,11 @@ LSSQP-PARAMS MODE-L = OPTIMIZATION \ \ NSOLVE-PARAM NSOLVE-MODE = DEFAULT \
 "rties&gt;&lt;/TFFTable&gt;&lt;/srcSettings&gt;</CommonShellSettings></" 
 "tffString>" ) \ \ EOPARAMS NAME = "SECOND_DERIV_METHOD" VALUE = "NUMERIC" 
 UOM = "" / NAME = "SM_STATUS" VALUE = "Converged" UOM = "" \ \ EOVARS NAME = 
-"FEED.T" VALUE = "30.0000000000001" / NAME = "PERMEATE.T" VALUE = 
-"30.0000000000001" / NAME = "PERMEATE.P" SPEC = "CONST" /
-NAME = "PERMEATE.V" SPEC = "CONST" VALUE = "50" / NAME = "RETENTATE.T" 
-VALUE = "30.0000000000001" \ ? "METH.EO-CONV-OPTI" ? \ DMO-PARAMS MODE = 
-DEFAULT \ \ DMO-PARAMS MODE = SIMULATION \ \ DMO-PARAMS MODE = 
-"PARAMETER-ESTIMATION" \ \ DMO-PARAMS MODE = RECONCILIATION \ \ DMO-PARAMS 
-MODE = OPTIMIZATION \ \ LSSQP-PARAMS MODE-L = DEFAULT \ \ LSSQP-PARAMS MODE-L
- = SIMULATION \ \ LSSQP-PARAMS MODE-L = "PARAMETER-ESTIMATION" \ \ 
-LSSQP-PARAMS MODE-L = RECONCILIATION \ \ LSSQP-PARAMS MODE-L = OPTIMIZATION 
-\ \ NSOLVE-PARAM NSOLVE-MODE = DEFAULT \ \ NSOLVE-PARAM NSOLVE-MODE = 
-SIMULATION \ \ NSOLVE-PARAM NSOLVE-MODE = "PARAMETER-ESTIMATION" \ \ 
-XSLP-PARAMS XSLP-MODE = DEFAULT \ \ XSLP-PARAMS XSLP-MODE = SIMULATION \ \ 
-XSLP-PARAMS XSLP-MODE = "PARAMETER-ESTIMATION" \ \ XSLP-PARAMS XSLP-MODE = 
-RECONCILIATION \ \ XSLP-PARAMS XSLP-MODE = OPTIMIZATION \ ? "METH.BATCH-OPTS" 
-? ; "METCBAR_MASS" ; ? REPORT "METH.BLOCK-REPORT" ? ? "METH.STREAM-LIB" ? ; 
-"METCBAR_MASS" ; ? "STREAM-PRICE" ? ; "METCBAR_MASS" ; ? "EO-CONV-OPTI" ? \ 
-DMO-PARAMS MODE = DEFAULT \ \ DMO-PARAMS MODE = SIMULATION \ \ DMO-PARAMS 
+"FEED.T" VALUE = "30" / NAME = "PERMEATE.T" VALUE = "30" / 
+NAME = "PERMEATE.P" SPEC = "CONST" /
+NAME = "PERMEATE.V" SPEC = "CONST" VALUE = "50" 
+/ NAME = "RETENTATE.T" VALUE = "30" \ ? "METH.EO-CONV-OPTI" ? 
+\ DMO-PARAMS MODE = DEFAULT \ \ DMO-PARAMS MODE = SIMULATION \ \ DMO-PARAMS 
 MODE = "PARAMETER-ESTIMATION" \ \ DMO-PARAMS MODE = RECONCILIATION \ \ 
 DMO-PARAMS MODE = OPTIMIZATION \ \ LSSQP-PARAMS MODE-L = DEFAULT \ \ 
 LSSQP-PARAMS MODE-L = SIMULATION \ \ LSSQP-PARAMS MODE-L = 
@@ -7235,8 +7223,21 @@ LSSQP-PARAMS MODE-L = OPTIMIZATION \ \ NSOLVE-PARAM NSOLVE-MODE = DEFAULT \
 "PARAMETER-ESTIMATION" \ \ XSLP-PARAMS XSLP-MODE = DEFAULT \ \ XSLP-PARAMS 
 XSLP-MODE = SIMULATION \ \ XSLP-PARAMS XSLP-MODE = "PARAMETER-ESTIMATION" \ 
 \ XSLP-PARAMS XSLP-MODE = RECONCILIATION \ \ XSLP-PARAMS XSLP-MODE = 
-OPTIMIZATION \ ? CALCULATOR AMINODEG ? ; "SI_MOLE" ; \ DECLARE FORTRAN-DEC = 
-( "       REAL KIN1, KIN2, KIN3, KIN4, KIN5, KIN6, KIN7, KIN8, KIN9" 
+OPTIMIZATION \ ? "METH.BATCH-OPTS" ? ; "METCBAR_MASS" ; ? REPORT 
+"METH.BLOCK-REPORT" ? ? "METH.STREAM-LIB" ? ; "METCBAR_MASS" ; ? "STREAM-PRICE" 
+? ; "METCBAR_MASS" ; ? "EO-CONV-OPTI" ? \ DMO-PARAMS MODE = DEFAULT \ \ 
+DMO-PARAMS MODE = SIMULATION \ \ DMO-PARAMS MODE = "PARAMETER-ESTIMATION" \ 
+\ DMO-PARAMS MODE = RECONCILIATION \ \ DMO-PARAMS MODE = OPTIMIZATION \ \ 
+LSSQP-PARAMS MODE-L = DEFAULT \ \ LSSQP-PARAMS MODE-L = SIMULATION \ \ 
+LSSQP-PARAMS MODE-L = "PARAMETER-ESTIMATION" \ \ LSSQP-PARAMS MODE-L = 
+RECONCILIATION \ \ LSSQP-PARAMS MODE-L = OPTIMIZATION \ \ NSOLVE-PARAM 
+NSOLVE-MODE = DEFAULT \ \ NSOLVE-PARAM NSOLVE-MODE = SIMULATION \ \ 
+NSOLVE-PARAM NSOLVE-MODE = "PARAMETER-ESTIMATION" \ \ XSLP-PARAMS XSLP-MODE
+ = DEFAULT \ \ XSLP-PARAMS XSLP-MODE = SIMULATION \ \ XSLP-PARAMS XSLP-MODE
+ = "PARAMETER-ESTIMATION" \ \ XSLP-PARAMS XSLP-MODE = RECONCILIATION \ \ 
+XSLP-PARAMS XSLP-MODE = OPTIMIZATION \ ? CALCULATOR AMINODEG ? ; "SI_MOLE" ; 
+\ DECLARE FORTRAN-DEC = ( 
+"       REAL KIN1, KIN2, KIN3, KIN4, KIN5, KIN6, KIN7, KIN8, KIN9" 
 "       REAL KIN10, KIN11, KIN12, KIN13, KIN14, KIN15, KIN16, KIN17" 
 "       REAL KIN18, KIN19, KIN20, KIN21, KIN22, KIN23, K, L, TO, N" 
 "       REAL VOLFLOW, PCONT" 
@@ -8257,20 +8258,20 @@ ignoreEOVarNameFixupsOnImport 1
 tpsaupgrade 1
 #
 $_APWNSHELL_SETTINGS
-<FileRootSettings><CaseFileSettings>&lt;CaseFileSettings StreamSummaryFormSettings="&amp;lt;src&amp;gt;&amp;lt;ReferencedPaths&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Results Summary&amp;lt;/Path&amp;gt;&amp;lt;/ReferencedPaths&amp;gt;&amp;lt;ReferencedTemplates /&amp;gt;&amp;lt;/src&amp;gt;" xmlns="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure" /&gt;</CaseFileSettings><CommonShellSettings>&lt;CommonShellSettings xmlns="http://schemas.aspentech.com/xaml/presentation/visualisation/commonshell" xmlns:atapmaa="clr-namespace:AspenTech.AspenPlus.Modules.ApwnApplication;assembly=ApwnShell" xmlns:atapie="clr-namespace:AspenTech.AspenPlus.Infrastructure.Events;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:apmab="clr-namespace:AspenPlus.Modules.ApwnBrowser;assembly=ApwnShell" xmlns:cxv="http://schemas.aspentech.com/xaml/presentation/cxsviewmodel" xmlns:atapi="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure"&gt;&lt;CommonShellSettings.CurrentWorkspace&gt;&lt;ShellWorkspace ActivationBarState="&amp;lt;DashboardPanel IsExpanded=&amp;quot;false&amp;quot; IsTurnedOff=&amp;quot;false&amp;quot; Version=&amp;quot;40&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EconomicAnalysis.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;!--This is the current state of Economics Analysis Dashboard--&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;Root&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;OnOffState Value=&amp;quot;Off&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;CapitalCost Value=&amp;quot;&amp;quot; Units=&amp;quot;USD&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;UtilityCost Value=&amp;quot;&amp;quot; Units=&amp;quot;USD/Year&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;HasError&amp;amp;gt;false&amp;amp;lt;/HasError&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;_statusCode Value=&amp;quot;-1&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Flags&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isRunCompleted Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isRunning Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButActivated Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButLoaded Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButSized Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButMapped Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_completeEvaluatedNotAutoRun Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isSimulationChanged Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isInStopping Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isOnOffButtonCanBeUsed Value=&amp;quot;true&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isResetDashboardButLeaveItOn Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;/Flags&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/Root&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EnergyAnalysis.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;!--This is the current state of Energy Analysis Dashboard--&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;Root&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsExpanded&amp;amp;gt;false&amp;amp;lt;/IsExpanded&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;OnOff&amp;amp;gt;Off&amp;amp;lt;/OnOff&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Status&amp;amp;gt;NotReady&amp;amp;lt;/Status&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;PUS&amp;amp;gt;&amp;amp;lt;/PUS&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Percent&amp;amp;gt;&amp;amp;lt;/Percent&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Units&amp;amp;gt;MW&amp;amp;lt;/Units&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/Root&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EdrActivation.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;EDR&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowModelStatus&amp;amp;gt;false&amp;amp;lt;/IsShowModelStatus&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowRiskStatus&amp;amp;gt;false&amp;amp;lt;/IsShowRiskStatus&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowLegend&amp;amp;gt;false&amp;amp;lt;/IsShowLegend&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;DetailCount&amp;amp;gt;0&amp;amp;lt;/DetailCount&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/EDR&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.GHGEmission.DashboardItem&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/DashboardPanel&amp;gt;" Layout="&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;xamDockManager version=&amp;quot;21.1.20211.27&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;contentPanes&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen7&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T03:07:26.7962747Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;METH&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T03:07:21.7317819Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen6&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T03:06:48.3378579Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;FlowsheetScreenFactory&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T03:02:26.7119217Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen5&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T03:02:15.9683542Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;ModelLibraryScreenFactoryKey&amp;quot; location=&amp;quot;DockedBottom&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T02:58:16.5648009Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen4&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T02:31:49.6086519Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen3&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-10-06T10:53:14.6941045Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen1&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-10-06T10:50:24.2407864Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen2&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-10-06T10:38:13.2547294Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/contentPanes&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;panes&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;splitPane name=&amp;quot;Z35cdde8ae2a44d63a3fda8e94f454083&amp;quot; splitterOrientation=&amp;quot;Vertical&amp;quot; location=&amp;quot;DockedBottom&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;contentPane name=&amp;quot;ModelLibraryScreenFactoryKey&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;/splitPane&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/panes&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;documents splitterOrientation=&amp;quot;Vertical&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;splitPane name=&amp;quot;Zb71a382b963441f5a391b9cb7eb0ee41&amp;quot; splitterOrientation=&amp;quot;Vertical&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;tabGroup name=&amp;quot;Z63a78bb284d34f2b976aabca84a4a999&amp;quot; selectedIndex=&amp;quot;8&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;FlowsheetScreenFactory&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;METH&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen1&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen2&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen3&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen4&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen5&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen6&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen7&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;/tabGroup&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;/splitPane&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/documents&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/xamDockManager&amp;gt;" NavigationGroupToSelect="Simulation" IsNavigationPaneMinimized="False" IsRibbonMinimized="False"&gt;&lt;ShellWorkspace.Screens&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen7" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Results Summary.Run Status" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMRun_Stat.MMRun_Status" FormKey="Results Summary.Run Status" Header="Results Summary - Run Status" ResultsOnly="True" PathKey="Top.appModelV8.Results Summary"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="extra_message_path"&gt;Run-Status&lt;/s:String&gt;&lt;s:String assembly:Key="id"&gt;Results Summary&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Results Summary&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Results Summary" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="extra_message_path" Value="Run-Status" /&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Results Summary" /&gt;&lt;cxv:CxvParameter Name="id" Value="Results Summary" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;cxv:CxvParameter Name="ParamVersionLabel" Value="Aspen Plus Version" /&gt;&lt;cxv:CxvParameter Name="smain" Value="Top.appModelV8.Results Summary.Run-Status" /&gt;&lt;cxv:CxvParameter Name="selected_tab" Value="tabStatus1" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="METH" ScreenFactoryKey="FlowsheetScreenFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapi:StringScreenSubject subject="METH" fatherNodePath="{assembly:Null}" NavigationGroupKey="Simulation" /&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;ScreenState Zoom="1.080001" /&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen6" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Blocks.METH.Blocks.PURGAS" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMSEP.MMSEP_INPUT" FormKey="Blocks.METH.Blocks.PURGAS" Header="METH.PURGAS (Sep)" ResultsOnly="False" PathKey="Top.appModelV8.Blocks.METH.Data.Blocks.PURGAS"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="id"&gt;PURGAS&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Blocks.METH.Data.Blocks.PURGAS&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.METH.Data.Blocks.PURGAS" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.METH.Data.Blocks.PURGAS" /&gt;&lt;cxv:CxvParameter Name="id" Value="PURGAS" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;cxv:CxvParameter Name="Stream" Value="GAS2" /&gt;&lt;cxv:CxvParameter Name="Substr" Value="MIXED" /&gt;&lt;cxv:CxvParameter Name="selected_tab" Value="tab0" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="FlowsheetScreenFactory" ScreenFactoryKey="FlowsheetScreenFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapi:StringScreenSubject subject="{assembly:Null}" fatherNodePath="{assembly:Null}" NavigationGroupKey="Simulation" /&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;ScreenState Zoom="1.520001" /&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen5" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Blocks.METH.Blocks.COMP" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMMCOMPR.MMMCOMPR_SETUP" FormKey="Blocks.METH.Blocks.COMP" Header="METH.COMP (MCompr)" ResultsOnly="False" PathKey="Top.appModelV8.Blocks.METH.Data.Blocks.COMP"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="id"&gt;COMP&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Blocks.METH.Data.Blocks.COMP&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.METH.Data.Blocks.COMP" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.METH.Data.Blocks.COMP" /&gt;&lt;cxv:CxvParameter Name="id" Value="COMP" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;cxv:CxvParameter Name="selected_tab" Value="tab1" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="ModelLibraryScreenFactoryKey" ScreenFactoryKey="ModelLibraryScreenFactoryKey"&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;ScreenState /&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen4" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Results Summary.Streams" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMStreamSum.MMStreamSum_Summar" FormKey="Results Summary.Streams" Header="Results Summary - Streams" ResultsOnly="True" PathKey="Top.appModelV8.Results Summary"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="id"&gt;Results Summary&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Results Summary&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Results Summary"&gt;&lt;apmab:ApwnPlotwizardRule.ProgId&gt;&lt;s:String&gt;WpfPLDISCURVES.RibbonPlotWizardMgr&lt;/s:String&gt;&lt;/apmab:ApwnPlotwizardRule.ProgId&gt;&lt;/apmab:ApwnPlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState FormSettings="&amp;lt;PageSettings&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting&amp;gt;&amp;amp;lt;srcSettings StreamIds=&amp;quot;5,BIOGAS,BIOMASS,FEED,GAS,GAS2,GAS3,H2O1,H2S,LIQUID,NH3,WATERIN&amp;quot; TemplateName=&amp;quot;Full&amp;quot;&amp;amp;gt;&amp;amp;lt;TFFTable&amp;amp;gt;&amp;amp;lt;GeneralOptions&amp;amp;gt;Description,SourceAndDestination,StreamClass,MaximumErrorTolerance,CostFlow,PhaseLabel,ComponentAttributes,ParticleSizeDistributions,Temperature,Pressure,MolarVaporFraction,MolarLiquidFraction,MolarSolidFraction,MolarEnthalpy,MolarEntropy,MolarDensity,MassVaporFraction,MassLiquidFraction,MassSolidFraction,MassEnthalpy,MassEntropy,MassDensity,EnthalpyFlow,AverageMolecularWeight,BatchProperties&amp;amp;lt;/GeneralOptions&amp;amp;gt;&amp;amp;lt;ScopeOptions&amp;amp;gt;PhasesForMixedSubstream,TotalStream,Substreams,MoleFlows,MassFlows,MoleFractions,MassFractions,VolumeFlows&amp;amp;lt;/ScopeOptions&amp;amp;gt;&amp;amp;lt;Properties&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;TEMP&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;PRES&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;VFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;LFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;SFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSVFRA&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSLFRA&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSSFRA&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;HMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSHMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;SMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSSMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;RHOMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSRHOM&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;HFLMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MWMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MOLEFLOW&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MOLEFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSFLOW&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;MASSFRAC&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;StateConditionProperty&amp;quot; EngineName=&amp;quot;VOLFLMX&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmole_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmole_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmass_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cmass_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;vol_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;vol_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;enth_cycle&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;enth_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;cycle_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;oper_time&amp;quot; /&amp;amp;gt;&amp;amp;lt;Property Type=&amp;quot;BatchProperty&amp;quot; EngineName=&amp;quot;ntrain&amp;quot; /&amp;amp;gt;&amp;amp;lt;/Properties&amp;amp;gt;&amp;amp;lt;/TFFTable&amp;amp;gt;&amp;amp;lt;/srcSettings&amp;amp;gt;&amp;lt;/Setting&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Setting /&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/PageSettings&amp;gt;"&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Results Summary" /&gt;&lt;cxv:CxvParameter Name="id" Value="Results Summary" /&gt;&lt;cxv:CxvParameter Name="main_summar" Value="Top.appModelV8" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen3" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Blocks.METH.Blocks.MEMB1.Variables" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMFORMSVCLIB.EOTAB" FormKey="Blocks.METH.Blocks.MEMB1.Variables" Header="METH.MEMB1 (Zeo_real) - Variables" ResultsOnly="False" PathKey="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;assembly:Array Type="s:String" assembly:Key="_CCNodes"&gt;&lt;s:String&gt;CCSQUARE&lt;/s:String&gt;&lt;/assembly:Array&gt;&lt;s:Int32 assembly:Key="BrowseType"&gt;0&lt;/s:Int32&gt;&lt;s:Int32 assembly:Key="EOType"&gt;8&lt;/s:Int32&gt;&lt;s:String assembly:Key="id"&gt;MEMB1&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1&lt;/s:String&gt;&lt;s:Int32 assembly:Key="MMHelpCode"&gt;15&lt;/s:Int32&gt;&lt;s:String assembly:Key="MMHelpFile"&gt;acmuser3.hlp&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="EOType"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;8&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="BrowseType"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;0&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="MMHelpCode"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;15&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="MMHelpFile" Value="acmuser3.hlp" /&gt;&lt;cxv:CxvParameter Name="_CCNodes"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;assembly:Array Type="s:String"&gt;&lt;s:String&gt;CCSQUARE&lt;/s:String&gt;&lt;/assembly:Array&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;cxv:CxvParameter Name="id" Value="MEMB1" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen1" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Blocks.METH.Blocks.MEMB1" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMFORMSVCLIB.EOTAB" FormKey="Blocks.METH.Blocks.MEMB1" Header="METH.MEMB1 (Zeo_real)" ResultsOnly="False" PathKey="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;assembly:Array Type="s:String" assembly:Key="_CCNodes"&gt;&lt;s:String&gt;CCSQUARE&lt;/s:String&gt;&lt;/assembly:Array&gt;&lt;s:Int32 assembly:Key="BrowseType"&gt;0&lt;/s:Int32&gt;&lt;s:Int32 assembly:Key="EOType"&gt;8&lt;/s:Int32&gt;&lt;s:String assembly:Key="id"&gt;MEMB1&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1&lt;/s:String&gt;&lt;s:Int32 assembly:Key="MMHelpCode"&gt;15&lt;/s:Int32&gt;&lt;s:String assembly:Key="MMHelpFile"&gt;acmuser3.hlp&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="EOType"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;8&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="BrowseType"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;0&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="MMHelpCode"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;15&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="MMHelpFile" Value="acmuser3.hlp" /&gt;&lt;cxv:CxvParameter Name="_CCNodes"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;assembly:Array Type="s:String"&gt;&lt;s:String&gt;CCSQUARE&lt;/s:String&gt;&lt;/assembly:Array&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;cxv:CxvParameter Name="id" Value="MEMB1" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen2" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Blocks.METH.Blocks.MEMB1.Results" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMQTVEC.MMQTVEC_RESULT" FormKey="Blocks.METH.Blocks.MEMB1.Results" Header="METH.MEMB1 (Zeo_real) - Results" ResultsOnly="True" PathKey="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="id"&gt;MEMB1&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;cxv:CxvParameter Name="id" Value="MEMB1" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;cxv:CxvParameter Name="selected_tab" Value="tab0" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;/ShellWorkspace.Screens&gt;&lt;/ShellWorkspace&gt;&lt;/CommonShellSettings.CurrentWorkspace&gt;&lt;CommonShellSettings.SavedWorkspaces&gt;&lt;ShellWorkspaceFolder /&gt;&lt;/CommonShellSettings.SavedWorkspaces&gt;&lt;/CommonShellSettings&gt;</CommonShellSettings></FileRootSettings>
+<FileRootSettings><CaseFileSettings>&lt;CaseFileSettings StreamSummaryFormSettings="&amp;lt;src&amp;gt;&amp;lt;ReferencedPaths&amp;gt;&amp;lt;Path&amp;gt;Top.appModelV8.Results Summary&amp;lt;/Path&amp;gt;&amp;lt;/ReferencedPaths&amp;gt;&amp;lt;ReferencedTemplates /&amp;gt;&amp;lt;/src&amp;gt;" xmlns="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure" /&gt;</CaseFileSettings><CommonShellSettings>&lt;CommonShellSettings xmlns="http://schemas.aspentech.com/xaml/presentation/visualisation/commonshell" xmlns:atapi="clr-namespace:AspenTech.AspenPlus.Infrastructure;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:atapmaa="clr-namespace:AspenTech.AspenPlus.Modules.ApwnApplication;assembly=ApwnShell" xmlns:atapie="clr-namespace:AspenTech.AspenPlus.Infrastructure.Events;assembly=AspenTech.AspenPlus.Infrastructure" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:apmab="clr-namespace:AspenPlus.Modules.ApwnBrowser;assembly=ApwnShell" xmlns:cxv="http://schemas.aspentech.com/xaml/presentation/cxsviewmodel"&gt;&lt;CommonShellSettings.CurrentWorkspace&gt;&lt;ShellWorkspace ActivationBarState="&amp;lt;DashboardPanel IsExpanded=&amp;quot;false&amp;quot; IsTurnedOff=&amp;quot;false&amp;quot; Version=&amp;quot;40&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EconomicAnalysis.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;!--This is the current state of Economics Analysis Dashboard--&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;Root&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;OnOffState Value=&amp;quot;Off&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;CapitalCost Value=&amp;quot;&amp;quot; Units=&amp;quot;USD&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;UtilityCost Value=&amp;quot;&amp;quot; Units=&amp;quot;USD/Year&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;HasError&amp;amp;gt;false&amp;amp;lt;/HasError&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;_statusCode Value=&amp;quot;-1&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Flags&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isRunCompleted Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isRunning Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButActivated Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButLoaded Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButSized Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_incompleteButMapped Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_completeEvaluatedNotAutoRun Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isSimulationChanged Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isInStopping Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isOnOffButtonCanBeUsed Value=&amp;quot;true&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;    &amp;amp;lt;_isResetDashboardButLeaveItOn Value=&amp;quot;false&amp;quot; /&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;/Flags&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/Root&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EnergyAnalysis.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;!--This is the current state of Energy Analysis Dashboard--&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;Root&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsExpanded&amp;amp;gt;false&amp;amp;lt;/IsExpanded&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;OnOff&amp;amp;gt;Off&amp;amp;lt;/OnOff&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Status&amp;amp;gt;NotReady&amp;amp;lt;/Status&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;PUS&amp;amp;gt;&amp;amp;lt;/PUS&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Percent&amp;amp;gt;&amp;amp;lt;/Percent&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;Units&amp;amp;gt;MW&amp;amp;lt;/Units&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/Root&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.EdrActivation.DashboardItem&amp;quot;&amp;gt;&amp;amp;lt;EDR&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowModelStatus&amp;amp;gt;false&amp;amp;lt;/IsShowModelStatus&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowRiskStatus&amp;amp;gt;false&amp;amp;lt;/IsShowRiskStatus&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;IsShowLegend&amp;amp;gt;false&amp;amp;lt;/IsShowLegend&amp;amp;gt;&amp;#xD;&amp;#xA;  &amp;amp;lt;DetailCount&amp;amp;gt;0&amp;amp;lt;/DetailCount&amp;amp;gt;&amp;#xD;&amp;#xA;&amp;amp;lt;/EDR&amp;amp;gt;&amp;lt;/Item&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;Item Type=&amp;quot;AspenTech.ActivationDashboard.GHGEmission.DashboardItem&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/DashboardPanel&amp;gt;" Layout="&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;xamDockManager version=&amp;quot;21.1.20211.27&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;contentPanes&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;METH&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T03:26:57.1764527Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;FlowsheetScreenFactory&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T03:25:38.0945433Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen7&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T03:17:27.1156263Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen5&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T03:02:15.9683542Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;ModelLibraryScreenFactoryKey&amp;quot; location=&amp;quot;DockedBottom&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T02:58:16.5648009Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen4&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-11-06T02:31:49.6086519Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen3&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-10-06T10:53:14.6941045Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen1&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-10-06T10:50:24.2407864Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;contentPane name=&amp;quot;_AnonymousScreen2&amp;quot; location=&amp;quot;Document&amp;quot; lastActivatedTime=&amp;quot;2026-10-06T10:38:13.2547294Z&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/contentPanes&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;panes&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;splitPane name=&amp;quot;Z35cdde8ae2a44d63a3fda8e94f454083&amp;quot; splitterOrientation=&amp;quot;Vertical&amp;quot; location=&amp;quot;DockedBottom&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;contentPane name=&amp;quot;ModelLibraryScreenFactoryKey&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;/splitPane&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/panes&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;documents splitterOrientation=&amp;quot;Vertical&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;splitPane name=&amp;quot;Zb71a382b963441f5a391b9cb7eb0ee41&amp;quot; splitterOrientation=&amp;quot;Vertical&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;tabGroup name=&amp;quot;Z63a78bb284d34f2b976aabca84a4a999&amp;quot; selectedIndex=&amp;quot;1&amp;quot;&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;FlowsheetScreenFactory&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;METH&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen1&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen2&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen3&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen4&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen5&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;        &amp;lt;contentPane name=&amp;quot;_AnonymousScreen7&amp;quot; /&amp;gt;&amp;#xD;&amp;#xA;      &amp;lt;/tabGroup&amp;gt;&amp;#xD;&amp;#xA;    &amp;lt;/splitPane&amp;gt;&amp;#xD;&amp;#xA;  &amp;lt;/documents&amp;gt;&amp;#xD;&amp;#xA;&amp;lt;/xamDockManager&amp;gt;" NavigationGroupToSelect="Simulation" IsNavigationPaneMinimized="False" IsRibbonMinimized="False"&gt;&lt;ShellWorkspace.Screens&gt;&lt;WorkspaceScreenData PaneName="METH" ScreenFactoryKey="FlowsheetScreenFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapi:StringScreenSubject subject="METH" fatherNodePath="{assembly:Null}" NavigationGroupKey="Simulation" /&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;ScreenState Zoom="1.620001" /&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="FlowsheetScreenFactory" ScreenFactoryKey="FlowsheetScreenFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapi:StringScreenSubject subject="{assembly:Null}" fatherNodePath="{assembly:Null}" NavigationGroupKey="Simulation" /&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;ScreenState Zoom="1.750001" /&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen7" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Results Summary.Run Status" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMRun_Stat.MMRun_Status" FormKey="Results Summary.Run Status" Header="Results Summary - Run Status" ResultsOnly="True" PathKey="Top.appModelV8.Results Summary"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="extra_message_path"&gt;Run-Status&lt;/s:String&gt;&lt;s:String assembly:Key="id"&gt;Results Summary&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Results Summary&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Results Summary" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="extra_message_path" Value="Run-Status" /&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Results Summary" /&gt;&lt;cxv:CxvParameter Name="id" Value="Results Summary" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;cxv:CxvParameter Name="ParamVersionLabel" Value="Aspen Plus Version" /&gt;&lt;cxv:CxvParameter Name="smain" Value="Top.appModelV8.Results Summary.Run-Status" /&gt;&lt;cxv:CxvParameter Name="selected_tab" Value="tabStatus1" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen5" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Blocks.METH.Blocks.COMP" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMMCOMPR.MMMCOMPR_SETUP" FormKey="Blocks.METH.Blocks.COMP" Header="METH.COMP (MCompr)" ResultsOnly="False" PathKey="Top.appModelV8.Blocks.METH.Data.Blocks.COMP"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="id"&gt;COMP&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Blocks.METH.Data.Blocks.COMP&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.METH.Data.Blocks.COMP" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.METH.Data.Blocks.COMP" /&gt;&lt;cxv:CxvParameter Name="id" Value="COMP" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;cxv:CxvParameter Name="selected_tab" Value="tab1" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="ModelLibraryScreenFactoryKey" ScreenFactoryKey="ModelLibraryScreenFactoryKey"&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;ScreenState /&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen4" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Results Summary.Streams" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMStreamSum.MMStreamSum_Summar" FormKey="Results Summary.Streams" Header="Results Summary - Streams" ResultsOnly="True" PathKey="Top.appModelV8.Results Summary"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="id"&gt;Results Summary&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Results Summary&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Results Summary"&gt;&lt;apmab:ApwnPlotwizardRule.ProgId&gt;&lt;s:String&gt;WpfPLDISCURVES.RibbonPlotWizardMgr&lt;/s:String&gt;&lt;/apmab:ApwnPlotwizardRule.ProgId&gt;&lt;/apmab:ApwnPlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Results Summary" /&gt;&lt;cxv:CxvParameter Name="id" Value="Results Summary" /&gt;&lt;cxv:CxvParameter Name="main_summar" Value="Top.appModelV8" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen3" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Blocks.METH.Blocks.MEMB1.Variables" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMFORMSVCLIB.EOTAB" FormKey="Blocks.METH.Blocks.MEMB1.Variables" Header="METH.MEMB1 (Zeo_real) - Variables" ResultsOnly="False" PathKey="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;assembly:Array Type="s:String" assembly:Key="_CCNodes"&gt;&lt;s:String&gt;CCSQUARE&lt;/s:String&gt;&lt;/assembly:Array&gt;&lt;s:Int32 assembly:Key="BrowseType"&gt;0&lt;/s:Int32&gt;&lt;s:Int32 assembly:Key="EOType"&gt;8&lt;/s:Int32&gt;&lt;s:String assembly:Key="id"&gt;MEMB1&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1&lt;/s:String&gt;&lt;s:Int32 assembly:Key="MMHelpCode"&gt;15&lt;/s:Int32&gt;&lt;s:String assembly:Key="MMHelpFile"&gt;acmuser3.hlp&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="EOType"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;8&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="BrowseType"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;0&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="MMHelpCode"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;15&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="MMHelpFile" Value="acmuser3.hlp" /&gt;&lt;cxv:CxvParameter Name="_CCNodes"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;assembly:Array Type="s:String"&gt;&lt;s:String&gt;CCSQUARE&lt;/s:String&gt;&lt;/assembly:Array&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;cxv:CxvParameter Name="id" Value="MEMB1" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen1" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Blocks.METH.Blocks.MEMB1" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMFORMSVCLIB.EOTAB" FormKey="Blocks.METH.Blocks.MEMB1" Header="METH.MEMB1 (Zeo_real)" ResultsOnly="False" PathKey="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;assembly:Array Type="s:String" assembly:Key="_CCNodes"&gt;&lt;s:String&gt;CCSQUARE&lt;/s:String&gt;&lt;/assembly:Array&gt;&lt;s:Int32 assembly:Key="BrowseType"&gt;0&lt;/s:Int32&gt;&lt;s:Int32 assembly:Key="EOType"&gt;8&lt;/s:Int32&gt;&lt;s:String assembly:Key="id"&gt;MEMB1&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1&lt;/s:String&gt;&lt;s:Int32 assembly:Key="MMHelpCode"&gt;15&lt;/s:Int32&gt;&lt;s:String assembly:Key="MMHelpFile"&gt;acmuser3.hlp&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="EOType"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;8&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="BrowseType"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;0&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="MMHelpCode"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;s:Int32&gt;15&lt;/s:Int32&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="MMHelpFile" Value="acmuser3.hlp" /&gt;&lt;cxv:CxvParameter Name="_CCNodes"&gt;&lt;cxv:CxvParameter.Value&gt;&lt;assembly:Array Type="s:String"&gt;&lt;s:String&gt;CCSQUARE&lt;/s:String&gt;&lt;/assembly:Array&gt;&lt;/cxv:CxvParameter.Value&gt;&lt;/cxv:CxvParameter&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;cxv:CxvParameter Name="id" Value="MEMB1" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;WorkspaceScreenData PaneName="_AnonymousScreen2" ScreenFactoryKey="ApwnFormContentFactory"&gt;&lt;WorkspaceScreenData.ScreenSubject&gt;&lt;atapmaa:ApwnFormScreenSubject Key="Blocks.METH.Blocks.MEMB1.Results" NavigationGroupKey="Simulation"&gt;&lt;atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapie:ShowFormEventArgs FormProgId="MMQTVEC.MMQTVEC_RESULT" FormKey="Blocks.METH.Blocks.MEMB1.Results" Header="METH.MEMB1 (Zeo_real) - Results" ResultsOnly="True" PathKey="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1"&gt;&lt;atapie:ShowFormEventArgs.Parameters&gt;&lt;s:String assembly:Key="id"&gt;MEMB1&lt;/s:String&gt;&lt;s:String assembly:Key="main"&gt;Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1&lt;/s:String&gt;&lt;/atapie:ShowFormEventArgs.Parameters&gt;&lt;/atapie:ShowFormEventArgs&gt;&lt;/atapmaa:ApwnFormScreenSubject.ShowFormArgs&gt;&lt;atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;apmab:ApwnPlotwizardRule ContextPath="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;/atapmaa:ApwnFormScreenSubject.PlotwizardRule&gt;&lt;/atapmaa:ApwnFormScreenSubject&gt;&lt;/WorkspaceScreenData.ScreenSubject&gt;&lt;WorkspaceScreenData.ScreenState&gt;&lt;atapmaa:ApwnFormScreenState&gt;&lt;atapmaa:ApwnFormScreenState.Parameters&gt;&lt;cxv:CxvParameter Name="main" Value="Top.appModelV8.Blocks.METH.Data.Blocks.MEMB1" /&gt;&lt;cxv:CxvParameter Name="id" Value="MEMB1" /&gt;&lt;cxv:CxvParameter Name="extraComments_path" Value="Comments" /&gt;&lt;cxv:CxvParameter Name="extraDescription_path" Value="Input.DESCRIPTION" /&gt;&lt;cxv:CxvParameter Name="extraUnits_path" Value="Input.Unit Set" /&gt;&lt;cxv:CxvParameter Name="selected_tab" Value="tab0" /&gt;&lt;/atapmaa:ApwnFormScreenState.Parameters&gt;&lt;/atapmaa:ApwnFormScreenState&gt;&lt;/WorkspaceScreenData.ScreenState&gt;&lt;/WorkspaceScreenData&gt;&lt;/ShellWorkspace.Screens&gt;&lt;/ShellWorkspace&gt;&lt;/CommonShellSettings.CurrentWorkspace&gt;&lt;CommonShellSettings.SavedWorkspaces&gt;&lt;ShellWorkspaceFolder /&gt;&lt;/CommonShellSettings.SavedWorkspaces&gt;&lt;/CommonShellSettings&gt;</CommonShellSettings></FileRootSettings>
 $_END_APWNSHELL_SETTINGS
 #
 PFSVData
 # of PFS Objects = 49
-SIZE -4.54207 18 -3.67139 3
+SIZE -4.54207 16.5177 -3.70006 2.05
 BLOCK
 ID: B1
 Version: 1
 ICON: "ICON1"
 Flag 0
 Section GLOBAL
-At 7.500000 0.000000
-Label At 1.125000 0.225000
+At 8.950000 0.050000
+Label At 0.050534 -0.697484
 Scale 1.000000 Modifier 0
 BLOCK
 ID: FLASH
@@ -8278,8 +8279,8 @@ Version: 1
 ICON: "V-DRUM1"
 Flag 0
 Section GLOBAL
-At 10.000000 0.000000
-Label At 0.830000 0.377000
+At 10.900001 0.050000
+Label At 0.345267 -0.497484
 Scale 1.000000 Modifier 0
 BLOCK
 ID: H2S-SEP
@@ -8287,8 +8288,8 @@ Version: 1
 ICON: "ICON1"
 Flag 0
 Section GLOBAL
-At 12.500000 2.500000
-Label At 0.825000 0.375000
+At 12.500000 0.550000
+Label At -0.000201 -0.551070
 Scale 1.000000 Modifier 0
 BLOCK
 ID: METH
@@ -8296,9 +8297,9 @@ Version: 1
 ICON: "BLOCK"
 Flag 0
 Section GLOBAL
-At 17.500000 2.500000
+At 15.900001 1.550000
 Label At 0.000000 0.100000
-Annotation At -0.500000 -0.600000
+Annotation At 0.297382 -4.101070
 Scale 1.000000 Modifier 0
 BLOCK
 ID: MIX1
@@ -8306,8 +8307,8 @@ Version: 1
 ICON: "TRIANGLE"
 Flag 0
 Section GLOBAL
-At 2.500000 0.000000
-Label At 0.325000 0.375000
+At 5.450000 0.050000
+Label At -0.053244 -0.647484
 Scale 1.000000 Modifier 0
 BLOCK
 ID: NH3SEP
@@ -8315,9 +8316,9 @@ Version: 1
 ICON: "ICON1"
 Flag 0
 Section GLOBAL
-At 15.000000 2.500000
-Label At 0.825000 0.375000
-Annotation At -0.250000 -0.500000
+At 14.300000 0.950000
+Label At 0.004560 -0.551070
+Annotation At 2.054561 -4.101070
 Scale 1.000000 Modifier 0
 BLOCK
 ID: RSTOIC
@@ -8325,8 +8326,8 @@ Version: 1
 ICON: "ICON1"
 Flag 0
 Section GLOBAL
-At 5.000000 0.000000
-Label At 1.050000 0.300000
+At 7.150000 0.050000
+Label At -0.004551 -0.647484
 Scale 1.000000 Modifier 0
 BLOCK
 ID: AMINODEG
@@ -8424,20 +8425,22 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 6.025000 -0.225656
-Label At 0.524947 0.226936
+At 7.749249 -0.180267
+Label At 0.402386 0.231547
 ROUTE 0 0
-r r 6.025000 -0.225656 0
-x x 5.550711 -0.225656 0
-t r 5.450711 -0.225656 0
+r r 7.749249 -0.180267 0
+x x 7.689171 -0.180267 0
+y 0 7.689171 -0.175656 0
+x x 7.650711 -0.175656 0
+t r 7.600711 -0.175656 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 6.025000 -0.225656 0
-x x 6.250000 -0.225656 0
-y y 6.250000 0.001280 0
-x x 6.949894 0.001280 0
-t l 7.049894 0.001280 0
+r r 7.749249 -0.180267 0
+x x 7.911748 -0.180267 0
+y y 7.911748 0.051280 0
+x x 8.449893 0.051280 0
+t l 8.499893 0.051280 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -8458,20 +8461,21 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 8.575001 0.001280
-Label At 0.625212 -0.002171
+At 10.068173 0.047484
+Label At 0.076806 0.000000
 ROUTE 0 0
-r r 8.575001 0.001280 0
-x x 8.054447 0.001280 0
-t r 7.954447 0.001280 0
+r r 10.068173 0.047484 0
+x y 9.743173 0.047484 0
+y x 9.743173 0.051280 0
+x 0 9.504447 0.051280 0
+t r 9.404447 0.051280 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 8.575001 0.001280 0
-x x 8.850000 0.001280 0
-y y 8.850000 -0.000890 0
-x x 9.650425 -0.000890 0
-t l 9.750425 -0.000890 0
+r r 10.068173 0.047484 0
+x x 10.550426 0.047484 0
+y x 10.550426 0.049110 0
+t l 10.650426 0.049110 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -8492,18 +8496,18 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 1
-At 0.199694 -0.001121
+At 3.784301 0.057837
 Label At 1.000306 0.050000
 ROUTE 0 0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 0.199694 -0.001121 0
-x r 0.475000 -0.001121 0
-y y 0.475000 0.048879 0
-x x 1.925000 0.048879 0
-y x 1.925000 -0.001121 0
-x x 1.999694 -0.001121 0
-t l 2.199694 -0.001121 0
+r r 3.784301 0.057837 0
+x r 4.059608 0.057837 0
+y y 4.059608 0.107837 0
+x x 5.509607 0.107837 0
+y y 5.509607 0.048879 0
+x x 4.949694 0.048879 0
+t l 5.149694 0.048879 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -8524,20 +8528,20 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 3.412500 -0.001121
-Label At 0.600171 0.226777
+At 6.393092 0.161360
+Label At -0.300579 -0.112481
 ROUTE 0 0
-r r 3.412500 -0.001121 0
-x x 2.900306 -0.001121 0
-t r 2.800306 -0.001121 0
+r r 6.393092 0.161360 0
+y x 6.393092 0.048879 0
+x 0 5.800307 0.048879 0
+t r 5.750307 0.048879 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.412500 -0.001121 0
-x x 3.675000 -0.001121 0
-y y 3.675000 0.225656 0
-x x 4.450342 0.225656 0
-t l 4.550342 0.225656 0
+r r 6.393092 0.161360 0
+y y 6.393092 0.275656 0
+x x 6.650342 0.275656 0
+t l 6.700342 0.275656 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -8558,21 +8562,21 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 10.999867 0.675000
-Label At 0.000000 0.000000
+At 10.989532 0.678977
+Label At 0.455169 0.000000
 ROUTE 0 0
-r r 10.999867 0.675000 0
-x y 9.999734 0.675000 0
-y 0 9.999734 0.599784 0
-t u 9.999734 0.399784 0
+r r 10.989532 0.678977 0
+x y 10.899734 0.678977 0
+y y 10.899734 0.549784 0
+t u 10.899734 0.449784 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 10.999867 0.675000 0
-x x 12.000001 0.675000 0
-y x 12.000001 2.499104 0
-x x 12.049639 2.499104 0
-t l 12.249639 2.499104 0
+r r 10.989532 0.678977 0
+x x 11.989665 0.678977 0
+y x 11.989665 0.549104 0
+x x 12.149638 0.549104 0
+t l 12.249639 0.549104 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -8593,22 +8597,22 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 13.750000 2.549103
+At 13.360218 1.103423
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 13.750000 2.549103 0
-x y 13.025001 2.549103 0
-y x 13.025001 2.499104 0
-x x 12.851644 2.499104 0
-t r 12.751643 2.499104 0
+r r 13.360218 1.103423 0
+x y 12.922718 1.103423 0
+y x 12.922718 0.549104 0
+x 0 12.851644 0.549104 0
+t r 12.751643 0.549104 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 13.750000 2.549103 0
-x x 14.474999 2.549103 0
-y x 14.474999 2.499104 0
-x x 14.649638 2.499104 0
-t l 14.749639 2.499104 0
+r r 13.360218 1.103423 0
+x x 13.797718 1.103423 0
+y x 13.797718 0.949104 0
+x x 13.949638 0.949104 0
+t l 14.049639 0.949104 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -8629,20 +8633,21 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 16.387501 2.500000
-Label At 0.074999 0.000000
+At 14.987501 1.449104
+Label At -0.099178 0.000000
 ROUTE 0 0
-r r 16.387501 2.500000 0
-x y 16.125000 2.500000 0
-y x 16.125000 2.499104 0
-x x 15.351644 2.499104 0
-t r 15.251643 2.499104 0
+r r 14.987501 1.449104 0
+x x 14.601644 1.449104 0
+y x 14.601644 0.949104 0
+t r 14.551643 0.949104 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 16.387501 2.500000 0
-x x 16.900000 2.500000 0
-t l 17.000000 2.500000 0
+r r 14.987501 1.449104 0
+x x 15.175001 1.449104 0
+y y 15.175001 1.550000 0
+x x 15.350000 1.550000 0
+t l 15.400001 1.550000 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -8663,13 +8668,13 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 2
-At 11.999734 -0.798003
-Label At -1.000000 0.000000
+At 11.341512 -0.791056
+Label At -0.224562 0.000000
 ROUTE 0 0
-r l 11.999734 -0.798003 0
-x y 9.999734 -0.798003 0
-y 0 9.999734 -0.598003 0
-t d 9.999734 -0.398003 0
+r l 11.341512 -0.791056 0
+x y 10.899734 -0.791056 0
+y 0 10.899734 -0.548003 0
+t d 10.899734 -0.348003 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
@@ -8692,14 +8697,14 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 2
-At 14.751643 1.699103
-Label At -0.488321 0.000000
+At 14.209110 0.254531
+Label At -0.527969 0.000000
 ROUTE 0 0
-r l 14.751643 1.699103 0
-x y 13.775001 1.699103 0
-y x 13.775001 2.399104 0
-x 0 13.001643 2.399104 0
-t r 12.801643 2.399104 0
+r l 14.209110 0.254531 0
+x y 13.153172 0.254531 0
+y x 13.153172 0.449104 0
+x 0 13.001643 0.449104 0
+t r 12.801643 0.449104 0
 $ C 2.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
@@ -8722,14 +8727,15 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 2
-At 9.954447 -0.798720
+At 10.844599 -0.739294
 Label At -0.489723 0.000000
 ROUTE 0 0
-r l 9.954447 -0.798720 0
-x y 8.975000 -0.798720 0
-y x 8.975000 -0.098720 0
-x 0 8.204447 -0.098720 0
-t r 8.004447 -0.098720 0
+r l 10.844599 -0.739294 0
+x y 9.865152 -0.739294 0
+y x 9.865152 -0.340668 0
+x x 9.654447 -0.340668 0
+y 0 9.654447 -0.048720 0
+t r 9.454447 -0.048720 0
 $ C 2.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
@@ -8750,16 +8756,16 @@ STREAM
 ID: NH3
 Version: 2
 Flag 0
-GLOBAL 117
+GLOBAL 114
 TYPE 0 TERMINAL 2
-At 17.251644 1.699103
-Label At -0.488321 0.000000
+At 15.316811 0.575454
+Label At -0.366811 0.221025
 ROUTE 0 0
-r l 17.251644 1.699103 0
-x y 16.275002 1.699103 0
-y x 16.275002 2.399104 0
-x 0 15.501643 2.399104 0
-t r 15.301643 2.399104 0
+r l 15.316811 0.575454 0
+x y 14.950000 0.575454 0
+y x 14.950000 0.849104 0
+x 0 14.801643 0.849104 0
+t r 14.601644 0.849104 0
 $ C 2.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
@@ -8782,16 +8788,16 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 1
-At 0.199694 -0.401121
+At 3.784301 -0.345905
 Label At 0.487653 0.000000
 ROUTE 0 0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 0.199694 -0.401121 0
-x x 1.175000 -0.401121 0
-y y 1.175000 -0.101121 0
-x x 1.949694 -0.101121 0
-t l 2.149694 -0.101121 0
+r r 3.784301 -0.345905 0
+x x 4.759607 -0.345905 0
+y y 4.759607 -0.051121 0
+x x 4.899694 -0.051121 0
+t l 5.099694 -0.051121 0
 $ C 2.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -8812,19 +8818,19 @@ Version: 2
 DisplayName: "AMINODEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 3.712500 0.550000
+At 4.437501 0.600000
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 3.712500 0.550000 0
-x y 8.225000 0.550000 0
-y x 8.225000 0.000000 0
-x 0 8.150000 0.000000 0
-t r 7.950000 0.000000 0
+r r 4.437501 0.600000 0
+x y 9.675001 0.600000 0
+y 0 9.675001 0.050000 0
+x 0 9.599999 0.050000 0
+t r 9.400000 0.050000 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.712500 0.550000 0
-x x -0.800000 0.550000 0
+r r 4.437501 0.600000 0
+x x -0.800000 0.600000 0
 y x -0.800000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
@@ -8848,19 +8854,18 @@ Version: 2
 DisplayName: "AMINODEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.357362 -1.050000
-Label At 4.582306 0.000000
+At 4.802438 -0.575000
+Label At 0.072378 0.000000
 ROUTE 0 0
-r r 4.357362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.802438 -0.575000 0
+x 0 10.354876 -0.575000 0
+t u 10.354876 -0.646123 0
+$ D 0.000000 0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.357362 -1.050000 0
-x x -0.750000 -1.050000 0
+r r 4.802438 -0.575000 0
+x x -0.750000 -0.575000 0
 y x -0.750000 -0.100000 0
 x x -0.700000 -0.100000 0
 t l -0.500000 -0.100000 0
@@ -8884,20 +8889,19 @@ Version: 2
 DisplayName: "BUTYDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 3.737500 0.550000
+At 4.462500 0.600000
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 3.737500 0.550000 0
-x y 8.275000 0.550000 0
-y x 8.275000 -0.100000 0
-x 0 8.200000 -0.100000 0
-t r 8.000000 -0.100000 0
+r r 4.462500 0.600000 0
+x y 9.650000 0.600000 0
+y 0 9.650000 -0.050000 0
+t r 9.450000 -0.050000 0
 $ C 2.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.737500 0.550000 0
-x x -0.800000 0.550000 0
-y x -0.800000 0.000000 0
+r r 4.462500 0.600000 0
+x x -0.725000 0.600000 0
+y x -0.725000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
 $ C 1.000000 0.0
@@ -8920,19 +8924,19 @@ Version: 2
 DisplayName: "BUTYDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.357362 -1.050000
-Label At 4.582306 0.000000
+At 4.802438 -1.000000
+Label At 0.072378 0.000000
 ROUTE 0 0
-r r 4.357362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.802438 -1.000000 0
+x y 10.354876 -1.000000 0
+y 0 10.354876 -0.939294 0
+t d 10.354876 -0.832465 0
+$ D 0.000000 -0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.357362 -1.050000 0
-x x -0.750000 -1.050000 0
+r r 4.802438 -1.000000 0
+x x -0.750000 -1.000000 0
 y x -0.750000 -0.100000 0
 x x -0.700000 -0.100000 0
 t l -0.500000 -0.100000 0
@@ -8956,20 +8960,19 @@ Version: 2
 DisplayName: "DEXTDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 3.775000 0.550000
+At 4.462500 0.600000
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 3.775000 0.550000 0
-x y 8.350000 0.550000 0
-y x 8.350000 0.100000 0
-x 0 8.200000 0.100000 0
-t r 8.000000 0.100000 0
+r r 4.462500 0.600000 0
+x y 9.650000 0.600000 0
+y 0 9.650000 0.150000 0
+t r 9.450000 0.150000 0
 $ C 3.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.775000 0.550000 0
-x x -0.800000 0.550000 0
-y x -0.800000 0.000000 0
+r r 4.462500 0.600000 0
+x x -0.725000 0.600000 0
+y x -0.725000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
 $ C 1.000000 0.0
@@ -8992,19 +8995,19 @@ Version: 2
 DisplayName: "DEXTDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.357362 -1.050000
-Label At 4.582306 0.000000
+At 4.802438 -1.000000
+Label At 0.072378 0.000000
 ROUTE 0 0
-r r 4.357362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.802438 -1.000000 0
+x y 10.354876 -1.000000 0
+y 0 10.354876 -0.939294 0
+t d 10.354876 -0.832465 0
+$ D 0.000000 -0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.357362 -1.050000 0
-x x -0.750000 -1.050000 0
+r r 4.802438 -1.000000 0
+x x -0.750000 -1.000000 0
 y x -0.750000 -0.100000 0
 x x -0.700000 -0.100000 0
 t l -0.500000 -0.100000 0
@@ -9028,19 +9031,19 @@ Version: 2
 DisplayName: "GLYCDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.382362 -1.050000
-Label At 4.581284 0.000000
+At 4.827438 -1.000000
+Label At 0.072457 0.000000
 ROUTE 0 0
-r r 4.382362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.827438 -1.000000 0
+x y 10.354876 -1.000000 0
+y 0 10.354876 -0.939294 0
+t d 10.354876 -0.832465 0
+$ D 0.000000 -0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.382362 -1.050000 0
-x x -0.700000 -1.050000 0
+r r 4.827438 -1.000000 0
+x x -0.700000 -1.000000 0
 y x -0.700000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
@@ -9064,20 +9067,19 @@ Version: 2
 DisplayName: "LINODEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 3.775000 0.550000
+At 4.462500 0.600000
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 3.775000 0.550000 0
-x y 8.350000 0.550000 0
-y x 8.350000 -0.200000 0
-x 0 8.200000 -0.200000 0
-t r 8.000000 -0.200000 0
+r r 4.462500 0.600000 0
+x y 9.650000 0.600000 0
+y 0 9.650000 -0.150000 0
+t r 9.450000 -0.150000 0
 $ C 4.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.775000 0.550000 0
-x x -0.800000 0.550000 0
-y x -0.800000 0.000000 0
+r r 4.462500 0.600000 0
+x x -0.725000 0.600000 0
+y x -0.725000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
 $ C 1.000000 0.0
@@ -9100,19 +9102,19 @@ Version: 2
 DisplayName: "LINODEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.357362 -1.050000
-Label At 4.582306 0.000000
+At 4.802438 -1.000000
+Label At 0.072378 0.000000
 ROUTE 0 0
-r r 4.357362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.802438 -1.000000 0
+x y 10.354876 -1.000000 0
+y 0 10.354876 -0.939294 0
+t d 10.354876 -0.832465 0
+$ D 0.000000 -0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.357362 -1.050000 0
-x x -0.750000 -1.050000 0
+r r 4.802438 -1.000000 0
+x x -0.750000 -1.000000 0
 y x -0.750000 -0.100000 0
 x x -0.700000 -0.100000 0
 t l -0.500000 -0.100000 0
@@ -9136,20 +9138,19 @@ Version: 2
 DisplayName: "METHAN"
 Flag 0
 TYPE 0 TERMINAL 0
-At 3.775000 0.550000
+At 4.462500 0.600000
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 3.775000 0.550000 0
-x y 8.350000 0.550000 0
-y x 8.350000 0.200000 0
-x 0 8.200000 0.200000 0
-t r 8.000000 0.200000 0
+r r 4.462500 0.600000 0
+x y 9.650000 0.600000 0
+y 0 9.650000 0.250000 0
+t r 9.450000 0.250000 0
 $ C 5.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.775000 0.550000 0
-x x -0.800000 0.550000 0
-y x -0.800000 0.000000 0
+r r 4.462500 0.600000 0
+x x -0.725000 0.600000 0
+y x -0.725000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
 $ C 1.000000 0.0
@@ -9172,19 +9173,19 @@ Version: 2
 DisplayName: "METHAN"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.357362 -1.050000
-Label At 4.582306 0.000000
+At 4.802438 -1.000000
+Label At 0.072378 0.000000
 ROUTE 0 0
-r r 4.357362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.802438 -1.000000 0
+x y 10.354876 -1.000000 0
+y 0 10.354876 -0.939294 0
+t d 10.354876 -0.832465 0
+$ D 0.000000 -0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.357362 -1.050000 0
-x x -0.750000 -1.050000 0
+r r 4.802438 -1.000000 0
+x x -0.750000 -1.000000 0
 y x -0.750000 -0.100000 0
 x x -0.700000 -0.100000 0
 t l -0.500000 -0.100000 0
@@ -9208,20 +9209,19 @@ Version: 2
 DisplayName: "OLEICDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 3.775000 0.550000
+At 4.462500 0.600000
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 3.775000 0.550000 0
-x y 8.350000 0.550000 0
-y x 8.350000 -0.300000 0
-x 0 8.200000 -0.300000 0
-t r 8.000000 -0.300000 0
+r r 4.462500 0.600000 0
+x y 9.650000 0.600000 0
+y 0 9.650000 -0.250000 0
+t r 9.450000 -0.250000 0
 $ C 6.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.775000 0.550000 0
-x x -0.800000 0.550000 0
-y x -0.800000 0.000000 0
+r r 4.462500 0.600000 0
+x x -0.725000 0.600000 0
+y x -0.725000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
 $ C 1.000000 0.0
@@ -9244,19 +9244,19 @@ Version: 2
 DisplayName: "OLEICDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.357362 -1.050000
-Label At 4.582306 0.000000
+At 4.802438 -1.000000
+Label At 0.072378 0.000000
 ROUTE 0 0
-r r 4.357362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.802438 -1.000000 0
+x y 10.354876 -1.000000 0
+y 0 10.354876 -0.939294 0
+t d 10.354876 -0.832465 0
+$ D 0.000000 -0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.357362 -1.050000 0
-x x -0.750000 -1.050000 0
+r r 4.802438 -1.000000 0
+x x -0.750000 -1.000000 0
 y x -0.750000 -0.100000 0
 x x -0.700000 -0.100000 0
 t l -0.500000 -0.100000 0
@@ -9280,20 +9280,19 @@ Version: 2
 DisplayName: "PALMDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 3.775000 0.550000
+At 4.462500 0.600000
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 3.775000 0.550000 0
-x y 8.350000 0.550000 0
-y x 8.350000 0.300000 0
-x 0 8.200000 0.300000 0
-t r 8.000000 0.300000 0
+r r 4.462500 0.600000 0
+x y 9.650000 0.600000 0
+y 0 9.650000 0.350000 0
+t r 9.450000 0.350000 0
 $ C 7.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.775000 0.550000 0
-x x -0.800000 0.550000 0
-y x -0.800000 0.000000 0
+r r 4.462500 0.600000 0
+x x -0.725000 0.600000 0
+y x -0.725000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
 $ C 1.000000 0.0
@@ -9316,19 +9315,19 @@ Version: 2
 DisplayName: "PALMDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.357362 -1.050000
-Label At 4.582306 0.000000
+At 4.802438 -1.000000
+Label At 0.072378 0.000000
 ROUTE 0 0
-r r 4.357362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.802438 -1.000000 0
+x y 10.354876 -1.000000 0
+y 0 10.354876 -0.939294 0
+t d 10.354876 -0.832465 0
+$ D 0.000000 -0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.357362 -1.050000 0
-x x -0.750000 -1.050000 0
+r r 4.802438 -1.000000 0
+x x -0.750000 -1.000000 0
 y x -0.750000 -0.100000 0
 x x -0.700000 -0.100000 0
 t l -0.500000 -0.100000 0
@@ -9352,20 +9351,19 @@ Version: 2
 DisplayName: "PROPDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 3.775000 0.550000
+At 4.462500 0.600000
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 3.775000 0.550000 0
-x y 8.350000 0.550000 0
-y x 8.350000 -0.400000 0
-x 0 8.200000 -0.400000 0
-t r 8.000000 -0.400000 0
+r r 4.462500 0.600000 0
+x y 9.650000 0.600000 0
+y 0 9.650000 -0.350000 0
+t r 9.450000 -0.350000 0
 $ C 8.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.775000 0.550000 0
-x x -0.800000 0.550000 0
-y x -0.800000 0.000000 0
+r r 4.462500 0.600000 0
+x x -0.725000 0.600000 0
+y x -0.725000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
 $ C 1.000000 0.0
@@ -9388,19 +9386,19 @@ Version: 2
 DisplayName: "PROPDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.357362 -1.050000
-Label At 4.582306 0.000000
+At 4.802438 -1.000000
+Label At 0.072378 0.000000
 ROUTE 0 0
-r r 4.357362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.802438 -1.000000 0
+x y 10.354876 -1.000000 0
+y 0 10.354876 -0.939294 0
+t d 10.354876 -0.832465 0
+$ D 0.000000 -0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.357362 -1.050000 0
-x x -0.750000 -1.050000 0
+r r 4.802438 -1.000000 0
+x x -0.750000 -1.000000 0
 y x -0.750000 -0.100000 0
 x x -0.700000 -0.100000 0
 t l -0.500000 -0.100000 0
@@ -9424,20 +9422,19 @@ Version: 2
 DisplayName: "VALEDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 3.775000 0.550000
+At 4.462500 0.600000
 Label At 0.000000 0.000000
 ROUTE 0 0
-r r 3.775000 0.550000 0
-x y 8.350000 0.550000 0
-y x 8.350000 0.400000 0
-x 0 8.200000 0.400000 0
-t r 8.000000 0.400000 0
+r r 4.462500 0.600000 0
+x y 9.650000 0.600000 0
+y 0 9.650000 0.450000 0
+t r 9.450000 0.450000 0
 $ C 9.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.775000 0.550000 0
-x x -0.800000 0.550000 0
-y x -0.800000 0.000000 0
+r r 4.462500 0.600000 0
+x x -0.725000 0.600000 0
+y x -0.725000 0.000000 0
 x x -0.650000 0.000000 0
 t l -0.450000 0.000000 0
 $ C 1.000000 0.0
@@ -9460,19 +9457,19 @@ Version: 2
 DisplayName: "VALEDEG"
 Flag 0
 TYPE 0 TERMINAL 0
-At 4.357362 -1.050000
-Label At 4.582306 0.000000
+At 4.802438 -1.000000
+Label At 0.072378 0.000000
 ROUTE 0 0
-r r 4.357362 -1.050000 0
-x y 9.464724 -1.050000 0
-y 0 9.464724 -0.998720 0
-t d 9.464724 -0.901522 0
-$ D 0.000000 -0.102802
+r r 4.802438 -1.000000 0
+x y 10.354876 -1.000000 0
+y 0 10.354876 -0.939294 0
+t d 10.354876 -0.832465 0
+$ D 0.000000 -0.093171
 $ C 0.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 4.357362 -1.050000 0
-x x -0.750000 -1.050000 0
+r r 4.802438 -1.000000 0
+x x -0.750000 -1.000000 0
 y x -0.750000 -0.100000 0
 x x -0.700000 -0.100000 0
 t l -0.500000 -0.100000 0
@@ -9492,11 +9489,11 @@ ROUTE 1 2
 $ $ 0.0 0.0
 LEGEND
 Version: 2
-Dim: -4.54207 -3.2 -3.09207 -3.67136
-Size: 0.0119389
+Dim: -4.54207 -3.2 -3.01719 -3.70006
+Size: 0.0103523
 Font: 1 0 =
 # of PFS Objects = 0
-VIEWPORT -1.217658 18.935284 4.984379 -2.787875
+VIEWPORT 0.440495 17.915249 4.467935 -2.271441
 LAYOUT
 TableFormat 1
 Pages 1 1 1 1
@@ -9512,19 +9509,19 @@ BOTTOMMARGIN 10mm
 VISIBILITY 0.030000
 PFDFLAG 255 255
 PFDMODE 0
-SCALE 0.011939
+SCALE 0.010352
 #HIERPFSVDATA
 METH PFSVData
 # of PFS Objects = 17
-SIZE 3.53722 25.025 -10.8 -6.57256
+SIZE -1.30115 19.1505 -11.4909 -6.60074
 BLOCK
 ID: CH4PYRO
 Version: 1
 ICON: "ICON1"
 Flag 0
 Section GLOBAL
-At 22.500000 -7.500000
-Label At 1.200000 0.525000
+At 17.150000 -7.125741
+Label At -0.004436 -0.746114
 Scale 1.000000 Modifier 0
 BLOCK
 ID: FLASH3
@@ -9532,8 +9529,8 @@ Version: 1
 ICON: "V-DRUM1"
 Flag 0
 Section GLOBAL
-At 17.500000 -10.000000
-Label At 0.830000 0.377000
+At 13.250729 -8.445397
+Label At 0.549272 -0.504602
 Annotation At -0.250000 -0.500000
 Scale 1.000000 Modifier 0
 BLOCK
@@ -9542,8 +9539,8 @@ Version: 1
 ICON: "HEATER"
 Flag 0
 Section GLOBAL
-At 20.000000 -7.500000
-Label At 0.750000 0.150000
+At 14.900001 -7.500009
+Label At 0.400013 0.302923
 Scale 1.000000 Modifier 0
 BLOCK
 ID: MEMB1
@@ -9551,8 +9548,8 @@ Version: 1
 ICON: "System"
 Flag 0
 Section GLOBAL
-At 15.000000 -10.000000
-Label At 0.000000 0.000000
+At 10.998590 -8.350897
+Label At 0.051410 -0.904603
 Annotation At -0.500000 -0.750000
 Scale 1.000000 Modifier 0
 BLOCK
@@ -9561,9 +9558,9 @@ Version: 1
 ICON: "ICON1"
 Flag 0
 Section GLOBAL
-At 5.800000 -8.350000
-Label At 0.825000 0.375000
-Annotation At -0.250000 -0.500000
+At 5.803657 -8.355311
+Label At -0.153656 -0.694689
+Annotation At -0.503991 -2.350087
 Scale 1.000000 Modifier 0
 BLOCK
 ID: COMP
@@ -9571,7 +9568,7 @@ Version: 1
 ICON: "ICON1"
 Flag 0
 Section GLOBAL
-At 11.750000 -6.950000
+At 8.250000 -8.350897
 Label At 0.500000 0.350000
 Scale 1.078387 Modifier 0
 STREAM
@@ -9580,12 +9577,12 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 2
-At 25.025000 -7.125000
-Label At -0.900000 0.000000
+At 19.150517 -6.750741
+Label At -0.854868 0.000000
 ROUTE 0 0
-r l 25.025000 -7.125000 0
-x 0 23.225000 -7.125000 0
-t r 23.025000 -7.125000 0
+r l 19.150517 -6.750741 0
+x 0 17.875000 -6.750741 0
+t r 17.674999 -6.750741 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
@@ -9609,18 +9606,16 @@ Flag 0
 FLOWSHEET3 1 GAS3(IN) *
 GLOBAL 117
 TYPE 0 TERMINAL 1
-At 3.537222 -8.357904
-Label At 1.000361 0.050000
+At 4.242174 -8.355311
+Label At 0.568123 0.000000
 ROUTE 0 0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 3.537222 -8.357904 0
-x r 3.812583 -8.357904 0
-y y 3.812583 -8.307904 0
-x x 5.262583 -8.307904 0
-y x 5.262583 -8.350897 0
-x x 5.349639 -8.350897 0
-t l 5.549639 -8.350897 0
+r r 4.242174 -8.355311 0
+x x 4.900001 -8.355311 0
+y y 4.900001 -8.356208 0
+x x 5.353296 -8.356208 0
+t l 5.553296 -8.356208 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -9641,23 +9636,20 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 8.462501 -7.697948
-Label At 0.000000 0.000000
+At 6.520254 -8.357097
+Label At 0.228001 0.000000
 ROUTE 0 0
-r r 8.462501 -7.697948 0
-x y 6.325000 -7.697948 0
-y 0 6.325000 -8.447948 0
-x 0 6.259628 -8.447948 0
-t r 6.059628 -8.447948 0
-$ D 0.007985 -0.097052
-$ C 0.000000 0.0
+r r 6.520254 -8.357097 0
+x x 6.155300 -8.357097 0
+y 0 6.155300 -8.356208 0
+t r 6.055300 -8.356208 0
+$ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 8.462501 -7.697948 0
-x x 10.600000 -7.697948 0
-y 0 10.600000 -6.950000 0
-x x 10.741210 -6.950000 0
-t l 10.941210 -6.950000 0
+r r 6.520254 -8.357097 0
+x x 7.341210 -8.357097 0
+y x 7.341210 -8.350897 0
+t l 7.441210 -8.350897 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -9676,22 +9668,20 @@ STREAM
 ID: GAS2C
 Version: 2
 Flag 0
-GLOBAL 114
+GLOBAL 117
 TYPE 0 TERMINAL 0
-At 13.525001 -8.475000
-Label At 0.000000 0.000000
+At 9.537500 -8.350897
+Label At 0.027336 0.000000
 ROUTE 0 0
-r r 13.525001 -8.475000 0
-y x 13.525001 -6.950000 0
-x 0 12.658791 -6.950000 0
-t r 12.558790 -6.950000 0
+r r 9.537500 -8.350897 0
+x 0 9.158791 -8.350897 0
+t r 9.058790 -8.350897 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 13.525001 -8.475000 0
-y y 13.525001 -10.000000 0
-x x 14.400000 -10.000000 0
-t l 14.500000 -10.000000 0
+r r 9.537500 -8.350897 0
+x x 10.398590 -8.350897 0
+t l 10.498590 -8.350897 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -9712,15 +9702,13 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 2
-At 19.499733 -10.798002
-Label At -1.137367 0.123002
+At 14.750000 -9.400000
+Label At -0.749769 0.000000
 ROUTE 0 0
-r l 19.499733 -10.798002 0
-x l 19.224998 -10.798002 0
-y x 19.224998 -10.675000 0
-x y 17.499733 -10.675000 0
-y 0 17.499733 -10.598002 0
-t d 17.499733 -10.398003 0
+r l 14.750000 -9.400000 0
+x y 13.250462 -9.400000 0
+y 0 13.250462 -9.043401 0
+t d 13.250462 -8.843401 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
@@ -9741,18 +9729,16 @@ STREAM
 ID: PER
 Version: 2
 Flag 0
-GLOBAL 117
+GLOBAL 114
 TYPE 0 TERMINAL 2
-At 17.500000 -10.799999
-Label At -1.037498 0.400000
+At 12.163801 -9.148528
+Label At -0.338800 0.398816
 ROUTE 0 0
-r l 17.500000 -10.799999 0
-x l 17.150002 -10.799999 0
-y x 17.150002 -10.400000 0
-x y 15.775001 -10.400000 0
-y x 15.775001 -10.000000 0
-x 0 15.700000 -10.000000 0
-t r 15.500000 -10.000000 0
+r l 12.163801 -9.148528 0
+x y 11.825001 -9.148528 0
+y x 11.825001 -8.350897 0
+x 0 11.698590 -8.350897 0
+t r 11.498590 -8.350897 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
@@ -9775,21 +9761,19 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 18.512367 -9.325001
-Label At 0.000000 0.000000
+At 13.875231 -7.500741
+Label At 0.037922 0.000000
 ROUTE 0 0
-r r 18.512367 -9.325001 0
-x y 17.499733 -9.325001 0
-y 0 17.499733 -9.400216 0
-t u 17.499733 -9.600216 0
+r r 13.875231 -7.500741 0
+x y 13.250462 -7.500741 0
+y 0 13.250462 -7.945613 0
+t u 13.250462 -8.045613 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 18.512367 -9.325001 0
-x x 19.525002 -9.325001 0
-y x 19.525002 -7.500733 0
-x x 19.575844 -7.500733 0
-t l 19.775845 -7.500733 0
+r r 13.875231 -7.500741 0
+x x 14.575845 -7.500741 0
+t l 14.675845 -7.500741 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -9810,20 +9794,18 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 20.837502 -7.500733
-Label At -0.076038 0.000000
+At 15.625001 -7.500741
+Label At 0.136363 0.000000
 ROUTE 0 0
-r r 20.837502 -7.500733 0
-x x 20.322924 -7.500733 0
-t r 20.222923 -7.500733 0
+r r 15.625001 -7.500741 0
+x 0 15.222924 -7.500741 0
+t r 15.122924 -7.500741 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 20.837502 -7.500733 0
-x x 21.100000 -7.500733 0
-y y 21.100000 -7.875000 0
-x x 21.875000 -7.875000 0
-t l 21.975000 -7.875000 0
+r r 15.625001 -7.500741 0
+x x 16.525000 -7.500741 0
+t l 16.625000 -7.500741 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -9844,20 +9826,22 @@ Version: 2
 Flag 0
 GLOBAL 117
 TYPE 0 TERMINAL 0
-At 16.637501 -10.000891
-Label At 0.075211 0.000000
+At 12.201574 -8.196644
+Label At 0.000000 0.000000
 ROUTE 0 0
-r r 16.637501 -10.000891 0
-x y 16.375000 -10.000891 0
-y x 16.375000 -10.000000 0
-x x 15.600000 -10.000000 0
-t r 15.500000 -10.000000 0
+r r 12.201574 -8.196644 0
+x y 11.650086 -8.196644 0
+y 0 11.650086 -8.350897 1
+x 0 11.598591 -8.350897 0
+t r 11.498590 -8.350897 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
-r r 16.637501 -10.000891 0
-x x 17.150425 -10.000891 0
-t l 17.250425 -10.000891 0
+r r 12.201574 -8.196644 0
+x x 12.753063 -8.196644 0
+y x 12.753063 -8.446289 0
+x x 12.901154 -8.446289 0
+t l 13.001154 -8.446289 0
 $ C 1.000000 0.0
 $ $ 0.0 0.0
 At 0.000000 0.000000
@@ -9876,18 +9860,17 @@ STREAM
 ID: WASTE
 Version: 2
 Flag 0
-GLOBAL 117
+GLOBAL 114
 TYPE 0 TERMINAL 2
-At 8.052565 -8.450896
-Label At -0.603743 0.000000
+At 7.000000 -9.400000
+Label At -0.550000 0.326201
 ROUTE 0 0
-r l 8.052565 -8.450896 0
-x y 6.845079 -8.450896 0
-y y 6.845079 -8.354163 1
-x y 6.552001 -8.354163 0
-y x 6.552001 -8.450896 0
-x 0 6.301643 -8.450896 0
-t r 6.101643 -8.450896 0
+r l 7.000000 -9.400000 0
+x y 6.450000 -9.400000 0
+y x 6.450000 -8.747597 0
+x 0 6.200737 -8.747597 0
+y y 6.200737 -8.456207 0
+t r 6.105299 -8.456207 0
 $ C 2.000000 0.0
 $ $ 0.0 0.0
 ROUTE 1 0
@@ -9906,11 +9889,11 @@ ROUTE 1 2
 $ $ 0.0 0.0
 LEGEND
 Version: 2
-Dim: -1.30115 -11 0.205743 -11.5093
-Size: 0.0167872
+Dim: -1.30115 -11 0.175845 -11.4761
+Size: 0.0112039
 Font: 1 0 =
 # of PFS Objects = 0
-VIEWPORT 1.129041 29.465906 -2.192387 -13.120882
+VIEWPORT 1.643552 20.555693 -5.773283 -13.067003
 LAYOUT
 TableFormat 1
 Pages 1 1 1 1
@@ -9926,7 +9909,7 @@ BOTTOMMARGIN 10mm
 VISIBILITY 0.030000
 PFDFLAG 255 255
 PFDMODE 0
-SCALE 0.016787
+SCALE 0.011204
 
 $_SUMMARY_FILE
  MMSUMMARY40.0                                                                  
