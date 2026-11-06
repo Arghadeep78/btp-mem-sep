@@ -1,5 +1,5 @@
 """Build analysis/CO2_Exergy.xlsx (live formulas) from the .bkp stream results + design-point inputs.
-Run: python3 make_workbook.py   (re-run after the .bkp is re-saved with new results)"""
+Run: python3 make_workbook.py   (stream results: analysis/data/Memb-Integration-1_results_2026-11-06.bkp)"""
 import os, io, contextlib, math
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
@@ -40,14 +40,14 @@ lines = [
  ('Colours: blue = input you may change; black = formula; green = link to another sheet; yellow = key result.', BLACK),
  ('Sheets:', BOLD),
  ('  Inputs: every assumption and constant, with its source.', BLACK),
- ('  Streams: stream results stored in files/Memb-Integration-1.bkp (2026-10-06 GUI run): T, P, flow, H and S (Aspen formation basis), element flows; exergy per stream is a formula.', BLACK),
+ ('  Streams: stream results of the Aspen run of 2026-11-06 (current model, after C1/C2; analysis/data/Memb-Integration-1_results_2026-11-06.bkp): T, P, flow, H and S (Aspen formation basis), element flows; exergy per stream is a formula.', BLACK),
  ('  Exergy_Units: exergy balance of every unit (destroyed = in + heat exergy + work - out).', BLACK),
  ('  Exergy_Overall: whole-process exergy in/out, efficiencies, product breakdown.', BLACK),
- ('  CO2_Scope12: Scope 1 and Scope 2 emissions at the 2026-10-07 design point, by heat and electricity source, plus a heat-integrated case.', BLACK),
+ ('  CO2_Scope12: Scope 1 and Scope 2 emissions at the current design point (run 2026-11-06), by heat and electricity source, plus a heat-integrated case.', BLACK),
  ('  Charts: exergy destroyed per unit; CO2 per kg H2 by case.', BLACK),
  ('', BLACK),
- ('Data versions: exergy uses the 2026-10-06 results stored in the .bkp; CO2 uses the 2026-10-07 design point (docs/results_2026-10-07.md).', BLACK),
- ('To update exergy: on Windows run the .bkp and save it from the GUI (no input change), then re-run make_workbook.py.', BLACK),
+ ('Data version: exergy and CO2 both use the Aspen run of 2026-11-06 of the current model (pyrolysis reversible, at equilibrium; C1/C2).', BLACK),
+ ('To update: run the model through COM, save the results copy to analysis/data/, point bkp_streams.py at it, then re-run make_workbook.py.', BLACK),
  ('Method and findings: analysis/exergy_analysis.md and analysis/co2_scope1_2.md.', BLACK),
 ]
 for i, (t, f) in enumerate(lines, 1): put(rd, i, 1, t, f).alignment = Alignment(wrap_text=True)
@@ -69,21 +69,22 @@ rows = [
  ('xCO', 'Standard chemical exergy CO', 275.10, 'kJ/mol', 'Szargut (1989)'),
  ('xCH4', 'Standard chemical exergy CH4', 831.65, 'kJ/mol', 'Szargut (1989)'),
  ('xH2Og', 'Standard chemical exergy H2O (gas)', 9.50, 'kJ/mol', 'Szargut (1989)'),
+ ('xCO2', 'Standard chemical exergy CO2', 19.87, 'kJ/mol', 'Szargut (1989)'),
  ('Ts_lo', 'Heat-source temperature, digester heating (RSTOIC, B1)', 90, 'C', 'ASSUMPTION: hot water'),
  ('Ts_hi', 'Heat-source temperature, 790 C heating (HEAT2, CH4PYRO)', 1000, 'C', 'ASSUMPTION: fired furnace'),
  ('Ts_cw', 'Cooling-water temperature (heat rejected carries no exergy)', 25, 'C', 'Equal to T0'),
- ('CO2: design point (Aspen run 2026-10-07, docs/results_2026-10-07.md)',),
- ('H2kg', 'Hydrogen produced', 4.65, 'kg/h', 'FINPROD, 2.307 kmol/h'),
+ ('CO2: design point (Aspen run 2026-11-06, current model after C1/C2)',),
+ ('H2kg', 'Hydrogen produced', 4.455, 'kg/h', 'FINPROD, 2.2100 kmol/h'),
  ('hrs', 'Operating hours', 8000, 'h/yr', 'ASSUMPTION'),
- ('q_rst', 'Heat, RSTOIC (hydrolysis + feed to 55 C)', 24.74, 'kW', 'Aspen 2026-10-07'),
- ('q_b1', 'Heat, B1 digester', 3.51, 'kW', 'Aspen 2026-10-07'),
- ('q_h2', 'Heat, HEAT2 (30 -> 790 C)', 20.42, 'kW', 'Aspen 2026-10-07'),
- ('q_pyr', 'Heat, CH4PYRO reactor', 38.06, 'kW', 'Aspen 2026-10-07'),
- ('elec', 'Electricity, compressors COMP1 + COMP2', 5.69, 'kW', 'Aspen 2026-10-07'),
- ('per', 'Permeate flow (PER)', 0.580, 'kmol/h', 'Aspen 2026-10-07'),
- ('per_ch4', 'CH4 mole fraction in permeate', 0.070, '-', 'From CH4 recovery 97.1 %'),
- ('per_co2', 'CO2 mole fraction in permeate', 0.922, '-', 'From CO2 removal 56.3 %'),
- ('co_prod', 'CO in pyrolysis product', 0.4154, 'kmol/h', 'Derived (CO2 in RET fully converted by RWGS)'),
+ ('q_rst', 'Heat, RSTOIC (hydrolysis + feed to 55 C)', 24.738, 'kW', 'Aspen run 2026-11-06 (current model)'),
+ ('q_b1', 'Heat, B1 digester', 3.511, 'kW', 'Aspen run 2026-11-06 (current model)'),
+ ('q_h2', 'Heat, HEAT2 (30 -> 790 C)', 20.417, 'kW', 'Aspen run 2026-11-06 (current model)'),
+ ('q_pyr', 'Heat, CH4PYRO reactor', 35.443, 'kW', 'Aspen run 2026-11-06 (current model)'),
+ ('elec', 'Electricity, compressors COMP1 + COMP2', 5.686, 'kW', 'Aspen run 2026-11-06 (current model)'),
+ ('per', 'Permeate flow (PER)', 0.57915, 'kmol/h', 'Aspen run 2026-11-06 (current model)'),
+ ('per_ch4', 'CH4 mole fraction in permeate', 0.07130, '-', 'Aspen run 2026-11-06 (current model)'),
+ ('per_co2', 'CO2 mole fraction in permeate', 0.92220, '-', 'Aspen run 2026-11-06 (current model)'),
+ ('co_prod', 'CO in pyrolysis product', 0.35211, 'kmol/h', 'Aspen run 2026-11-06 (current model); RWGS at equilibrium'),
  ('CO2: factors',),
  ('eta_lo', 'Boiler efficiency (digester heat)', 0.90, '-', 'ASSUMPTION'),
  ('eta_hi', 'Fired-furnace efficiency (790 C heat)', 0.80, '-', 'ASSUMPTION'),
@@ -100,11 +101,11 @@ rows = [
  ('lc_solar', 'Lifecycle, solar PV utility (information)', 0.048, 'kg CO2e/kWh', 'IPCC AR5 WGIII Annex III median'),
  ('limit', 'India Green Hydrogen Standard limit', 2.0, 'kg CO2e/kg H2', 'MNRE, Aug 2023 (well-to-gate)'),
  ('Heat-integration screening case (not a pinch analysis)',),
- ('dig', 'Digestate flow (LIQUID)', 823.3, 'kg/h', 'Aspen 2026-10-06'),
+ ('dig', 'Digestate flow (LIQUID)', 821.1, 'kg/h', 'Aspen run 2026-11-06 (current model)'),
  ('cpw', 'Digestate heat capacity', 4.18, 'kJ/kg-K', 'Water'),
  ('dig_t1', 'Digestate temperature in', 55, 'C', 'B1 temperature'),
  ('dig_t2', 'Digestate cooled to', 30, 'C', 'ASSUMPTION (about 7 K approach to 23 C feed)'),
- ('hotprod', 'Sensible heat in hot product, 790 -> 30 C', 25.3, 'kW', 'exergy.py (24.0 kW, 2026-10-06) x 1.053 flow ratio'),
+ ('hotprod', 'Sensible heat in hot product, 790 -> 30 C', round(X.Qhot, 1), 'kW', 'exergy.py (run 2026-11-06)'),
  ('rec_frac', 'Share of HEAT2 duty recoverable from hot product', 0.90, '-', 'ASSUMPTION (about 50 K approach)'),
  ('co_lhv', 'LHV of CO', 283.0, 'MJ/kmol', 'Standard value'),
 ]
@@ -119,7 +120,7 @@ def a(k): return A[k]
 
 # ------------------------------------------------------------------ Streams
 st = wb.create_sheet('Streams'); widths(st, [24, 11, 11, 9, 8, 11, 12, 12, 10, 10, 10, 10, 10, 12, 12])
-put(st, 1, 1, 'Stream results stored in files/Memb-Integration-1.bkp (2026-10-06 GUI run)', TITLE)
+put(st, 1, 1, 'Stream results of the Aspen run of 2026-11-06 (current model; analysis/data/Memb-Integration-1_results_2026-11-06.bkp)', TITLE)
 put(st, 2, 1, 'H and S are Aspen values on its formation basis (elements at 25 C, 1 atm = 0). Exergy = F(H - T0 S)/3.6 + element-exergy terms. Element flows in kmol/h of atoms.')
 hdr(st, 4, ['Stream', 'From', 'To', 'T (C)', 'P (bar)', 'Flow (kmol/h)', 'H (kJ/mol)', 'S (J/mol-K)', 'C', 'H', 'O', 'N', 'S',
             'Enthalpy flow (kW)', 'Exergy (kW)'])
@@ -216,20 +217,20 @@ orow('tout', 'Total exergy out + destroyed', f'=SUM(B{O["prod"]}:B{O["dest"]})',
 orow('chk', 'Check: in - (out + destroyed)  (should be 0)', f'=B{O["tin"]}-B{O["tout"]}', '', fmt='0.000')
 for k in ['bio', 'wat', 'el', 'qx']: put(eo, O[k], 3, f'=B{O[k]}/B{O["tin"]}', BLACK, '0.0%')
 for k in ['prod'] + ['l_' + x for x, _ in lost] + ['dest']: put(eo, O[k], 3, f'=B{O[k]}/B{O["tin"]}', BLACK, '0.0%')
-r += 1; put(eo, r, 1, 'Product breakdown (FINPROD composition, kmol/h; Aspen A1 table)', bold=True); r += 1
+r += 1; put(eo, r, 1, 'Product breakdown (FINPROD composition, kmol/h; Aspen run 2026-11-06)', bold=True); r += 1
 for k, lab, v in [('nH2', 'H2', X.fin['n']['HYDROGEN']), ('nCO', 'CO', X.fin['n']['CO']), ('nW', 'H2O (vapour)', X.fin['n']['WATER']),
-                  ('nM', 'CH4', X.fin['n']['METHANE']), ('nC', 'Solid carbon', X.nC)]:
+                  ('nM', 'CH4', X.fin['n']['METHANE']), ('nD', 'CO2', X.fin['n']['CO2']), ('nC', 'Solid carbon', X.nC)]:
     orow(k, '  ' + lab + ' (kmol/h)', v, 'Input', BLUE, '0.00000')
-orow('ngas', '  Gas total (kmol/h)', f'=B{O["nH2"]}+B{O["nCO"]}+B{O["nW"]}+B{O["nM"]}', '', fmt='0.0000')
+orow('ngas', '  Gas total (kmol/h)', f'=B{O["nH2"]}+B{O["nCO"]}+B{O["nW"]}+B{O["nM"]}+B{O["nD"]}', '', fmt='0.0000')
 orow('exH2', 'Chemical exergy of H2', f'=B{O["nH2"]}*{a("xH2")}/3.6', 'n x standard exergy')
 orow('exC', 'Chemical exergy of solid carbon', f'=B{O["nC"]}*{a("exC")}/3.6', '')
 orow('exCO', 'Chemical exergy of CO', f'=B{O["nCO"]}*{a("xCO")}/3.6', '')
 orow('exmix', 'Chemical exergy of whole gas (incl. H2O, CH4, mixing)',
-     f'=(B{O["nH2"]}*{a("xH2")}+B{O["nCO"]}*{a("xCO")}+B{O["nW"]}*{a("xH2Og")}+B{O["nM"]}*{a("xCH4")}'
+     f'=(B{O["nH2"]}*{a("xH2")}+B{O["nCO"]}*{a("xCO")}+B{O["nW"]}*{a("xH2Og")}+B{O["nM"]}*{a("xCH4")}+B{O["nD"]}*{a("xCO2")}'
      f'+{a("Rg")}*{a("T0")}*(B{O["nH2"]}*LN(B{O["nH2"]}/B{O["ngas"]})+B{O["nCO"]}*LN(B{O["nCO"]}/B{O["ngas"]})'
-     f'+B{O["nW"]}*LN(B{O["nW"]}/B{O["ngas"]})+B{O["nM"]}*LN(B{O["nM"]}/B{O["ngas"]})))/3.6', 'Ideal-gas mixture')
+     f'+B{O["nW"]}*LN(B{O["nW"]}/B{O["ngas"]})+B{O["nM"]}*LN(B{O["nM"]}/B{O["ngas"]})+B{O["nD"]}*LN(B{O["nD"]}/B{O["ngas"]})))/3.6', 'Ideal-gas mixture')
 orow('phys', 'Physical exergy of hot product (790 C)', f'=B{O["prod"]}-B{O["exmix"]}-B{O["exC"]}', 'Recoverable by an economiser')
-orow('hot', 'Sensible heat of hot product, 790 -> 30 C (energy)', 24.0, 'exergy.py (2026-10-06)', BLUE)
+orow('hot', 'Sensible heat of hot product, 790 -> 30 C (energy)', round(X.Qhot, 1), 'exergy.py (run 2026-11-06)', BLUE)
 r += 1; put(eo, r, 1, 'Exergy efficiency', bold=True); r += 1
 orow('e1', 'H2 only', f'=B{O["exH2"]}/B{O["tin"]}', '', fmt='0.0%', fill=YEL, bold=True)
 orow('e2', 'H2 + solid carbon', f'=(B{O["exH2"]}+B{O["exC"]})/B{O["tin"]}', '', fmt='0.0%', fill=YEL, bold=True)
@@ -238,7 +239,7 @@ orow('e4', 'Whole product stream', f'=B{O["prod"]}/B{O["tin"]}', '', fmt='0.0%')
 
 # ------------------------------------------------------------------ CO2_Scope12
 co = wb.create_sheet('CO2_Scope12'); widths(co, [56, 14, 14, 14, 14, 50])
-put(co, 1, 1, 'CO2 emissions, Scope 1 + 2, design point 2026-10-07 (GHG Protocol)', TITLE)
+put(co, 1, 1, 'CO2 emissions, Scope 1 + 2, current design point (Aspen run 2026-11-06; GHG Protocol)', TITLE)
 put(co, 2, 1, 'Biogenic CO2 is reported separately (not Scope 1). Biogenic CH4 that escapes is Scope 1.')
 hdr(co, 3, ['Item', 'Value', 'Unit', '', '', 'Basis']); r = 4; C = {}
 def crow(k, lab, f, unit='', note='', fmt='#,##0.00', font=BLACK, fill=None, bold=False):

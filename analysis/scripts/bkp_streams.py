@@ -1,9 +1,10 @@
-"""Decode stored stream results (T, P, flows, H, S) from files/Memb-Integration-1.bkp.
-Results are those saved with the .bkp (currently the 2026-10-06 GUI run). Read-only."""
+"""Decode stored stream results (T, P, flows, H, S) from a .bkp with results.
+Source: analysis/data/Memb-Integration-1_results_2026-11-06.bkp = COM run of the current files/Memb-Integration-1.bkp
+(after C1/C2), saved only for its results; it is not the model (COM SaveAs drops a MEMB1 spec). Read-only."""
 import re,json
 names="WATER GLYCEROL OLEICACI DEXTROSE ACETI-AC PROPI-01 ISOBU-01 ISOVA-01 H+ OH- NH3 NH4+ CO2 C5H7NO2 ARGININE LYSINE TYROSINE TRYPTOPH PHENYLAL CYSTEINE METHIONI THREONIN SERINE LEUCINE ISOLEUCI VALINE GLUTAMIC ASPARTIC GLYCINE ALANINE PROLINE HYDROGEN METHANE INDOLE FROMAMID H2S CH4S BENZENE PHENOL H2CO3 HCO3- CO3-2 HS- CELLULOS HEMECELL GLUCOSE TRIOLEIN TRIPALM PALM SN-1--01 SN-1--02 XYLOSE FURFURAL LINOLEIC STARCH ETHANOL PROT KERATIN ACETATE INERT CO CARBON".split()
 import os
-BKP=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','..','files','Memb-Integration-1.bkp')
+BKP=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','data','Memb-Integration-1_results_2026-11-06.bkp')
 L=open(BKP,errors='replace').read().replace('\r','').split('\n')
 def grab(i):
     buf=L[i].split('(',1)[1]; j=i+1

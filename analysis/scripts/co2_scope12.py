@@ -1,14 +1,14 @@
-"""Scope 1 + 2 CO2 emissions at the 2026-10-07 design point. Run: python3 co2_scope12.py"""
-# Scope 1 + 2 CO2 emissions, design point = Aspen run 2026-10-07 (docs/results_2026-10-07.md)
-H2=4.65                     # kg/h
-heat={'RSTOIC':24.74,'B1':3.51,'HEAT2':20.42,'CH4PYRO':38.06}   # kW
+"""Scope 1 + 2 CO2 emissions at the current design point (Aspen run 2026-11-06, after C1/C2). Run: python3 co2_scope12.py"""
+# Scope 1 + 2 CO2 emissions, design point = Aspen run 2026-11-06 of the current model (analysis/data/; docs/results_2026-10-07.md, 2026-10-09 block)
+H2=2.21004*2.01588          # kg/h (4.455)
+heat={'RSTOIC':24.738,'B1':3.511,'HEAT2':20.417,'CH4PYRO':35.443}   # kW
 lowT=heat['RSTOIC']+heat['B1']; highT=heat['HEAT2']+heat['CH4PYRO']
-elec=5.69                   # kW compressors
+elec=2.818+2.868             # kW compressors
 eta_lo,eta_hi=0.90,0.80     # boiler (hot water), fired furnace -- assumptions
 EF_NG=56.1                  # kg CO2/GJ, IPCC 2006 Vol.2 Table 2.2 (NCV)
 GWP=27.0                    # non-fossil CH4, IPCC AR6 (GHG Protocol GWP table Aug 2024)
-ch4_slip=0.580*0.070*16.043 # kg/h CH4 in permeate
-co2_perm=0.580*0.922*44.01  # kg/h biogenic CO2 in permeate
+ch4_slip=0.041296*16.043     # kg/h CH4 in permeate
+co2_perm=0.534092*44.01      # kg/h biogenic CO2 in permeate
 flare_eff=0.98
 grid={'India grid (CEA v20, FY23-24)':0.727,'Coal/thermal (CEA operating margin)':0.962,'Hydro':0.0,'Solar PV':0.0}
 life={'India grid (CEA v20, FY23-24)':None,'Coal/thermal (CEA operating margin)':0.820,'Hydro':0.024,'Solar PV':0.048}
@@ -26,19 +26,19 @@ for k,f in grid.items():
     tA=s1_heat_ng+s1_flare+s2; tB=s1_flare+s2e
     lc='' if life[k] is None else f' | lifecycle elec-heat case {(elec+lowT+highT)*life[k]/H2:.2f}'
     print(f'{k:38s} EF {f:.3f}: S2 {s2:.2f} kg/h | A) NG heat: total {tA:.1f} kg/h = {tA/H2:.2f} kg/kg | B) electric heat: total {tB:.1f} kg/h = {tB/H2:.2f} kg/kg{lc}')
-# CO-rich offgas as fuel: CO in product 0.4154 kmol/h * 283.0 MJ/kmol LHV
-co_kw=0.4154*283.0/3.6
+# CO-rich offgas as fuel: CO in product 0.35211 kmol/h * 283.0 MJ/kmol LHV
+co_kw=0.35211*283.0/3.6
 print(f'\nCO in product as fuel: {co_kw:.1f} kW LHV (biogenic); covers {co_kw*eta_hi/highT*100:.0f}% of the high-T heat')
 print('annual (8000 h):',{k:round(v*8,1) for k,v in {'S1 NG heat t/yr':s1_heat_ng,'S2 grid t/yr':elec*0.727,'CH4 vent t CO2e/yr':s1_vent}.items()})
 
 # ---- screening heat-integration case (NOT a pinch analysis; indicative only)
-dig=823.3*4.18*(55-30)/3600            # digestate 55 -> 30 C preheats the feed (2026-10-06 digestate flow)
+dig=821.1*4.18*(55-30)/3600            # digestate 55 -> 30 C preheats the feed (LIQUID 821.1 kg/h, run 2026-11-06)
 ext_lo=max(0,lowT-dig)
-prod_heat=24.0*1.053                   # sensible heat of hot product 790 -> 30 C (exergy.py, 10-06) scaled to 10-07 flow
+prod_heat=25.1                         # sensible heat of hot product 790 -> 30 C (exergy.py, run 2026-11-06)
 rec_hi=min(heat['HEAT2']*0.9,prod_heat)
 co_heat=co_kw*eta_hi                   # CO in product burned for high-T heat
 ext_hi=max(0,heat['HEAT2']-rec_hi+heat['CH4PYRO']-co_heat)
 fuel=(ext_lo/eta_lo+ext_hi/eta_hi)*3.6/1000
 s1=fuel*EF_NG+s1_flare; s2=elec*0.727
 print(f'\nHeat-integrated screening case: digestate heat {dig:.1f} kW, product heat recovered {rec_hi:.1f} kW, CO fuel heat {co_heat:.1f} kW')
-print(f'external heat {ext_lo+ext_hi:.1f} kW (base 86.7); S1 {s1:.2f} + S2 grid {s2:.2f} = {(s1+s2)/H2:.2f} kg CO2e/kg H2; with solar electricity {s1/H2:.2f}')
+print(f'external heat {ext_lo+ext_hi:.1f} kW (base {lowT+highT:.1f}); S1 {s1:.2f} + S2 grid {s2:.2f} = {(s1+s2)/H2:.2f} kg CO2e/kg H2; with solar electricity {s1/H2:.2f}')

@@ -4,10 +4,10 @@ T0=298.15; R=8.314462
 KCAL=4.184
 from bkp_streams import out as d
 # --- fixes for streams Aspen did not store fully
-d['METH.RET']['S']=d['METH.PROD4']['S']-1.98720*math.log(10.0/1.0)   # ideal gas, same comp/T, 10 bar vs 1 bar
-fin=d['METH.FINPROD']; nC=1.2908
+if d['METH.RET'].get('S') in (None,'*'): d['METH.RET']['S']=d['METH.PROD4']['S']-1.98720*math.log(10.0/1.0)   # ideal gas, same comp/T, 10 bar vs 1 bar
+fin=d['METH.FINPROD']; nC=1.27913                       # Aspen run 2026-11-06 (after C1/C2)
 fin['F']=fin['F']-nC                                    # MIXED substream only
-fin['n']={'HYDROGEN':2.1907,'CO':0.3945,'WATER':0.3945,'METHANE':0.00003}
+fin['n']={'HYDROGEN':2.21004,'CO':0.35211,'WATER':0.35211,'METHANE':0.08040,'CO2':0.06326}
 fin['carbon']=nC
 # graphite (CISOLID) at T: H=int cp dT, S=int cp/T dT from 298.15 (formation basis, element reference)
 def graphite(T):
@@ -67,19 +67,19 @@ def Hk(nm):
 # INERT: B of its own is in the stream B; remove it consistently: not separable -> it cancels in every unit (no reaction).
 blocks=[  # name, inlets, outlets, Q (kW, + = heat in), W (kW), heat-source/sink T (C), area
 ('MIX1',['BIOMASS','WATERIN'],['FEED'],0,0,None,'Digestion'),
-('RSTOIC',['FEED'],['5'],25.036,0,90,'Digestion'),
-('B1 digester',['5'],['BIOGAS','LIQUID'],3.428,0,90,'Digestion'),
-('FLASH',['BIOGAS'],['GAS','H2O1'],-5.297,0,25,'Gas cleanup'),
+('RSTOIC',['FEED'],['5'],24.738,0,90,'Digestion'),
+('B1 digester',['5'],['BIOGAS','LIQUID'],3.511,0,90,'Digestion'),
+('FLASH',['BIOGAS'],['GAS','H2O1'],-5.481,0,25,'Gas cleanup'),
 ('H2S-SEP',['GAS'],['GAS2','H2S'],None,0,25,'Gas cleanup'),
 ('NH3SEP',['GAS2'],['GAS3','NH3'],None,0,25,'Gas cleanup'),
-('COMP1',['METH.GAS2'],['METH.C1OUT'],0,2.710,None,'Compression'),
-('COOL1',['METH.C1OUT'],['METH.K1OUT'],-2.596,0,25,'Compression'),
-('COMP2',['METH.K1OUT'],['METH.C2OUT'],0,2.758,None,'Compression'),
-('COOL2',['METH.C2OUT'],['METH.GAS2C'],-2.758,0,25,'Compression'),
+('COMP1',['METH.GAS2'],['METH.C1OUT'],0,2.818,None,'Compression'),
+('COOL1',['METH.C1OUT'],['METH.K1OUT'],-2.699,0,25,'Compression'),
+('COMP2',['METH.K1OUT'],['METH.C2OUT'],0,2.868,None,'Compression'),
+('COOL2',['METH.C2OUT'],['METH.GAS2C'],-2.868,0,25,'Compression'),
 ('MEMB1',['METH.GAS2C'],['METH.RET','METH.PER'],None,0,25,'Membrane'),
 ('FLASH3 (10 to 1 bar)',['METH.RET'],['METH.PROD4'],None,0,25,'Membrane'),
-('HEAT2',['METH.PROD4'],['METH.PYROIN'],19.385,0,1000,'Pyrolysis'),
-('CH4PYRO',['METH.PYROIN'],['METH.FINPROD'],None,0,1000,'Pyrolysis'),
+('HEAT2',['METH.PROD4'],['METH.PYROIN'],20.417,0,1000,'Pyrolysis'),
+('CH4PYRO',['METH.PYROIN'],['METH.FINPROD'],35.443,0,1000,'Pyrolysis'),
 ]
 rows=[]
 for nm,i,o,Q,W,Ts,area in blocks:
@@ -100,29 +100,29 @@ print('total destroyed',round(tot,2))
 for nm in d:
     if d[nm]['F']: print('EX',nm,round(Ex(nm),3))
 
-# ---------------- overall balance (2026-10-06 stored run)
+# ---------------- overall balance (run 2026-11-06, current model)
 exch={'HYDROGEN':236.09,'CO':275.10,'WATER':9.50,'METHANE':831.65,'CO2':19.87}
 n=fin['n']; Fg=sum(n.values())
 ch_gas=sum(v*exch[c] for c,v in n.items())+Fg*R*T0/1000*sum((v/Fg)*math.log(v/Fg) for v in n.values() if v>0)
 ch_fin=(ch_gas+nC*410.26)/3.6
 phys_fin=Ex('METH.FINPROD')-ch_fin
-ExQ_in=sum(r['ExQ'] for r in rows); W=2.710+2.758; Q_in=sum((r['Q_aspen'] if r['Q_aspen'] is not None else r['Q_balance']) for r in rows if (r['Q_aspen'] or r['Q_balance'])>0.5)
+ExQ_in=sum(r['ExQ'] for r in rows); W=sum(b[4] for b in blocks); Q_in=sum((r['Q_aspen'] if r['Q_aspen'] is not None else r['Q_balance']) for r in rows if (r['Q_aspen'] or r['Q_balance'])>0.5)
 inp=Ex('BIOMASS')+Ex('WATERIN')+W+ExQ_in
 out_p=Ex('METH.FINPROD')
 lost={k:Ex(k) for k in ['LIQUID','METH.PER','H2S','NH3','H2O1']}
 print('\nINPUT  biomass %.1f water %.1f elec %.2f heat-exergy %.2f (heat energy %.1f kW) = %.1f kW'%(Ex('BIOMASS'),Ex('WATERIN'),W,ExQ_in,Q_in,inp))
-print('PRODUCT FINPROD %.1f  (H2 %.1f, C %.1f, CO %.1f, physical/hot %.1f)'%(out_p,2.1907*236.09/3.6,nC*410.26/3.6,.3945*275.1/3.6,phys_fin))
+print('PRODUCT FINPROD %.1f  (H2 %.1f, C %.1f, CO %.1f, physical/hot %.1f)'%(out_p,n['HYDROGEN']*236.09/3.6,nC*410.26/3.6,n['CO']*275.1/3.6,phys_fin))
 print('LOST STREAMS',{k:round(v,1) for k,v in lost.items()},'sum %.1f'%sum(lost.values()))
 print('DESTROYED %.1f ; check in-out-lost %.1f'%(tot,inp-out_p-sum(lost.values())))
-print('eff H2 only %.1f%%, H2+C %.1f%%, H2+C+CO %.1f%%, all FINPROD %.1f%%'%(100*2.1907*236.09/3.6/inp,100*(2.1907*236.09+nC*410.26)/3.6/inp,100*(2.1907*236.09+nC*410.26+.3945*275.1)/3.6/inp,100*out_p/inp))
+print('eff H2 only %.1f%%, H2+C %.1f%%, H2+C+CO %.1f%%, all FINPROD %.1f%%'%(100*n['HYDROGEN']*236.09/3.6/inp,100*(n['HYDROGEN']*236.09+nC*410.26)/3.6/inp,100*(n['HYDROGEN']*236.09+nC*410.26+n['CO']*275.1)/3.6/inp,100*out_p/inp))
 # heat available in hot product (790 C -> 30 C), energy
 dHfin=Hk('METH.FINPROD')
 # product cooled to 30C: recompute enthalpy with same comp ideal gas cp (SVNA) + graphite
-cpR={'HYDROGEN':(3.249,0.422e-3,0,0.083e5),'CO':(3.376,0.557e-3,0,-0.031e5),'WATER':(3.470,1.450e-3,0,0.121e5),'METHANE':(1.702,9.081e-3,-2.164e-6,0)}
+cpR={'HYDROGEN':(3.249,0.422e-3,0,0.083e5),'CO':(3.376,0.557e-3,0,-0.031e5),'WATER':(3.470,1.450e-3,0,0.121e5),'METHANE':(1.702,9.081e-3,-2.164e-6,0),'CO2':(5.457,1.045e-3,0,-1.157e5)}
 def dh(c,T1,T2):
     A,B,C,D=cpR[c]; return R*(A*(T2-T1)+B/2*(T2**2-T1**2)+C/3*(T2**3-T1**3)-D*(1/T2-1/T1))/1000
 Qhot=(sum(v*dh(c,303.15,1063.15) for c,v in n.items())+nC*(graphite(1063.15)[0]-graphite(303.15)[0]))/3.6
-print('Sensible heat in hot product 790->30 C: %.1f kW (HEAT2 needs 19.4 kW)'%Qhot)
+print('Sensible heat in hot product 790->30 C: %.1f kW (HEAT2 needs %.1f kW)'%(Qhot,[b[3] for b in blocks if b[0]=='HEAT2'][0]))
 area={}
 for r in rows: area[r['area']]=area.get(r['area'],0)+r['Ex_dest']
 print('by area',{k:round(v,1) for k,v in area.items()})

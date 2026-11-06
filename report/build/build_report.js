@@ -53,18 +53,18 @@ const body = [];
 // Title page
 body.push(new Paragraph({ spacing: { before: 2400 }, alignment: AlignmentType.CENTER, children: [new TextRun({ text: 'Green Hydrogen from Organic Waste:', bold: true, size: 44, color: GREEN, font: 'Cambria' })] }),
   new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 400 }, children: [new TextRun({ text: 'Biogas Upgrading with a Zeolite Membrane and Catalytic Methane Pyrolysis', bold: true, size: 32, color: GREEN, font: 'Cambria' })] }),
-  new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 120 }, children: [new TextRun({ text: 'BTP-1 Report', size: 28 })] }),
-  new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 120 }, children: [new TextRun({ text: 'Arghadeep', size: 26, bold: true })] }),
-  new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 120 }, children: [new TextRun({ text: 'November 2026', size: 24 })] }),
+  new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 120 }, children: [new TextRun({ text: 'BTP-1 2026 Report', size: 28 })] }),
+  new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 120 }, children: [new TextRun({ text: 'Arghadeep Ghosh', size: 26, bold: true })] }),
+  new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 120 }, children: [new TextRun({ text: '23CH3FP53', size: 24, bold: true  })] }),
   new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 1600 }, children: [new TextRun({ text: 'Process simulation in Aspen Plus V14 and Aspen Custom Modeler', size: 22, italics: true, color: '5E6B66' })] }));
 
 body.push(H1('Abstract'));
-body.push(P('Wet organic waste is mostly landfilled, where it releases methane and its energy is lost. This work designs and analyses a process that converts such waste into hydrogen. Biogas from thermophilic anaerobic digestion is cleaned, compressed and upgraded in a DDR zeolite membrane, and the methane-rich retentate is cracked at 790 °C over a catalyst into hydrogen and solid carbon. The process was simulated in Aspen Plus V14; a key part of the work is a **custom membrane module developed in Aspen Custom Modeler (ACM)** and integrated into the flowsheet. The developed and verified model converts 8.5 t/d of wet biomass into **4.65 kg/h of H_{2}** and **16.3 kg/h of solid carbon**. The membrane raises methane from 59.4 % to 76.4 % with 97.1 % methane recovery.'));
-body.push(P('The process needs 86.7 kW of heat and 5.7 kW of electricity, which is 18.6 kWh of heat and 1.22 kWh of electricity per kg of H_{2}. Two-thirds of the heat goes to the 790 °C pyrolysis section. An exergy analysis shows that 76 kW of exergy is destroyed, 80 % of it in hydrolysis and digestion, and that the digestate carries a third of the input exergy out of the process. The exergy efficiency is 22 % for H_{2} alone and 45 % for H_{2} plus solid carbon. Scope 1 + 2 emissions are 5.5 kg CO_{2}e per kg H_{2} with natural-gas heating and grid electricity. A screening heat-integration case (digestate heat recovery, a product economiser and use of the CO off-gas as fuel) cuts external heat by about 79 % and emissions to about 1.9 kg CO_{2}e per kg H_{2}, below the 2 kg limit of the India Green Hydrogen Standard. These results define the BTP-2 work: an economiser and energy analysis, followed by pinch analysis and optimisation.'));
+body.push(P('Wet organic waste is mostly landfilled, where it releases methane and its energy is lost. This work designs and analyses a process that converts such waste into hydrogen. Biogas from thermophilic anaerobic digestion is cleaned, compressed and upgraded in a DDR zeolite membrane, and the methane-rich retentate is cracked at 790 °C over a catalyst into hydrogen and solid carbon. The process was simulated in Aspen Plus V14; a key part of the work is a **custom membrane module developed in Aspen Custom Modeler (ACM)** and integrated into the flowsheet. The developed and verified model converts 8.5 t/d of wet biomass into **4.46 kg/h of H_{2}** and **15.4 kg/h of solid carbon**. The membrane raises methane from 59.4 % to 76.4 % with 97.1 % methane recovery.'));
+body.push(P('The process needs 84.1 kW of heat and 5.7 kW of electricity, which is 18.9 kWh of heat and 1.28 kWh of electricity per kg of H_{2}. Two-thirds of the heat goes to the 790 °C pyrolysis section. An exergy analysis shows that 78 kW of exergy is destroyed, 79 % of it in hydrolysis and digestion, and that the digestate carries about 30 % of the input exergy out of the process. The exergy efficiency is 22 % for H_{2} alone and 45 % for H_{2} plus solid carbon. Scope 1 + 2 emissions are 5.6 kg CO_{2}e per kg H_{2} with natural-gas heating and grid electricity. A screening heat-integration case (digestate heat recovery, a product economiser and use of the CO off-gas as fuel) cuts external heat by about 77 % and emissions to about 2.1 kg CO_{2}e per kg H_{2}, at the 2 kg limit of the India Green Hydrogen Standard (1.2 with solar electricity). These results define the BTP-2 work: an economiser and energy analysis, followed by pinch analysis and optimisation.'));
 
 body.push(H1n('Contents'));
 ['1  Introduction', '2  Process description and simulation model', '3  Results per unit', '4  Material and energy balance', '5  Exergy analysis', '6  CO2 emissions (Scope 1 + 2)',
- '7  Sensitivity: feed pressure vs separation', '8  Membrane models for zeolite membranes', '9  Limitations', '10  Conclusions and future work (BTP-2)', 'References', 'Appendix A: Assumptions']
+ '7  Sensitivity: feed pressure vs separation', '8  Membrane models for zeolite membranes', '9  Limitations', '10  Conclusions and future work (BTP-2)', 'References', 'Appendix A: Assumptions', 'Appendix B: Sources']
   .forEach(t => body.push(new Paragraph({ children: [new TextRun(t.replace('CO2', 'CO₂'))], spacing: { after: 60 } })));
 
 // 1 Introduction
@@ -127,14 +127,14 @@ body.push(H2('3.2  Compression and membrane'));
 body.push(P('Compression to 10 bar needs 5.7 kW. The membrane raises methane from 59.4 % to 76.4 % in the retentate (1.78 kmol/h, 10 bar) and removes 56.3 % of the CO_{2} into a permeate of 92 % CO_{2} (0.58 kmol/h, 1 bar). It keeps 97.1 % of the methane; the remaining 2.9 % leaves with the permeate (Figure 2).'));
 body.push(...FIGURE('fig2_membrane', 400, 240, 'Composition of membrane feed, retentate and permeate (mol %).'));
 body.push(H2('3.3  Pyrolysis and final product'));
-body.push(P('At 790 °C methane is converted almost completely. The reactor produces 2.31 kmol/h of H_{2} (4.65 kg/h, about 110 kg/day) and 1.36 kmol/h of solid carbon (16.3 kg/h). The CO_{2} still in the retentate (23 %) reacts with hydrogen to CO and water, so the product gas is about 73.5 % H_{2}, 13.2 % CO and 13.2 % H_{2}O (about 85 % H_{2} on a dry basis). This side reaction uses about 15 % of the hydrogen that could otherwise be produced.'));
-body.push(P('Both reactions are modelled as irreversible. A check against chemical equilibrium at 790 °C, using Perry’s thermodynamic data, gives about 94 % equilibrium conversion of methane and puts the model’s H_{2} output about 4 % above equilibrium. This is stated as a limitation.'));
+body.push(P('At 790 °C the reactor reaches chemical equilibrium and 94 % of the methane is converted. The reactor produces 2.21 kmol/h of H_{2} (4.46 kg/h, about 107 kg/day) and 1.28 kmol/h of solid carbon (15.4 kg/h). The CO_{2} still in the retentate (23 %) reacts with hydrogen to CO and water (85 % of it is converted), so the product gas is about 72 % H_{2}, 11.5 % CO, 11.5 % H_{2}O, 2.6 % CH_{4} and 2.1 % CO_{2} (about 82 % H_{2} on a dry basis). This side reaction uses about 13 % of the hydrogen that could otherwise be produced.'));
+body.push(P('Both reactions are modelled as reversible. Each has a reverse reaction whose rate constant is the forward rate constant divided by the equilibrium constant at 790 °C (NIST-JANAF thermochemical tables; Perry’s data give the same values within 0.5 %). The outlet therefore sits at chemical equilibrium (checked: K = 19.9 for methane cracking and 0.89 for the shift reaction). The Boudouard reaction (C + CO_{2} ⇌ 2 CO) is not included, because no rate constant has been published for this carbon.'));
 body.push(H2('3.4  Key streams'));
 body.push(CAPT('Key streams at the design point.'));
 body.push(...TBL([['Stream', 'Flow (kmol/h)', 'T (°C)', 'P (bar)', 'CH₄ %', 'CO₂ %', 'H₂ %'],
   ['Biogas to membrane (GAS2C)', '2.358', '30', '10', '59.4', '40.3', '0.3'], ['Retentate (RET)', '1.779', '30', '10', '76.4', '23.4', '0.2'],
   ['Permeate (PER)', '0.580', '30', '1', '7.0', '92.2', '0.6'], ['Pyrolysis feed (PYROIN)', '1.779', '790', '1', '76.4', '23.4', '0.2'],
-  ['Product gas (FINPROD)', '3.137 + 1.359 C(s)', '790', '1', '≈ 0', '≈ 0', '73.5']], [2900, 1700, 800, 800, 900, 900, 900], { zebra: true, align: [0, C_, C_, C_, C_, C_, C_] }));
+  ['Product gas (FINPROD)', '3.058 + 1.279 C(s)', '790', '1', '2.6', '2.1', '72.3']], [2900, 1700, 800, 800, 900, 900, 900], { zebra: true, align: [0, C_, C_, C_, C_, C_, C_] }));
 body.push(SP());
 
 // 4 Balances
@@ -142,18 +142,18 @@ body.push(H1('4  Material and energy balance'));
 body.push(H2('4.1  Material balance'));
 body.push(P('Table 2 shows the overall material balance, which closes exactly. About 92 % of the mass leaves as digestate, so the process is dominated by water.'));
 body.push(CAPT('Overall material balance (kg/h).'));
-body.push(...TBL([['In', 'kg/h', 'Out', 'kg/h'], ['Biomass (wet)', '354.2', 'Digestate (LIQUID)', '821.2'], ['Process water', '541.7', 'Flash water, NH₃ and H₂S purges', '10.3'],
-  ['', '', 'Membrane permeate (mostly CO₂)', '24.2'], ['', '', 'Product gas (H₂ 4.65, CO 11.6, H₂O 7.5)', '23.8'], ['', '', 'Solid carbon', '16.3'],
+body.push(...TBL([['In', 'kg/h', 'Out', 'kg/h'], ['Biomass (wet)', '354.2', 'Digestate (LIQUID)', '821.1'], ['Process water', '541.7', 'Flash water, NH₃ and H₂S purges', '10.4'],
+  ['', '', 'Membrane permeate (mostly CO₂)', '24.2'], ['', '', 'Product gas (H₂ 4.46, CO 9.9, H₂O 6.3, CH₄ 1.3, CO₂ 2.8)', '24.7'], ['', '', 'Solid carbon', '15.4'],
   ['**Total in**', '**895.8**', '**Total out**', '**895.8**']], [2200, 1100, 4400, 1200], { align: [0, R_, 0, R_] }));
 body.push(H2('4.2  Energy balance'));
-body.push(P('The process needs 86.7 kW of heat and 5.7 kW of electricity (Figure 3). The pyrolysis section (preheat to 790 °C and the endothermic reactor) takes 58.5 kW, two-thirds of all heat. Heating the feed to 55 °C in the hydrolysis step takes 24.7 kW, mostly to warm the 13 t/d of process water. Per kg of hydrogen, the process uses 18.6 kWh of heat and 1.22 kWh of electricity. About 11 kW is removed by coolers.'));
+body.push(P('The process needs 84.1 kW of heat and 5.7 kW of electricity (Figure 3). The pyrolysis section (preheat to 790 °C and the endothermic reactor) takes 55.9 kW, two-thirds of all heat. Heating the feed to 55 °C in the hydrolysis step takes 24.7 kW, mostly to warm the 13 t/d of process water. Per kg of hydrogen, the process uses 18.9 kWh of heat and 1.28 kWh of electricity. About 11 kW is removed by coolers.'));
 body.push(...FIGURE('fig3_energy', 440, 230, 'Energy input by unit (kW), design point.'));
 body.push(H2('4.3  Reducing the energy demand'));
-body.push(P('Three heat sources in the process are currently unused: the warm digestate (55 °C), the hot product gas (790 °C, about 24 kW of sensible heat) and the CO in the product gas (32.7 kW on a lower-heating-value basis). Table 3 lists screening estimates for using them; Figure 4 shows the effect.'));
+body.push(P('Three heat sources in the process are currently unused: the warm digestate (55 °C), the hot product gas (790 °C, about 25 kW of sensible heat) and the CO in the product gas (27.7 kW on a lower-heating-value basis). Table 3 lists screening estimates for using them; Figure 4 shows the effect.'));
 body.push(CAPT('Heat-integration options (screening estimates).'));
 body.push(...TBL([['Measure', 'Saving'], ['Digestate (55 → 30 °C) preheats the digester feed', 'about 24 kW of low-temperature heat'],
-  ['Hot product preheats the pyrolysis feed (economiser)', 'about 18 kW (90 % of HEAT2)'], ['Burn the CO in the product gas for the 790 °C heat', 'about 26 kW'],
-  ['Expander on the 10 → 1 bar letdown', 'about 1.6 kW of power'], ['**Together**', '**external heat 86.7 → 18.3 kW (−79 %)**']], [5400, 3500], { zebra: true }));
+  ['Hot product preheats the pyrolysis feed (economiser)', 'about 18 kW (90 % of HEAT2)'], ['Burn the CO in the product gas for the 790 °C heat', 'about 22 kW'],
+  ['Expander on the 10 → 1 bar letdown', 'about 1.7 kW of power'], ['**Together**', '**external heat 84.1 → 19.8 kW (−77 %)**']], [5400, 3500], { zebra: true }));
 body.push(...FIGURE('fig7_heatint', 300, 227, 'External heat demand now and with heat integration (kW).'));
 body.push(P('These are first estimates with approach temperatures of 25–50 K. A pinch analysis is needed to confirm them, and the hot solid carbon must be separated from the product gas before any heat exchanger.'));
 
@@ -164,17 +164,17 @@ body.push(P('The dead state is T_{0} = 25 °C and P_{0} = 1.013 bar. The exergy 
 body.push(EQ('Ex = F · (H − T_{0} S) + Σ_{e} n_{e} · ex°_{e}'));
 body.push(P('For each unit the exergy destroyed is:'));
 body.push(EQ('Ex_{D} = Σ Ex_{in} − Σ Ex_{out} + Q · (1 − T_{0}/T_{s}) + W'));
-body.push(P('Heat is assumed to come from hot water at 90 °C for the digester section and from a furnace at 1000 °C for the pyrolysis section. Heat rejected to cooling water at T_{0} carries no exergy. As a check, the enthalpy change of every unit matches the Aspen duty within 0.1 %, element balances close, and independent textbook exergy calculations for the gas streams agree within 0.12 %.'));
+body.push(P('Heat is assumed to come from hot water at 90 °C for the digester section and from a furnace at 1000 °C for the pyrolysis section. Heat rejected to cooling water at T_{0} carries no exergy. As a check, the enthalpy change of every unit matches the Aspen duty within 0.1 % (0.4 % for the pyrolysis reactor), element balances close, and independent textbook exergy calculations for the gas streams agree within 0.12 %.'));
 body.push(H2('5.2  Exergy destruction per unit'));
-body.push(P('A total of 76 kW of exergy is destroyed (Figure 5). Hydrolysis (38.6 kW) and digestion (21.9 kW) account for 80 %, mostly because the biochemical reactions are inherently irreversible and because the feed is heated with fresh heat. The pyrolysis section destroys 10.4 kW (14 %), mainly through heat transfer from the furnace. The pressure letdown after the membrane destroys 2.7 kW, about half of the compressor work. Compression, membrane and gas cleanup together account for less than 4 %.'));
+body.push(P('A total of 78 kW of exergy is destroyed (Figure 5). Hydrolysis (39.1 kW) and digestion (22.5 kW) account for 79 %, mostly because the biochemical reactions are inherently irreversible and because the feed is heated with fresh heat. The pyrolysis section destroys 11.0 kW (14 %), mainly through heat transfer from the furnace. The pressure letdown after the membrane destroys 2.8 kW, about half of the compressor work. Compression, membrane and gas cleanup together account for less than 4 %.'));
 body.push(...FIGURE('fig4_exergy_units', 440, 257, 'Exergy destroyed per unit (kW).'));
 body.push(H2('5.3  Whole-process exergy balance'));
 body.push(CAPT('Whole-process exergy balance (kW).'));
-body.push(...TBL([['Exergy in', 'kW', 'Exergy out', 'kW'], ['Biomass', '585.4', 'Product: H₂ 143.7, carbon 147.1, CO 30.1, heat 11.6', '332.0'],
-  ['Process water', '7.8', 'Digestate (lost)', '207.1'], ['Electricity', '5.5', 'Permeate (lost)', '12.6'], ['Heat (exergy of 83.8 kW)', '47.5', 'H₂S, NH₃ and water purges (lost)', '18.3'],
-  ['', '', 'Destroyed in units', '76.3'], ['**Total**', '**646.2**', '**Total**', '**646.2**']], [2300, 900, 4800, 900], { align: [0, R_, 0, R_] }));
+body.push(...TBL([['Exergy in', 'kW', 'Exergy out', 'kW'], ['Biomass', '585.4', 'Product: H₂ 144.9, carbon 145.8, CO 26.9, heat 12.2, other gases 18.0', '347.7'],
+  ['Process water', '7.8', 'Digestate (lost)', '191.0'], ['Electricity', '5.7', 'Permeate (lost)', '12.6'], ['Heat (exergy of 84.1 kW)', '47.8', 'H₂S, NH₃ and water purges (lost)', '17.1'],
+  ['', '', 'Destroyed in units', '78.3'], ['**Total**', '**646.8**', '**Total**', '**646.8**']], [2300, 900, 4800, 900], { align: [0, R_, 0, R_] }));
 body.push(...FIGURE('fig5_exergy_overall', 440, 176, 'Where the input exergy goes.'));
-body.push(P('The exergy efficiency is **22 %** if only hydrogen is counted and **45 %** if the solid carbon is counted as a product. The largest single loss is the digestate, which carries 207 kW (a third of the input) as undigested organic matter and warm water.'));
+body.push(P('The exergy efficiency is **22 %** if only hydrogen is counted and **45 %** if the solid carbon is counted as a product. The largest single loss is the digestate, which carries 191 kW (about 30 % of the input) as undigested organic matter and warm water.'));
 body.push(H2('5.4  Problems identified and the BTP-2 plan'));
 body.push(CAPT('Problems identified by the exergy analysis and proposed solutions.'));
 body.push(...TBL([['Problem', 'Proposed solution (BTP-2)'], ['Hot product at 790 °C is not used', 'Economiser: preheat the pyrolysis feed'],
@@ -187,18 +187,18 @@ body.push(H1('6  CO₂ emissions (Scope 1 + 2)'));
 body.push(H2('6.1  Boundary and method'));
 body.push(P('Emissions follow the GHG Protocol [8]. **Scope 1** covers direct emissions: fuel burned on site for process heat and methane slip in the membrane permeate. **Scope 2** covers purchased electricity. Biogenic CO_{2} (the CO_{2} separated from biogas, and CO_{2} from burning biogas-derived gases) is reported separately, as the GHG Protocol requires; biogenic methane that escapes is counted in Scope 1. Scope 3 will be added later.'));
 body.push(CAPT('Main inputs to the emission calculation.'));
-body.push(...TBL([['Item', 'Value', 'Source'], ['Heat demand', '86.7 kW (28.3 low-T, 58.5 high-T)', 'Aspen simulation'], ['Electricity', '5.69 kW', 'Aspen simulation'],
+body.push(...TBL([['Item', 'Value', 'Source'], ['Heat demand', '84.1 kW (28.2 low-T, 55.9 high-T)', 'Aspen simulation'], ['Electricity', '5.69 kW', 'Aspen simulation'],
   ['Heater efficiency', 'boiler 90 %, furnace 80 %', 'Assumption'], ['Natural gas emission factor', '56.1 kg CO₂/GJ', 'IPCC 2006, Vol. 2 [6]'],
   ['India grid', '0.727 kg CO₂/kWh (FY 2023-24)', 'CEA v20.0 [7]'], ['Coal / thermal power', '0.962 kg CO₂/kWh', 'CEA operating margin [7]'],
-  ['Hydro, solar', '0 (no combustion)', 'GHG Protocol Scope 2'], ['CH₄ slip in permeate', '0.65 kg/h, flared at 98 %', 'Aspen; assumption'], ['GWP of biogenic CH₄', '27.0', 'IPCC AR6 [6]']],
+  ['Hydro, solar', '0 (no combustion)', 'GHG Protocol Scope 2'], ['CH₄ slip in permeate', '0.66 kg/h, flared at 98 %', 'Aspen; assumption'], ['GWP of biogenic CH₄', '27.0', 'IPCC AR6 [6]']],
   [2600, 3200, 3100], { zebra: true }));
 body.push(H2('6.2  Results'));
 body.push(P('Figure 6 compares three heat-supply cases (natural gas, electric heating, heat-integrated) for each electricity source.'));
 body.push(...FIGURE('fig6_co2', 440, 244, 'Scope 1 + 2 emissions (kg CO₂e per kg H₂).'));
-body.push(B('**Base case** (natural-gas heat, grid electricity): **5.5 kg CO_{2}e/kg H_{2}**, of which 4.5 comes from natural gas for heat.'));
-body.push(B('**Electric heating** is worse on the Indian grid (14.5) or coal power (19.2), but close to zero with hydro or solar power.'));
-body.push(B('**Heat-integrated case:** **1.9 kg CO_{2}e/kg H_{2}** on grid power, below the 2 kg green-hydrogen limit; about 1.0 with solar or hydro electricity.'));
-body.push(B('**Permeate venting must be avoided:** venting the 0.65 kg/h of methane in the permeate instead of flaring it would add 3.8 kg CO_{2}e/kg H_{2}.'));
+body.push(B('**Base case** (natural-gas heat, grid electricity): **5.6 kg CO_{2}e/kg H_{2}**, of which 4.6 comes from natural gas for heat.'));
+body.push(B('**Electric heating** is worse on the Indian grid (14.7) or coal power (19.5), but close to zero with hydro or solar power.'));
+body.push(B('**Heat-integrated case:** **2.1 kg CO_{2}e/kg H_{2}** on grid power, at the 2 kg green-hydrogen limit; about 1.2 with solar or hydro electricity.'));
+body.push(B('**Permeate venting must be avoided:** venting the 0.66 kg/h of methane in the permeate instead of flaring it would add 4.0 kg CO_{2}e/kg H_{2}.'));
 body.push(B('The permeate also contains 23.5 kg/h of biogenic CO_{2}. Capturing it in an absorption column (amine) is planned; together with the stored solid carbon, this could make the process net-negative.'));
 body.push(P('Grey hydrogen emits about 10–12 kg CO_{2}e/kg H_{2} [9]. Even the base case is about half of that.'));
 
@@ -222,7 +222,7 @@ body.push(P('The constant-permeance model was chosen because reliable DDR permea
 
 // 9 Limitations
 body.push(H1('9  Limitations'));
-['Pyrolysis reactions are irreversible, so H₂ is about 4 % above equilibrium; the Boudouard reaction is not included.', 'Digester pH is fixed at 6.5–7 (no electrolyte chemistry).',
+['Pyrolysis reactions are reversible and reach equilibrium; the Boudouard reaction (C + CO₂ ⇌ 2 CO) is not included because no rate constant is published.', 'Digester pH is fixed at 6.5–7 (no electrolyte chemistry).',
  'Hydrolysis conversions are fixed and not yet taken from a source.', 'Gas cleanup is ideal (perfect removal of water, H₂S and NH₃).',
  'The membrane is well-mixed with constant permeances (ideal gas; data at 2 bar applied at 10 bar).', 'The catalyst mass (24.7 kg) is small for the tube volume; conversion is nevertheless complete.',
  'Some amino-acid property data are placeholders; they affect only small streams.', 'Heat integration and the CO₂ heat-integrated case are screening estimates, not a pinch analysis; Scope 3 emissions are not included.']
@@ -231,9 +231,9 @@ body.push(H1('9  Limitations'));
 // 10 Conclusions
 body.push(H1('10  Conclusions and future work (BTP-2)'));
 body.push(H2('Conclusions'));
-['A custom zeolite membrane module was developed in Aspen Custom Modeler and integrated into the Aspen Plus flowsheet; it conserves mass and energy and converges robustly.', 'A verified Aspen Plus/ACM model converts 8.5 t/d of wet organic waste into 4.65 kg/h of H₂ and 16.3 kg/h of solid carbon.', 'The zeolite membrane at 10 bar raises methane from 59 % to 76 % with 97 % recovery; this pressure is near optimal.',
- 'The 790 °C pyrolysis section needs two-thirds of the process heat; hydrolysis and digestion destroy 80 % of the exergy, and the digestate carries a third of the input exergy out.',
- 'Scope 1 + 2 emissions are 5.5 kg CO₂e/kg H₂ in the base case, about half of grey hydrogen, and about 1.9 with heat integration (below the 2 kg green limit).'].forEach(t => body.push(N(t)));
+['A custom zeolite membrane module was developed in Aspen Custom Modeler and integrated into the Aspen Plus flowsheet; it conserves mass and energy and converges robustly.', 'A verified Aspen Plus/ACM model converts 8.5 t/d of wet organic waste into 4.46 kg/h of H₂ and 15.4 kg/h of solid carbon.', 'The zeolite membrane at 10 bar raises methane from 59 % to 76 % with 97 % recovery; this pressure is near optimal.',
+ 'The 790 °C pyrolysis section needs two-thirds of the process heat; hydrolysis and digestion destroy 79 % of the exergy, and the digestate carries about 30 % of the input exergy out.',
+ 'Scope 1 + 2 emissions are 5.6 kg CO₂e/kg H₂ in the base case, about half of grey hydrogen, and about 2.1 with heat integration (at the 2 kg green limit; 1.2 with solar electricity).'].forEach(t => body.push(N(t)));
 body.push(H2('Future work (BTP-2)'));
 ['Economiser and detailed energy analysis; pinch analysis, then optimisation.', 'CO₂ absorption column (amine or ethanol) on the membrane permeate to capture CO₂.',
  'CO₂ methanation as an alternative to the membrane, and comparison with the current process.', 'Cost analysis by electricity source: conventional (coal, hydro) vs solar.',
@@ -263,9 +263,30 @@ body.push(...TBL([['Area', 'Assumption'], ['Exergy', 'Dead state 25 °C, 1.013 b
   ['Membrane', 'Well-mixed, ideal gas, no pressure drop; permeances at 297 K applied at 303 K'],
   ['Pyrolysis', 'Isothermal 790 °C, 1 bar; power-law kinetics on catalyst mass (carbon-type catalyst)']], [2000, 6900], { zebra: true }));
 
+body.push(H1('Appendix B: Sources'));
+body.push(P('Sources used to build, correct and check the simulation model (from the project edit log and fix notes), with what each was used for. Page and table numbers refer to the 8th edition of Perry’s Handbook.'));
+body.push(CAPT('Sources used for the model and its checks.'));
+body.push(...TBL([['Source', 'Used for'],
+  ['Green D.W., Perry R.H. (eds.) (2008). Perry’s Chemical Engineers’ Handbook, 8th ed. McGraw-Hill. Section 2: Tables 2-151 (graphite Cp), 2-155/2-156 (ideal-gas Cp), 2-179 (ΔHf, ΔGf at 298 K), 2-2 (densities)', 'Property checks (ethanol Cp, amino-acid ΔHf basis, densities); pyrolysis equilibrium constants and reaction enthalpies'],
+  ['Perry’s Handbook, Section 7: Eq. 7-5 and 7-8 (power-law rate, Arrhenius), Eq. 7-150/151 (Monod kinetics with inhibition)', 'Form of the digester and pyrolysis kinetics'],
+  ['Perry’s Handbook, Section 10 (compressors, p. 10-45: pressure ratio per stage)', 'Two-stage intercooled compression to 10 bar'],
+  ['Perry’s Handbook, Section 16: Eq. 16-81 (packed-bed void fraction 0.35–0.5)', 'Catalyst loading check of the pyrolysis reactor'],
+  ['Perry’s Handbook, Section 20 (gas membranes, p. 20-57 to 20-63, Fig. 20-75)', 'Membrane flux law, pressure-ratio limit, staging'],
+  ['Perry’s Handbook, Section 24: Eq. 24-18, 24-25, 24-26 (shift and Boudouard reactions); anaerobic digestion: thermophilic range 45–70 °C, HRT 10–30 d', 'Reversible shift reaction; Boudouard reaction check; digester temperature and residence time'],
+  ['Chase M.W. (1998). NIST-JANAF Thermochemical Tables, 4th ed. J. Phys. Chem. Ref. Data, Monograph 9 (janaf.nist.gov: CH₄, CO, CO₂, H₂O)', 'Equilibrium constants at 790 °C (cracking 19.87, shift 0.887) for the reverse pyrolysis reactions'],
+  ['Batstone D.J. et al. (2002). Anaerobic Digestion Model No. 1 (ADM1). IWA Scientific and Technical Report No. 13', 'Digester kinetic structure; hydrogenotrophic methanogen yield (0.06)'],
+  ['Yang S. et al. (2016). Journal of Membrane Science 505, 194–204', 'DDR zeolite permeances (CO₂, H₂, CH₄) used in the ACM membrane model'],
+  ['Himeno S. et al. (2007). Industrial & Engineering Chemistry Research 46, 6989–6997', 'High-selectivity DDR permeances for the sensitivity case'],
+  ['CRC Handbook of Chemistry and Physics, 58th ed. (1977) and Merck Index, 11th ed. (1989), as tabulated by the JenaLib Amino Acid Repository (jenalib.leibniz-fli.de)', 'Amino-acid densities for standard liquid volumes'],
+  ['Ramanadham M., Sikka S.K., Chidambaram R. (1973). Neutron diffraction structure of L-threonine (repository.ias.ac.in/86278)', 'Threonine crystal density'],
+  ['Curland S. et al. (2018). Acta Crystallographica E 74 (pmc.ncbi.nlm.nih.gov/articles/PMC6002834)', 'Isoleucine crystal density (1.228 g/cm³)'],
+  ['Serrano D.P. et al. (2008). Chemical Engineering Journal (methane decomposition over carbon catalysts)', 'Activation energy range of carbon catalysts (117–185 kJ/mol) vs the model’s 145.8 kJ/mol'],
+  ['Soliman A.M.S. et al. (2026). Gases 6, 23 (CO₂ gasification of carbon from methane decomposition)', 'Boudouard kinetics check (no rate constant available, reaction not added)'],
+  ['Szargut J. et al. (1988); Smith, Van Ness and Abbott; IPCC (2006, 2021); CEA v20.0 (2024); MNRE (2023)', 'Exergy, heat capacities and emission factors (see References)']], [5200, 3700], { zebra: true }));
+
 // ---------- document
 const doc = new Document({
-  creator: 'Arghadeep', title: 'BTP-1 Report: Green Hydrogen from Organic Waste',
+  creator: 'Arghadeep Ghosh', title: 'BTP-1 2026 Report: Green Hydrogen from Organic Waste',
   styles: { default: { document: { run: { font: 'Calibri', size: 22, color: TXT } } },
     paragraphStyles: [
       { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: 'Cambria', size: 32, bold: true, color: GREEN }, paragraph: { spacing: { before: 240, after: 180 }, outlineLevel: 0 } },

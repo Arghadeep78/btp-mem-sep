@@ -14,7 +14,7 @@ const pres = new pptxgen();
 pres.layout = 'LAYOUT_16x9';               // 10 x 5.625 in
 pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace };
 pres.title = 'BTP‑1: Green hydrogen from organic waste';
-pres.author = 'Arghadeep';
+pres.author = 'Arghadeep Ghosh';
 const C = pres.SchemeColor;
 
 // ---------------- layouts
@@ -53,7 +53,7 @@ pres.addSection({ title: 'Introduction' }); sec = 'Introduction';
 let s = pres.addSlide({ masterName: 'TITLE', sectionTitle: sec });
 s.addText('Green hydrogen from organic waste: biogas, zeolite membrane and methane pyrolysis', { placeholder: 'title' });
 s.addText([{ text: 'BTP‑1 progress presentation', options: { breakLine: true } },
-           { text: 'Arghadeep  |  10 November 2026', options: { breakLine: true } },
+           { text: 'Arghadeep Ghosh (23CH3FP53)  |  10 November 2026', options: { breakLine: true } },
            { text: 'Aspen Plus V14 with a custom membrane module in Aspen Custom Modeler', options: { fontSize: 13, color: '9FC4AD' } }], { placeholder: 'body' });
 
 // ================= 2 Contents
@@ -153,8 +153,8 @@ box(1.35, 3.25, 1.75, 0.6, 'Product\nH₂ + CO + solid C', HEX.dark);
 s.addShape(pres.shapes.LINE, { x: 9.3, y: 1.85, w: 0.0001, h: 1.4, line: { color: HEX.mid, width: 1.25, endArrowType: 'triangle' } });
 lab(7.55, 2.78, 1.6, 'Retentate 10 bar\n76 % CH₄', 'right');
 arr(7.9, 3.55, 7.4, 3.55); arr(5.85, 3.55, 5.35, 3.55); arr(3.6, 3.55, 3.1, 3.55);
-lab(1.2, 3.95, 2.1, 'H₂ 4.65 kg/h, C 16.3 kg/h');
-txt(s, 'Heat in: 87 kW (RSTOIC 24.7, B1 3.5, HEAT2 20.4, CH4PYRO 38.1)   |   Electricity: 5.7 kW (compressors)', { x: 0.5, y: 4.5, w: 9.0, h: 0.35, fontSize: 12, bold: true, color: C.accent1 });
+lab(1.2, 3.95, 2.1, 'H₂ 4.46 kg/h, C 15.4 kg/h');
+txt(s, 'Heat in: 84 kW (RSTOIC 24.7, B1 3.5, HEAT2 20.4, CH4PYRO 35.4)   |   Electricity: 5.7 kW (compressors)', { x: 0.5, y: 4.5, w: 9.0, h: 0.35, fontSize: 12, bold: true, color: C.accent1 });
 txt(s, [{ text: 'Retentate', options: { bold: true } }, { text: ' = gas that stays on the high-pressure side of the membrane (CH\u2084-rich).   ' }, { text: 'Permeate', options: { bold: true } }, { text: ' = gas that passes through it (CO\u2082-rich).' }], { x: 0.5, y: 4.88, w: 9.0, h: 0.3, fontSize: 11.5 });
 
 s = slide('Aspen model set-up');
@@ -162,7 +162,7 @@ const setRows = [['Step', 'What it does (plain words)', 'Aspen blocks and key sp
   ['Hydrolysis', 'Breaks large molecules into sugars, acids and amino acids (55\u00a0\u00b0C)', 'MIX1, RSTOIC: 13 reactions in series, fixed conversions'],
   ['Digestion', 'Stirred tank where microbes make biogas (55\u00a0\u00b0C, 15 days)', 'B1 (RCSTR) + 10 calculator blocks: ADM1-style kinetics with inhibition, recycle loop'],
   ['Gas cleanup', 'Removes water, H\u2082S and NH\u2083 from the biogas', 'FLASH, H2S-SEP, NH3SEP (ideal splitters)'],
-  ['Compression', 'Two compressors with coolers raise the pressure to 10 bar', 'COMP1/2, COOL1/2: efficiency 0.75, cooled to 30\u00a0\u00b0C'],
+  ['Compression', 'A two-stage compressor with intercooling raises the pressure to 10 bar', 'COMP (MCompr, 2 stages): efficiency 0.75, cooled to 30\u00a0\u00b0C'],
   ['Membrane', 'Zeolite layer lets CO\u2082 through and keeps CH\u2084 (5\u00a0m\u00b2)', 'MEMB1: custom ACM model Zeo_real, DDR permeances'],
   ['Pyrolysis', 'Hot reactor with catalyst splits CH\u2084 into H\u2082 + carbon (790\u00a0\u00b0C)', 'FLASH3, HEAT2, CH4PYRO (RPLUG), 1 bar'],
   ['Properties', 'How Aspen calculates gas and liquid behaviour', 'NRTL + Peng\u2013Robinson, Henry gases, 62 components']];
@@ -222,76 +222,76 @@ stat(s, 6.1, 2.35, 3.4, '56.3 %', 'of the CO₂ removed (permeate)');
 stat(s, 6.1, 3.55, 3.4, '5.7 kW', 'compression, 1 → 10 bar', HEX.blue);
 
 s = slide('Pyrolysis: hydrogen and solid carbon');
-stat(s, 0.6, 1.15, 2.8, '4.65 kg/h', 'H₂ (2.31 kmol/h, about 110 kg/day)');
-stat(s, 3.5, 1.15, 2.8, '16.3 kg/h', 'solid carbon (by-product)');
-stat(s, 6.4, 1.15, 3.1, '≈ 100 %', 'CH₄ converted at 790 °C', HEX.orange);
-s.addChart(pres.charts.DOUGHNUT, [{ name: 'Product gas', labels: ['H₂', 'CO', 'H₂O'], values: [73.5, 13.2, 13.2] }],
-  Object.assign({ x: 0.5, y: 2.45, w: 3.6, h: 2.65, chartColors: [HEX.green, HEX.orange, HEX.blue], showPercent: true, showLegend: true, legendPos: 'r', legendFontSize: 11, holeSize: 55,
+stat(s, 0.6, 1.15, 2.8, '4.46 kg/h', 'H₂ (2.21 kmol/h, about 107 kg/day)');
+stat(s, 3.5, 1.15, 2.8, '15.4 kg/h', 'solid carbon (by-product)');
+stat(s, 6.4, 1.15, 3.1, '94 %', 'CH₄ converted (equilibrium, 790 °C)', HEX.orange);
+s.addChart(pres.charts.DOUGHNUT, [{ name: 'Product gas', labels: ['H₂', 'CO', 'H₂O', 'CH₄', 'CO₂'], values: [72.3, 11.5, 11.5, 2.6, 2.1] }],
+  Object.assign({ x: 0.5, y: 2.45, w: 3.6, h: 2.65, chartColors: [HEX.green, HEX.orange, HEX.blue, HEX.grey, HEX.text], showPercent: true, showLegend: true, legendPos: 'r', legendFontSize: 11, holeSize: 55,
     showTitle: true, title: 'Product gas, mol %', dataLabelColor: 'FFFFFF' }, AX, { dataLabelColor: 'FFFFFF' }));
-txt(s, bullets(['Reactions: CH₄ → C(s) + 2 H₂ and CO₂ + H₂ → CO + H₂O', 'The 23 % CO₂ left after the membrane uses up about 15 % of the possible H₂ and makes CO', 'Both reactions are modelled as one-way, so H₂ is about 4 % above equilibrium (checked with Perry’s data)', 'Heat: preheat 20.4 kW + reactor 38.1 kW'], 13),
+txt(s, bullets(['Reactions: CH₄ ⇌ C(s) + 2 H₂ and CO₂ + H₂ ⇌ CO + H₂O', 'The 23 % CO₂ left after the membrane uses up about 13 % of the possible H₂ and makes CO', 'Both reactions are reversible and reach equilibrium at 790 °C (NIST-JANAF data; Perry’s agrees)', 'Heat: preheat 20.4 kW + reactor 35.4 kW'], 13),
   { x: 4.4, y: 2.5, w: 5.1, h: 2.6 });
 
 s = slide('Key streams');
 const sr = [['Stream', 'Flow (kmol/h)', 'T (°C)', 'P (bar)', 'CH₄ %', 'CO₂ %', 'H₂ %'],
   ['Biogas to membrane (GAS2C)', '2.358', '30', '10', '59.4', '40.3', '0.3'], ['Retentate (RET)', '1.779', '30', '10', '76.4', '23.4', '0.2'],
   ['Permeate (PER)', '0.580', '30', '1', '7.0', '92.2', '0.6'], ['Pyrolysis feed (PYROIN)', '1.779', '790', '1', '76.4', '23.4', '0.2'],
-  ['Product gas (FINPROD)', '3.137 + 1.359 C(s)', '790', '1', '≈ 0', '≈ 0', '73.5']];
+  ['Product gas (FINPROD)', '3.058 + 1.279 C(s)', '790', '1', '2.6', '2.1', '72.3']];
 s.addTable(sr.map((r, i) => r.map((c, j) => ({ text: c, options: { bold: i === 0, align: j ? 'center' : 'left', color: i === 0 ? 'FFFFFF' : HEX.text, fill: { color: i === 0 ? HEX.green : (i % 2 ? 'FFFFFF' : HEX.light) } } }))),
   { x: 0.5, y: 1.15, w: 9.0, colW: [2.75, 1.75, 0.8, 0.8, 0.95, 0.95, 1.0], fontSize: 13, border: { type: 'solid', pt: 0.5, color: 'D5DDD8' }, rowH: 0.45, valign: 'middle' });
-txt(s, 'Product gas also holds about 13 % CO and 13 % H₂O (wet basis).', { x: 0.5, y: 4.0, w: 9.0, h: 0.35, fontSize: 13, color: HEX.mid });
+txt(s, 'Product gas also holds about 11.5 % CO and 11.5 % H₂O (wet basis).', { x: 0.5, y: 4.0, w: 9.0, h: 0.35, fontSize: 13, color: HEX.mid });
 
 // ================= Balances
 section('4  Material and energy balance', 'Which unit uses the most energy, and how to cut it');
 s = slide('Material balance closes (kg/h)');
-const mb = [['In', 'kg/h', 'Out', 'kg/h'], ['Biomass (wet)', '354.2', 'Digestate (LIQUID)', '821.2'], ['Process water', '541.7', 'Flash water, NH₃, H₂S purges', '10.3'],
-  ['', '', 'Membrane permeate (mostly CO₂)', '24.2'], ['', '', 'Product gas (H₂ 4.65, CO 11.6, H₂O 7.5)', '23.8'], ['', '', 'Solid carbon', '16.3'],
+const mb = [['In', 'kg/h', 'Out', 'kg/h'], ['Biomass (wet)', '354.2', 'Digestate (LIQUID)', '821.1'], ['Process water', '541.7', 'Flash water, NH₃, H₂S purges', '10.4'],
+  ['', '', 'Membrane permeate (mostly CO₂)', '24.2'], ['', '', 'Product gas (H₂ 4.46, CO 9.9, H₂O 6.3, CH₄ 1.3, CO₂ 2.8)', '24.7'], ['', '', 'Solid carbon', '15.4'],
   ['Total in', '895.8', 'Total out', '895.8']];
 s.addTable(mb.map((r, i) => r.map((c, j) => ({ text: c, options: { bold: i === 0 || i === mb.length - 1, align: j % 2 ? 'right' : 'left', color: i === 0 ? 'FFFFFF' : HEX.text, fill: { color: i === 0 ? HEX.green : (i === mb.length - 1 ? HEX.light : 'FFFFFF') } } }))),
   { x: 0.5, y: 1.15, w: 9.0, colW: [2.2, 1.0, 4.6, 1.2], fontSize: 13, border: { type: 'solid', pt: 0.5, color: 'D5DDD8' }, rowH: 0.42, valign: 'middle' });
 txt(s, 'About 92 % of the mass leaves as digestate: the process is mostly water.', { x: 0.5, y: 4.3, w: 9.0, h: 0.4, fontSize: 14, bold: true, color: C.accent1 });
 
 s = slide('Energy: pyrolysis takes two-thirds of the heat');
-s.addChart(pres.charts.BAR, [{ name: 'kW', labels: ['CH4PYRO reactor', 'RSTOIC (feed heating)', 'HEAT2 preheat', 'B1 digester', 'Compressors (power)'], values: [38.1, 24.7, 20.4, 3.5, 5.7] }],
+s.addChart(pres.charts.BAR, [{ name: 'kW', labels: ['CH4PYRO reactor', 'RSTOIC (feed heating)', 'HEAT2 preheat', 'B1 digester', 'Compressors (power)'], values: [35.4, 24.7, 20.4, 3.5, 5.7] }],
   Object.assign({ x: 0.4, y: 1.05, w: 5.6, h: 3.95, barDir: 'bar', chartColors: [HEX.orange, HEX.green, HEX.orange, HEX.green, HEX.blue], showValue: true, dataLabelPosition: 'outEnd', showLegend: false,
     showTitle: true, title: 'Energy input by unit (kW)', catAxisOrientation: 'maxMin', dataLabelFormatCode: '0.0' }, AX));
-stat(s, 6.3, 1.15, 3.2, '87 kW heat', '+ 5.7 kW electricity');
-stat(s, 6.3, 2.3, 3.2, '67 %', 'of heat goes to 790 °C pyrolysis', HEX.orange);
-stat(s, 6.3, 3.45, 3.2, '18.6 kWh', 'heat per kg H₂ (+ 1.22 kWh power)');
+stat(s, 6.3, 1.15, 3.2, '84 kW heat', '+ 5.7 kW electricity');
+stat(s, 6.3, 2.3, 3.2, '66 %', 'of heat goes to 790 °C pyrolysis', HEX.orange);
+stat(s, 6.3, 3.45, 3.2, '18.9 kWh', 'heat per kg H₂ (+ 1.28 kWh power)');
 source(s, 'Cooling duties (about 11 kW) not shown.');
 
 s = slide('Cutting the energy demand: heat integration');
-s.addChart(pres.charts.BAR, [{ name: 'Low-temperature heat (digester)', labels: ['Now', 'Heat-integrated'], values: [28.3, 4.4] },
-  { name: 'High-temperature heat (790 °C)', labels: ['Now', 'Heat-integrated'], values: [58.5, 14.0] }],
+s.addChart(pres.charts.BAR, [{ name: 'Low-temperature heat (digester)', labels: ['Now', 'Heat-integrated'], values: [28.2, 4.4] },
+  { name: 'High-temperature heat (790 °C)', labels: ['Now', 'Heat-integrated'], values: [55.9, 15.3] }],
   Object.assign({ x: 0.4, y: 1.05, w: 4.4, h: 3.95, barDir: 'col', barGrouping: 'stacked', chartColors: [HEX.green, HEX.orange], showValue: true, dataLabelPosition: 'ctr', showLegend: true, legendPos: 'b', legendFontSize: 10,
     showTitle: true, title: 'External heat needed (kW)', dataLabelFormatCode: '0.0' }, AX, { dataLabelColor: 'FFFFFF' }));
 const opts = [['Digestate 55 → 30 °C preheats the feed', 'about 24 kW'], ['Hot product (790 °C) preheats pyrolysis feed (economiser)', 'about 18 kW'],
-  ['Burn the CO in the product gas for 790 °C heat', 'about 26 kW'], ['Expander on the 10 → 1 bar letdown', 'about 1.6 kW power']];
+  ['Burn the CO in the product gas for 790 °C heat', 'about 22 kW'], ['Expander on the 10 → 1 bar letdown', 'about 1.7 kW power']];
 opts.forEach((o, i) => { const y = 1.15 + i * 0.85; card(s, 5.1, y, 4.4, 0.72, HEX.light, 'opt' + i);
   txt(s, o[0], { x: 5.25, y: y + 0.06, w: 2.95, h: 0.6, fontSize: 12.5, valign: 'middle' });
   txt(s, o[1], { x: 8.2, y: y + 0.06, w: 1.2, h: 0.6, fontSize: 13, bold: true, valign: 'middle', color: C.accent1, align: 'right' }); });
-txt(s, 'External heat 87 → 18 kW (−79 %). Screening estimate; pinch analysis in BTP‑2.', { x: 5.1, y: 4.6, w: 4.4, h: 0.5, fontSize: 12.5, bold: true, color: C.accent1 });
+txt(s, 'External heat 84 → 20 kW (−77 %). Screening estimate; pinch analysis in BTP‑2.', { x: 5.1, y: 4.6, w: 4.4, h: 0.5, fontSize: 12.5, bold: true, color: C.accent1 });
 
 // ================= Exergy and CO2
 section('5  Exergy and CO₂ emissions', 'Where useful energy is destroyed; Scope 1 + 2 emissions');
 s = slide('Exergy destroyed per unit: the digester dominates');
-const exu = [['RSTOIC', 38.6], ['B1 digester', 21.9], ['CH4PYRO', 6.0], ['HEAT2', 4.4], ['FLASH3 letdown', 2.7], ['Compressors', 1.0], ['Coolers', 0.9], ['MEMB1', 0.6], ['Other', 0.5]];
+const exu = [['RSTOIC', 39.1], ['B1 digester', 22.5], ['CH4PYRO', 6.3], ['HEAT2', 4.6], ['FLASH3 letdown', 2.8], ['Compressors', 1.1], ['Coolers', 0.9], ['MEMB1', 0.6], ['Other', 0.3]];
 s.addChart(pres.charts.BAR, [{ name: 'kW', labels: exu.map(e => e[0]), values: exu.map(e => e[1]) }],
   Object.assign({ x: 0.4, y: 1.05, w: 5.6, h: 3.95, barDir: 'bar', chartColors: [HEX.green, HEX.green, HEX.orange, HEX.orange, HEX.grey, HEX.blue, HEX.blue, HEX.blue, HEX.grey], showValue: true, dataLabelPosition: 'outEnd',
-    showLegend: false, showTitle: true, title: 'Exergy destroyed (kW), total 76 kW', catAxisOrientation: 'maxMin', dataLabelFormatCode: '0.0' }, AX));
+    showLegend: false, showTitle: true, title: 'Exergy destroyed (kW), total 78 kW', catAxisOrientation: 'maxMin', dataLabelFormatCode: '0.0' }, AX));
 txt(s, [{ text: 'Exergy', options: { bold: true } }, { text: ' = the useful part of energy that can still do work. Destroyed exergy is lost forever.', options: { breakLine: true } }, { text: 'Calculated from Aspen enthalpy and entropy plus standard chemical exergies (Szargut), T\u2080 = 25\u00a0\u00b0C.', options: { fontSize: 11, color: HEX.mid } }],
   { x: 6.3, y: 1.1, w: 3.2, h: 1.55, fontSize: 12.5 });
-stat(s, 6.3, 2.75, 3.2, '80 %', 'destroyed in hydrolysis + digestion');
-stat(s, 6.3, 3.85, 3.2, '2.7 kW', 'wasted in the 10 → 1 bar letdown', HEX.grey);
-source(s, 'The energy balance of every unit matches the Aspen duties within 0.1 %.');
+stat(s, 6.3, 2.75, 3.2, '79 %', 'destroyed in hydrolysis + digestion');
+stat(s, 6.3, 3.85, 3.2, '2.8 kW', 'wasted in the 10 → 1 bar letdown', HEX.grey);
+source(s, 'The energy balance of every unit matches the Aspen duties within 0.1 % (pyrolysis reactor 0.4 %).');
 
 s = slide('Whole process: where the exergy goes');
-s.addChart(pres.charts.BAR, [{ name: 'Product (H₂, C, CO, heat)', labels: ['Exergy out'], values: [332] }, { name: 'Lost: digestate', labels: ['Exergy out'], values: [207] },
-  { name: 'Lost: permeate and purges', labels: ['Exergy out'], values: [31] }, { name: 'Destroyed in units', labels: ['Exergy out'], values: [76] }],
+s.addChart(pres.charts.BAR, [{ name: 'Product (H₂, C, CO, heat)', labels: ['Exergy out'], values: [348] }, { name: 'Lost: digestate', labels: ['Exergy out'], values: [191] },
+  { name: 'Lost: permeate and purges', labels: ['Exergy out'], values: [30] }, { name: 'Destroyed in units', labels: ['Exergy out'], values: [78] }],
   Object.assign({ x: 0.4, y: 1.05, w: 4.6, h: 3.95, barDir: 'bar', barGrouping: 'stacked', chartColors: [HEX.green, HEX.orange, HEX.grey, HEX.red], showValue: true, dataLabelPosition: 'ctr',
-    showLegend: true, legendPos: 'b', legendFontSize: 10, showTitle: true, title: 'Exergy in = 646 kW', valAxisMaxVal: 650, valAxisMinVal: 0 }, AX, { dataLabelColor: 'FFFFFF' }));
+    showLegend: true, legendPos: 'b', legendFontSize: 10, showTitle: true, title: 'Exergy in = 647 kW', valAxisMaxVal: 650, valAxisMinVal: 0 }, AX, { dataLabelColor: 'FFFFFF' }));
 stat(s, 5.3, 1.15, 2.1, '22 %', 'exergy efficiency, H₂ only');
 stat(s, 7.5, 1.15, 2.0, '45 %', 'H₂ + solid carbon');
-txt(s, bullets(['Inputs: biomass 585, heat 48, water 8, electricity 5.5 kW', 'The digestate carries out 207 kW (a third of the input): undigested organics and warm water', 'The hot product leaves with about 24 kW of heat (12 kW exergy)'], 13),
+txt(s, bullets(['Inputs: biomass 585, heat 48, water 8, electricity 5.7 kW', 'The digestate carries out 191 kW (about 30 % of the input): undigested organics and warm water', 'The hot product leaves with about 25 kW of heat (12 kW exergy)'], 13),
   { x: 5.3, y: 2.5, w: 4.2, h: 2.5 });
 
 s = slide('Problems found and what BTP‑2 will solve');
@@ -306,18 +306,18 @@ probs.forEach((p, i) => { const y = 1.35 + i * 0.88;
 txt(s, 'Main BTP‑2 focus: economiser + energy analysis', { x: 0.5, y: 4.9, w: 9.0, h: 0.35, fontSize: 14, bold: true, color: C.accent1 });
 
 s = slide('CO₂ emissions, Scope 1 + 2 (kg CO₂e per kg H₂)');
-s.addChart(pres.charts.BAR, [{ name: 'India grid', labels: ['Natural gas heat', 'Electric heat', 'Heat-integrated'], values: [5.50, 14.52, 1.93] },
-  { name: 'Coal power', labels: ['Natural gas heat', 'Electric heat', 'Heat-integrated'], values: [5.79, 19.20, 2.22] },
-  { name: 'Hydro / solar', labels: ['Natural gas heat', 'Electric heat', 'Heat-integrated'], values: [4.61, 0.08, 1.04] }],
+s.addChart(pres.charts.BAR, [{ name: 'India grid', labels: ['Natural gas heat', 'Electric heat', 'Heat-integrated'], values: [5.60, 14.73, 2.10] },
+  { name: 'Coal power', labels: ['Natural gas heat', 'Electric heat', 'Heat-integrated'], values: [5.90, 19.47, 2.40] },
+  { name: 'Hydro / solar', labels: ['Natural gas heat', 'Electric heat', 'Heat-integrated'], values: [4.67, 0.08, 1.17] }],
   Object.assign({ x: 0.4, y: 1.05, w: 5.8, h: 3.95, barDir: 'col', chartColors: [HEX.grey, HEX.text, HEX.moss], showValue: true, dataLabelPosition: 'outEnd', showLegend: true, legendPos: 'b', legendFontSize: 11,
     showTitle: true, title: 'Electricity source', dataLabelFontSize: 9, dataLabelFormatCode: '0.0' }, AX));
-txt(s, bullets(['Scope 1 = on-site emissions: fuel burned for heat, CH₄ slip (flared)', 'Scope 2 = emissions from bought electricity (India grid 0.727 kg/kWh)', 'Base case 5.5; green limit 2.0', 'Heat-integrated: 1.9, just under the limit on grid power'], 12.5),
+txt(s, bullets(['Scope 1 = on-site emissions: fuel burned for heat, CH₄ slip (flared)', 'Scope 2 = emissions from bought electricity (India grid 0.727 kg/kWh)', 'Base case 5.6; green limit 2.0', 'Heat-integrated: 2.1 on grid power, at the limit; 1.2 with solar power'], 12.5),
   { x: 6.4, y: 1.15, w: 3.1, h: 3.9 });
 source(s, 'Biogenic CO₂ reported separately (GHG Protocol). Scope 3 not yet included.');
 
 s = slide('CO₂: what the numbers say');
-const msgs = [['Heat is the main source', 'Natural gas for heat gives 4.5 of the 5.5 kg per kg H₂'], ['Electric heating needs clean power', 'On the grid it gives 14.5; with hydro or solar about 0'],
-  ['Never vent the permeate', 'Its 0.65 kg/h of CH₄ would add 3.8 kg per kg H₂; flare or recycle it'], ['Capture the permeate CO₂', '23.5 kg/h of biogenic CO₂: target for the absorption column (amine)']];
+const msgs = [['Heat is the main source', 'Natural gas for heat gives 4.6 of the 5.6 kg per kg H₂'], ['Electric heating needs clean power', 'On the grid it gives 14.7; with hydro or solar about 0'],
+  ['Never vent the permeate', 'Its 0.66 kg/h of CH₄ would add 4.0 kg per kg H₂; flare or recycle it'], ['Capture the permeate CO₂', '23.5 kg/h of biogenic CO₂: target for the absorption column (amine)']];
 msgs.forEach((m, i) => { const x = 0.5 + (i % 2) * 4.6, y = 1.15 + Math.floor(i / 2) * 1.85;
   card(s, x, y, 4.4, 1.6, HEX.light, 'msg' + i);
   txt(s, m[0], { x: x + 0.2, y: y + 0.15, w: 4.0, h: 0.45, bold: true, fontSize: 16, color: C.accent1 });
@@ -346,7 +346,7 @@ s = slide('Other units: what is modelled and what is simplified');
 const ou = [['Digester', 'ADM1-style Monod kinetics with inhibition, 10 calculator blocks, recycle (tear) loop', 'pH fixed at 6.5–7; no electrolyte chemistry'],
   ['Hydrolysis', '13 reactions in series, fixed conversions', 'Conversions not yet from a source'],
   ['Gas cleanup', 'Flash + component splitters', 'Ideal removal of H₂S, NH₃, water'],
-  ['Pyrolysis', 'Plug-flow reactor, power-law kinetics on catalyst mass', 'One-way reactions (H₂ +4 % vs equilibrium); only 24.7 kg catalyst']];
+  ['Pyrolysis', 'Plug-flow reactor, power-law kinetics on catalyst mass', 'Reversible, at equilibrium; no Boudouard reaction; only 24.7 kg catalyst']];
 txt(s, 'Unit', { x: 0.5, y: 1.0, w: 1.6, h: 0.3, bold: true, fontSize: 12, color: HEX.mid });
 txt(s, 'Modelled as', { x: 2.2, y: 1.0, w: 4.0, h: 0.3, bold: true, fontSize: 12, color: HEX.mid });
 txt(s, 'Simplification', { x: 6.3, y: 1.0, w: 3.2, h: 0.3, bold: true, fontSize: 12, color: HEX.mid });
@@ -357,7 +357,7 @@ ou.forEach((o, i) => { const y = 1.35 + i * 0.9; card(s, 0.5, y, 9.0, 0.78, i %
 
 s = slide('Conclusions and next steps');
 txt(s, 'Conclusions', { x: 0.5, y: 1.05, w: 4.3, h: 0.4, bold: true, fontSize: 18, color: C.accent1 });
-txt(s, bullets(['Custom zeolite membrane module built in ACM and integrated into Aspen Plus', 'Working, verified model: 8.5 t/d waste → 4.65 kg/h H₂ + 16.3 kg/h carbon', 'Membrane at 10 bar: 76 % CH₄, 97 % recovery; near optimal', 'Pyrolysis section uses 67 % of the heat; digester 80 % of exergy destroyed', 'Heat integration could cut external heat by about 79 % and CO₂ to about 1.9 kg/kg H₂'], 13),
+txt(s, bullets(['Custom zeolite membrane module built in ACM and integrated into Aspen Plus', 'Working, verified model: 8.5 t/d waste → 4.46 kg/h H₂ + 15.4 kg/h carbon', 'Membrane at 10 bar: 76 % CH₄, 97 % recovery; near optimal', 'Pyrolysis section uses 66 % of the heat; digester 79 % of exergy destroyed', 'Heat integration could cut external heat by about 77 % and CO₂ to about 2.1 kg/kg H₂'], 13),
   { x: 0.5, y: 1.5, w: 4.3, h: 3.5 });
 card(s, 5.1, 1.05, 4.4, 4.0, HEX.light, 'next');
 txt(s, 'Next (BTP‑2)', { x: 5.3, y: 1.15, w: 4.0, h: 0.4, bold: true, fontSize: 18, color: C.accent1 });
